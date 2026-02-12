@@ -1,5 +1,7 @@
 "use client";
 
+import Image from 'next/image';
+
 const PlayCircleIcon = ({ size = 20 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" />
@@ -34,11 +36,13 @@ export default function Hero() {
             </div>
 
             <div className="animate-fade" style={{ position: 'relative' }}>
-                <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                    <img
+                <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: 'var(--shadow-lg)', position: 'relative', height: '450px' }}>
+                    <Image
                         src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
                         alt="Students collaborating"
-                        style={{ width: '100%', height: 'auto', display: 'block' }}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        priority
                     />
                 </div>
 

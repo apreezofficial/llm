@@ -45,7 +45,7 @@ export default function Footer() {
                         <span style={{ fontWeight: 700, fontSize: '20px', color: '#0F172A' }}>EduFlow</span>
                     </Link>
                     <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '24px', maxWidth: '240px' }}>
-                        The world's leading LMS designed for student success and teacher efficiency in the digital age.
+                        The world&apos;s leading LMS designed for student success and teacher efficiency in the digital age.
                     </p>
                     <div className="flex" style={{ gap: '16px', display: 'flex' }}>
                         <div style={{ cursor: 'pointer', color: 'var(--text-muted)' }}><FacebookIcon /></div>

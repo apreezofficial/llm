@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 
 const StarIcon = ({ size = 16, fill = "currentColor", color = "currentColor" }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -58,7 +59,9 @@ export default function Testimonials() {
                             </p>
                         </div>
                         <div className="flex align-center" style={{ gap: '12px', display: 'flex', alignItems: 'center' }}>
-                            <img src={t.avatar} alt={t.name} style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
+                            <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', position: 'relative' }}>
+                                <Image src={t.avatar} alt={t.name} fill style={{ objectFit: 'cover' }} />
+                            </div>
                             <div>
                                 <div style={{ fontWeight: 700, fontSize: '14px' }}>{t.name}</div>
                                 <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{t.role}</div>
