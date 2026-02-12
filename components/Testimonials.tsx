@@ -1,5 +1,10 @@
 "use client";
-import { Star } from 'lucide-react';
+
+const StarIcon = ({ size = 16, fill = "currentColor", color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+);
 
 const testimonials = [
     {
@@ -32,7 +37,7 @@ export default function Testimonials() {
                 <h2 className="section-title">What Our Students Say</h2>
             </div>
 
-            <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+            <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', display: 'grid' }}>
                 {testimonials.map((t, i) => (
                     <div key={i} style={{
                         padding: '32px',
@@ -43,16 +48,16 @@ export default function Testimonials() {
                         justifyContent: 'space-between'
                     }}>
                         <div>
-                            <div className="flex" style={{ gap: '4px', marginBottom: '16px' }}>
-                                {[...Array(t.stars)].map((_, i) => (
-                                    <Star key={i} size={16} fill="#FFB800" color="#FFB800" />
+                            <div className="flex" style={{ gap: '4px', marginBottom: '16px', display: 'flex' }}>
+                                {[...Array(t.stars)].map((_, idx) => (
+                                    <StarIcon key={idx} size={16} fill="#FFB800" color="#FFB800" />
                                 ))}
                             </div>
                             <p style={{ fontStyle: 'italic', color: 'var(--text-main)', marginBottom: '24px', fontSize: '15px', lineHeight: '1.6' }}>
                                 "{t.quote}"
                             </p>
                         </div>
-                        <div className="flex align-center" style={{ gap: '12px' }}>
+                        <div className="flex align-center" style={{ gap: '12px', display: 'flex', alignItems: 'center' }}>
                             <img src={t.avatar} alt={t.name} style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
                             <div>
                                 <div style={{ fontWeight: 700, fontSize: '14px' }}>{t.name}</div>
