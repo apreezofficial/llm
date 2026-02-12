@@ -36,7 +36,7 @@ export default function Roadmap() {
             <div>
                 <h2 className="section-title" style={{ fontSize: '40px' }}>A Roadmap to Success</h2>
                 <p style={{ color: 'var(--text-muted)', marginBottom: '40px', fontSize: '16px' }}>
-                    We don't just host classes; we build careers. Our platform automatically maps curriculum to future goals, helping students understand the "why" behind their learning.
+                    We don&apos;t just host classes; we build careers. Our platform automatically maps curriculum to future goals, helping students understand the &quot;why&quot; behind their learning.
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>

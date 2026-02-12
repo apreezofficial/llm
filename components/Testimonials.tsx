@@ -55,7 +55,7 @@ export default function Testimonials() {
                                 ))}
                             </div>
                             <p style={{ fontStyle: 'italic', color: 'var(--text-main)', marginBottom: '24px', fontSize: '15px', lineHeight: '1.6' }}>
-                                "{t.quote}"
+                                &quot;{t.quote}&quot;
                             </p>
                         </div>
                         <div className="flex align-center" style={{ gap: '12px', display: 'flex', alignItems: 'center' }}>
