@@ -22,6 +22,7 @@ import {
     Lock,
     Bot
 } from 'lucide-react';
+import AIBotWidget from '@/components/AIBotWidget';
 
 export default function Dashboard() {
     const [progress] = useState(85);
@@ -55,7 +56,8 @@ export default function Dashboard() {
                         <div className="flex align-center mobile-hide" style={{ gap: '24px', marginLeft: '40px' }}>
                             <Link href="#" style={{ fontWeight: 700, color: '#0066FF', fontSize: '14px' }}>Dashboard</Link>
                             <Link href="/ai-tutor" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>AI Tutor</Link>
-                            <Link href="#" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Courses</Link>
+                            <Link href="/certificates" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Certificates</Link>
+                            <Link href="/schedule" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Schedule</Link>
                             <Link href="#" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Resources</Link>
                             <Link href="#" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Support</Link>
                         </div>
@@ -161,9 +163,9 @@ export default function Dashboard() {
                                 <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#1E293B' }}>Achievement Badges</h3>
                                 <Link href="#" style={{ fontSize: '13px', fontWeight: 700, color: '#0066FF' }}>View All</Link>
                             </div>
-                            <div className="grid grid-4" style={{ gap: '20px' }}>
+                            <div className="flex" style={{ gap: '20px', overflowX: 'auto', paddingBottom: '12px' }}>
                                 {badges.map((b, idx) => (
-                                    <div key={idx} className="card text-center" style={{ padding: '24px', opacity: b.locked ? 0.6 : 1, borderStyle: b.locked ? 'dashed' : 'solid' }}>
+                                    <div key={idx} className="card text-center" style={{ minWidth: '160px', padding: '24px', opacity: b.locked ? 0.6 : 1, borderStyle: b.locked ? 'dashed' : 'solid' }}>
                                         <div style={{
                                             width: '56px',
                                             height: '56px',
@@ -259,12 +261,12 @@ export default function Dashboard() {
                                     </div>
                                     <ArrowUpRight size={18} />
                                 </Link>
-                                <button className="card" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700, fontSize: '14px', color: '#1E293B' }}>
+                                <Link href="/certificates" className="card" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700, fontSize: '14px', color: '#1E293B', textDecoration: 'none' }}>
                                     <Download size={20} color="#0066FF" /> Download Certificate
-                                </button>
-                                <button className="card" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700, fontSize: '14px', color: '#1E293B' }}>
+                                </Link>
+                                <Link href="/schedule" className="card" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700, fontSize: '14px', color: '#1E293B', textDecoration: 'none' }}>
                                     <Calendar size={20} color="#0066FF" /> View Schedule
-                                </button>
+                                </Link>
                             </div>
                         </div>
 
@@ -330,6 +332,8 @@ export default function Dashboard() {
                     </div>
                 </div>
             </footer>
+
+            <AIBotWidget />
         </div>
     );
 }
