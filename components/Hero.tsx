@@ -1,20 +1,7 @@
 "use client";
-
 import Image from 'next/image';
-
-const PlayCircleIcon = ({ size = 20 }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" />
-    </svg>
-);
-
-const TrendingUpIcon = ({ size = 24, color = "currentColor" }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
-    </svg>
-);
-
 import Wave from './Wave';
+import { PlayCircle, TrendingUp } from 'lucide-react';
 
 export default function Hero() {
     return (
@@ -22,29 +9,37 @@ export default function Hero() {
             background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)',
             position: 'relative',
             overflow: 'hidden',
-            padding: '40px 0 120px'
+            padding: '40px 0 0'
         }}>
-            <div className="container section grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center', display: 'grid', position: 'relative', zIndex: 1 }}>
+            <div className="container section grid grid-2" style={{ alignItems: 'center', position: 'relative', zIndex: 1 }}>
                 <div className="animate-fade">
                     <div className="badge-pill badge-blue" style={{ marginBottom: '24px' }}>
                         <span style={{ fontSize: '10px' }}>●</span> Trusted by 500+ Schools Worldwide
                     </div>
-                    <h1 style={{ fontSize: '64px', lineHeight: '1.1', marginBottom: '24px' }}>
+                    <h1 className="hero-title">
                         Empowering the <span style={{ color: 'var(--primary)' }}>Next Generation</span> of Learners.
                     </h1>
-                    <p style={{ fontSize: '18px', color: 'var(--text-muted)', marginBottom: '40px', maxWidth: '500px' }}>
+                    <p className="section-subtitle" style={{ margin: '0 0 40px', fontSize: '18px' }}>
                         A unified platform for K-12 and Higher Ed virtual excellence. Real-time collaboration, grade-specific pathways, and AI-driven insights.
                     </p>
-                    <div className="flex" style={{ gap: '16px', display: 'flex' }}>
+                    <div className="flex" style={{ gap: '16px', flexWrap: 'wrap' }}>
                         <button className="btn btn-primary" style={{ padding: '16px 32px', borderRadius: '8px' }}>Start Learning Free</button>
-                        <button className="btn btn-outline" style={{ padding: '16px 32px', borderRadius: '8px', display: 'flex', gap: '8px' }}>
-                            Watch Demo <PlayCircleIcon />
+                        <button className="btn btn-outline" style={{ padding: '16px 32px', borderRadius: '8px' }}>
+                            Watch Demo <PlayCircle size={20} />
                         </button>
                     </div>
                 </div>
 
-                <div className="animate-fade" style={{ position: 'relative' }}>
-                    <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: 'var(--shadow-lg)', position: 'relative', height: '450px' }}>
+                <div className="animate-fade relative" style={{ perspective: '1000px' }}>
+                    <div style={{
+                        borderRadius: '32px',
+                        overflow: 'hidden',
+                        boxShadow: 'var(--shadow-xl)',
+                        position: 'relative',
+                        height: '450px',
+                        transform: 'rotateY(-5deg) rotateX(2deg)',
+                        border: '8px solid white'
+                    }}>
                         <Image
                             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
                             alt="Students collaborating"
@@ -54,26 +49,27 @@ export default function Hero() {
                         />
                     </div>
 
-                    {/* Floating Card */}
-                    <div style={{
+                    {/* Floating Card - Mobile Hide for cleaner mobile UI if needed, or just adjust */}
+                    <div className="mobile-hide" style={{
                         position: 'absolute',
                         bottom: '40px',
                         left: '-40px',
                         background: 'white',
-                        padding: '16px 24px',
-                        borderRadius: '16px',
-                        boxShadow: 'var(--shadow-lg)',
+                        padding: '20px 24px',
+                        borderRadius: '20px',
+                        boxShadow: 'var(--shadow-xl)',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '12px',
-                        zIndex: 2
+                        gap: '16px',
+                        zIndex: 2,
+                        border: '1px solid var(--border)'
                     }}>
-                        <div style={{ background: '#DCFCE7', padding: '8px', borderRadius: '12px' }}>
-                            <TrendingUpIcon size={24} color="#22C55E" />
+                        <div style={{ background: '#DCFCE7', padding: '10px', borderRadius: '12px', color: '#16A34A' }}>
+                            <TrendingUp size={24} />
                         </div>
                         <div>
-                            <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Quiz Participation</div>
-                            <div style={{ fontWeight: 700, fontSize: '18px' }}>+42% Higher Engagement</div>
+                            <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 500 }}>Quiz Participation</div>
+                            <div style={{ fontWeight: 700, fontSize: '18px' }}>+42% Engagement</div>
                         </div>
                     </div>
                 </div>
@@ -82,3 +78,4 @@ export default function Hero() {
         </section>
     );
 }
+

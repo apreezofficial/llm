@@ -13,7 +13,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "EduFlow - Empowering the Next Generation of Learners",
+  title: "EduStreamLMS - Empowering the Next Generation of Learners",
   description: "A unified platform for K-12 and Higher Ed virtual excellence.",
 };
 
