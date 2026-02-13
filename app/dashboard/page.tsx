@@ -19,7 +19,8 @@ import {
     Lightbulb,
     ArrowUpRight,
     Circle,
-    Lock
+    Lock,
+    Bot
 } from 'lucide-react';
 
 export default function Dashboard() {
@@ -53,6 +54,7 @@ export default function Dashboard() {
 
                         <div className="flex align-center mobile-hide" style={{ gap: '24px', marginLeft: '40px' }}>
                             <Link href="#" style={{ fontWeight: 700, color: '#0066FF', fontSize: '14px' }}>Dashboard</Link>
+                            <Link href="/ai-tutor" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>AI Tutor</Link>
                             <Link href="#" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Courses</Link>
                             <Link href="#" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Resources</Link>
                             <Link href="#" style={{ fontWeight: 600, color: '#64748B', fontSize: '14px' }}>Support</Link>
@@ -239,23 +241,24 @@ export default function Dashboard() {
                         <div>
                             <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#1E293B', marginBottom: '20px' }}>Quick Actions</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                <button style={{
+                                <Link href="/ai-tutor" style={{
                                     background: '#0066FF',
                                     color: 'white',
                                     padding: '16px 20px',
                                     borderRadius: '12px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    justifyContent: 'between',
+                                    justifyContent: 'space-between',
                                     border: 'none',
                                     fontWeight: 700,
-                                    fontSize: '15px'
+                                    fontSize: '15px',
+                                    textDecoration: 'none'
                                 }}>
                                     <div className="flex align-center gap-12">
-                                        <Video size={20} /> Enter Virtual Class
+                                        <Bot size={20} /> Launch AI Tutor
                                     </div>
                                     <ArrowUpRight size={18} />
-                                </button>
+                                </Link>
                                 <button className="card" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700, fontSize: '14px', color: '#1E293B' }}>
                                     <Download size={20} color="#0066FF" /> Download Certificate
                                 </button>
