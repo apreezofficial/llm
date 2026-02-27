@@ -1,24 +1,43 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { Layout, Monitor, Sparkles, Award, Globe, LineChart } from 'lucide-react';
+import {
+    Layout,
+    Monitor,
+    Sparkles,
+    Award,
+    Globe,
+    LineChart,
+    FileText,
+    Zap,
+    CreditCard,
+    Grid
+} from 'lucide-react';
 
 const DemoGallery = () => {
     const demos = [
+        // Set 1
         { title: 'Admin Management Console', path: '/demo/admin', icon: <Monitor size={32} />, color: '#0066FF', desc: 'Full-featured admin dashboard with stats, user management, and system health.' },
         { title: 'EduAI Tutor Chat', path: '/demo/ai-tutor', icon: <Sparkles size={32} />, color: '#3B82F6', desc: 'AI-powered tutoring interface with rich chat components and interactive diagrams.' },
         { title: 'AcademiaOS Achievements', path: '/demo/achievements', icon: <Award size={32} />, color: '#4F46E5', desc: 'Certification and achievement showcase with professional credential verification.' },
         { title: 'Eduflow LMS Landing', path: '/demo/landing', icon: <Globe size={32} />, color: '#0066FF', desc: 'Modern, high-conversion landing page for educational software platforms.' },
         { title: 'EduStream Student Dashboard', path: '/demo/student-dashboard', icon: <LineChart size={32} />, color: '#10B981', desc: 'Student progress tracker with GPA stats, roadmap, and promotion checklists.' },
+
+        // Set 2
+        { title: 'Lumina LMS Resources', path: '/demo/lumina-resources', icon: <FileText size={32} />, color: '#4F46E5', desc: 'Premium resources hub with detailed guides, webinars, and newsletter signup.' },
+        { title: 'Eduflow V2 Landing', path: '/demo/eduflow-v2', icon: <Zap size={32} />, color: '#0066FF', desc: 'Enhanced landing page variant focusing on K-12 and Higher Ed virtual excellence.' },
+        { title: 'LearnStream Pricing', path: '/demo/learnstream-pricing', icon: <CreditCard size={32} />, color: '#0066FF', desc: 'Transparent tiered pricing plans for tutors, schools, and institutions.' },
+        { title: 'LearnFlow Platform', path: '/demo/learnflow-platform', icon: <Grid size={32} />, color: '#3B82F6', desc: 'Powerful platform features showcase with virtual classrooms and AI assistants.' },
+        { title: 'EduTrackPro Dashboard', path: '/demo/edutrackpro-dashboard', icon: <Layout size={32} />, color: '#0066FF', desc: 'Clean, professional student dashboard with grades, badges, and learning paths.' },
     ];
 
     return (
         <div style={{ background: '#F8FAFC', minHeight: '100vh', padding: '80px 24px', fontFamily: 'Inter, sans-serif' }}>
-            <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
+            <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
                 <h1 style={{ fontSize: '48px', fontWeight: 900, marginBottom: '16px', letterSpacing: '-1.5px' }}>UI Implementation Gallery</h1>
-                <p style={{ fontSize: '18px', color: '#64748B', marginBottom: '60px' }}>Exactly as seen in the provided designs. High-fidelity, responsive, and ready.</p>
+                <p style={{ fontSize: '18px', color: '#64748B', marginBottom: '60px' }}>Exactly as seen in the provided designs. 10 High-fidelity screens implemented.</p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '24px' }}>
                     {demos.map((demo, i) => (
                         <Link key={i} href={demo.path} style={{ textDecoration: 'none' }}>
                             <div style={{
@@ -47,7 +66,7 @@ const DemoGallery = () => {
                                 <h3 style={{ fontSize: '20px', fontWeight: 800, marginBottom: '12px', color: '#1E293B' }}>{demo.title}</h3>
                                 <p style={{ fontSize: '15px', color: '#64748B', lineHeight: 1.6, flex: 1 }}>{demo.desc}</p>
                                 <div style={{ marginTop: '24px', display: 'flex', alignItems: 'center', gap: '8px', color: demo.color, fontWeight: 700, fontSize: '14px' }}>
-                                    View Demo →
+                                    View Implementation →
                                 </div>
                             </div>
                         </Link>
