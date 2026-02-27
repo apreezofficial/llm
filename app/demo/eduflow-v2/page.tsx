@@ -11,7 +11,9 @@ import {
     Monitor,
     Trophy,
     Zap,
-    Lock
+    Lock,
+    Instagram,
+    Linkedin
 } from 'lucide-react';
 
 const EduflowV2 = () => {

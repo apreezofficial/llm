@@ -50,7 +50,7 @@ const AchievementsPage = () => {
                                 <div style={{ fontSize: '13px', fontWeight: 700 }}>Alex Sterling</div>
                                 <div style={{ fontSize: '11px', color: '#64748B' }}>Graduate Student</div>
                             </div>
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} />
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop" alt="Profile" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }} />
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ const AchievementsPage = () => {
                         <div style={{ fontSize: '11px', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '20px' }}>COMPETENCIES MASTERED</div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                             {['Cloud Architecture Design', 'Security & Identity Management', 'Virtual Private Networking', 'Database Deployment (Autonomous)'].map((skill, i) => (
-                                <div key={i} style={{ display: 'flex', items: 'start', gap: '8px', fontSize: '13px' }}>
+                                <div key={i} style={{ display: 'flex', alignItems: 'start', gap: '8px', fontSize: '13px' }}>
                                     <div style={{ width: '6px', height: '6px', background: '#0066FF', borderRadius: '50%', marginTop: '6px' }}></div>
                                     <span style={{ color: '#1E293B', fontWeight: 500 }}>{skill}</span>
                                 </div>
@@ -208,7 +208,7 @@ const AchievementsPage = () => {
                     {recommendedAcademies.map((item, i) => (
                         <div key={i} className="course-card" style={{ background: 'white', border: '1px solid #E2E8F0', borderRadius: '16px', overflow: 'hidden', transition: 'transform 0.2s', cursor: 'pointer' }}>
                             <div style={{ position: 'relative', height: '160px' }}>
-                                <img src={item.img} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 {item.tag && (
                                     <div style={{ position: 'absolute', bottom: '12px', left: '12px', background: 'white', padding: '4px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: 800 }}>{item.tag}</div>
                                 )}
