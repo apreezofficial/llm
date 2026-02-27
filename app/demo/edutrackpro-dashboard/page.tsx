@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import {
     Bell,
     ChevronDown,
@@ -72,7 +73,12 @@ const EduTrackProDashboard = () => {
                                     <div style={{ fontSize: '13px', color: '#3B82F6', fontWeight: 600 }}>You are eligible to upgrade your level status.</div>
                                 </div>
                             </div>
-                            <button style={{ background: '#60A5FA', color: 'white', border: 'none', borderRadius: '8px', padding: '10px 20px', fontWeight: 700, fontSize: '14px' }}>Upgrade Now</button>
+                            <Link
+                                href="/upgrade"
+                                style={{ background: '#60A5FA', color: 'white', border: 'none', borderRadius: '8px', padding: '10px 20px', fontWeight: 700, fontSize: '14px', textDecoration: 'none', display: 'inline-block' }}
+                            >
+                                Upgrade Now
+                            </Link>
                         </div>
 
                         {/* Progress Card */}

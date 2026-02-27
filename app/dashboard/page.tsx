@@ -27,7 +27,6 @@ import UpgradeModal from '@/components/UpgradeModal';
 
 export default function Dashboard() {
     const [progress] = useState(85);
-    const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
 
     const badges = [
         { name: 'Early Bird', icon: <Zap size={24} color="#3B82F6" />, date: 'Unlocked May 12' },
@@ -107,13 +106,13 @@ export default function Dashboard() {
                                     <div style={{ fontSize: '13px', fontWeight: 500, color: '#3B82F6' }}>You are eligible to upgrade your level status.</div>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => setIsUpgradeModalOpen(true)}
+                            <Link
+                                href="/upgrade"
                                 className="btn btn-primary"
-                                style={{ padding: '10px 20px', fontSize: '13px', borderRadius: '10px', cursor: 'pointer' }}
+                                style={{ padding: '10px 20px', fontSize: '13px', borderRadius: '10px', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}
                             >
                                 Upgrade Now
-                            </button>
+                            </Link>
                         </div>
 
                         {/* Grade Progress Card */}
@@ -342,7 +341,6 @@ export default function Dashboard() {
             </footer>
 
             <AIBotWidget />
-            <UpgradeModal isOpen={isUpgradeModalOpen} onClose={() => setIsUpgradeModalOpen(false)} />
         </div>
     );
 }
