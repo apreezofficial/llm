@@ -11,7 +11,9 @@ import {
     FileText,
     Zap,
     CreditCard,
-    Grid
+    Grid,
+    Users,
+    Video
 } from 'lucide-react';
 
 const DemoGallery = () => {
@@ -29,13 +31,17 @@ const DemoGallery = () => {
         { title: 'LearnStream Pricing', path: '/demo/learnstream-pricing', icon: <CreditCard size={32} />, color: '#0066FF', desc: 'Transparent tiered pricing plans for tutors, schools, and institutions.' },
         { title: 'LearnFlow Platform', path: '/demo/learnflow-platform', icon: <Grid size={32} />, color: '#3B82F6', desc: 'Powerful platform features showcase with virtual classrooms and AI assistants.' },
         { title: 'EduTrackPro Dashboard', path: '/demo/edutrackpro-dashboard', icon: <Layout size={32} />, color: '#0066FF', desc: 'Clean, professional student dashboard with grades, badges, and learning paths.' },
+
+        // Set 3
+        { title: 'EduStream Instructor Dashboard', path: '/demo/edustream-instructor', icon: <Users size={32} />, color: '#0066FF', desc: 'High-fidelity instructor console with global stats, schedule tracking, and grading.' },
+        { title: 'Virtual Classroom Interface', path: '/demo/virtual-classroom', icon: <Video size={32} />, color: '#0066FF', desc: 'Immersive live learning environment with PiP video, live chat, and material trays.' },
     ];
 
     return (
         <div style={{ background: '#F8FAFC', minHeight: '100vh', padding: '80px 24px', fontFamily: 'Inter, sans-serif' }}>
             <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
                 <h1 style={{ fontSize: '48px', fontWeight: 900, marginBottom: '16px', letterSpacing: '-1.5px' }}>UI Implementation Gallery</h1>
-                <p style={{ fontSize: '18px', color: '#64748B', marginBottom: '60px' }}>Exactly as seen in the provided designs. 10 High-fidelity screens implemented.</p>
+                <p style={{ fontSize: '18px', color: '#64748B', marginBottom: '60px' }}>Exactly as seen in the provided designs. 12 High-fidelity screens implemented.</p>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '24px' }}>
                     {demos.map((demo, i) => (
