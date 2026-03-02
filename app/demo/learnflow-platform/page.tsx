@@ -14,7 +14,8 @@ import {
     Globe,
     Smartphone,
     CreditCard,
-    Code
+    Code,
+    Star
 } from 'lucide-react';
 
 const LearnFlowPlatform = () => {
