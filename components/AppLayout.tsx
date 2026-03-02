@@ -4,13 +4,20 @@ import Sidebar from "./Sidebar";
 import Link from "next/link";
 import { Bell, Search, User, Menu, X, Rocket } from "lucide-react";
 
+import { usePathname } from "next/navigation";
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const pathname = usePathname();
+
+    // Config for pages that should NOT have a sidebar
+    const noSidebarPaths = ['/help', '/terms', '/privacy', '/auth'];
+    const showSidebar = !noSidebarPaths.some(p => pathname.startsWith(p));
 
     return (
         <div style={{ display: 'flex', minHeight: '100vh', background: '#F8FAFC', position: 'relative' }}>
             {/* Mobile Sidebar Overlay */}
-            {isSidebarOpen && (
+            {isSidebarOpen && showSidebar && (
                 <div
                     onClick={() => setSidebarOpen(false)}
                     style={{
@@ -25,20 +32,24 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             )}
 
             {/* Sidebar with dynamic mobile class */}
-            <div className={`sidebar-container ${isSidebarOpen ? 'open' : ''}`}>
-                <Sidebar />
-            </div>
+            {showSidebar && (
+                <div className={`sidebar-container ${isSidebarOpen ? 'open' : ''}`}>
+                    <Sidebar />
+                </div>
+            )}
 
             <main className="main-content">
                 {/* Fixed Top Glass Header */}
                 <header className="fixed-header">
                     <div className="header-left">
-                        <button
-                            onClick={() => setSidebarOpen(true)}
-                            className="mobile-menu-btn"
-                        >
-                            <Menu size={24} />
-                        </button>
+                        {showSidebar && (
+                            <button
+                                onClick={() => setSidebarOpen(true)}
+                                className="mobile-menu-btn"
+                            >
+                                <Menu size={24} />
+                            </button>
+                        )}
 
                         <div className="search-wrapper mobile-hide">
                             <Search size={18} className="search-icon" />
@@ -49,10 +60,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                             />
                         </div>
 
-                        <div className="logo-mobile desktop-hide">
-                            <Rocket size={18} color="#FF7D00" />
-                            <span style={{ fontWeight: 950, fontSize: '18px', color: '#0F172A', fontFamily: 'var(--font-heading)' }}>LMS</span>
-                        </div>
+                        {!showSidebar && (
+                            <Link href="/" className="logo-mobile">
+                                <Rocket size={24} color="#FF7D00" />
+                                <span style={{ fontWeight: 950, fontSize: '22px', color: '#0F172A', fontFamily: 'var(--font-heading)' }}>LMS ZONE</span>
+                            </Link>
+                        )}
+
+                        {showSidebar && (
+                            <div className="logo-mobile desktop-hide">
+                                <Rocket size={18} color="#FF7D00" />
+                                <span style={{ fontWeight: 950, fontSize: '18px', color: '#0F172A', fontFamily: 'var(--font-heading)' }}>LMS</span>
+                            </div>
+                        )}
                     </div>
 
                     <div className="header-right">
@@ -64,7 +84,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                         <div className="user-profile">
                             <div className="user-text mobile-hide">
                                 <p className="user-name">Alex Rivers</p>
-                                <p className="user-role">Premium Instructor</p>
+                                <p className="user-role">{pathname.startsWith('/tutor') ? 'Premium Instructor' : 'Stellar Scholar'}</p>
                             </div>
                             <div className="user-avatar-hex">
                                 <User size={20} />
@@ -100,7 +120,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
                 .main-content {
                     flex: 1;
-                    margin-left: ${isSidebarOpen ? '280px' : '0'};
+                    margin-left: ${showSidebar ? '280px' : '0'};
                     min-height: 100vh;
                     display: flex;
                     flex-direction: column;
