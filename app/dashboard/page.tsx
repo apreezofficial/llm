@@ -24,49 +24,195 @@ export default function Dashboard() {
 
     return (
         <AppLayout>
+            <style jsx>{`
+                .main-title {
+                    font-size: 56px;
+                    font-weight: 950;
+                    font-family: var(--font-heading);
+                    color: #0F172A;
+                    letter-spacing: -0.04em;
+                    margin-bottom: 12px;
+                    line-height: 1;
+                }
+
+                .subtitle {
+                    font-size: 18px;
+                    color: #64748B;
+                    font-weight: 600;
+                    max-width: 600px;
+                }
+
+                .stats-row {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 32px;
+                    margin-bottom: 60px;
+                }
+
+                .stat-card {
+                    background: white;
+                    padding: 32px;
+                    border-radius: var(--radius-lg);
+                    border: 1px solid #E2E8F0;
+                    display: flex;
+                    align-items: center;
+                    gap: 24px;
+                    box-shadow: var(--shadow-md);
+                }
+
+                .stat-icon-wrapper {
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    box-shadow: var(--shadow-sm);
+                }
+
+                .stat-label {
+                    font-size: 12px;
+                    font-weight: 950;
+                    color: #94A3B8;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    margin-bottom: 4px;
+                }
+
+                .stat-value {
+                    font-size: 32px;
+                    font-weight: 950;
+                    color: #0F172A;
+                    font-family: var(--font-heading);
+                    letter-spacing: -0.02em;
+                }
+
+                .dashboard-main-grid {
+                    display: grid;
+                    grid-template-columns: 2.2fr 1fr;
+                    gap: 40px;
+                }
+
+                .section-title {
+                    font-size: 28px;
+                    font-weight: 950;
+                    font-family: var(--font-heading);
+                    color: #0F172A;
+                    margin-bottom: 32px;
+                    letter-spacing: -0.02em;
+                }
+
+                .course-card {
+                    padding: 32px;
+                    border-radius: var(--radius-lg);
+                    display: flex;
+                    align-items: center;
+                    gap: 32px;
+                    background: white;
+                    border: 1px solid #E2E8F0;
+                    box-shadow: var(--shadow-md);
+                    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .course-card:hover {
+                    box-shadow: var(--shadow-lg);
+                    transform: translateY(-8px);
+                    border-color: var(--primary);
+                }
+
+                .course-card-img {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 28px;
+                    object-fit: cover;
+                    box-shadow: var(--shadow-md);
+                }
+
+                .progress-bar-container {
+                    width: 100%;
+                    height: 10px;
+                    background: #F1F5F9;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    margin-top: 20px;
+                }
+
+                .progress-bar-fill {
+                    height: 100%;
+                    background: linear-gradient(90deg, #FF7D00 0%, #FFB444 100%);
+                    border-radius: 5px;
+                }
+
+                .table-container {
+                    padding: 24px;
+                    background: white;
+                    border-radius: var(--radius-lg);
+                    border: 1px solid #E2E8F0;
+                    box-shadow: var(--shadow-md);
+                    overflow: hidden;
+                }
+
+                .ai-widget {
+                    padding: 40px;
+                    border-radius: var(--radius-lg);
+                    background: #0F172A;
+                    color: white;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: var(--shadow-lg);
+                }
+
+                .ai-icon-box {
+                    width: 64px;
+                    height: 64px;
+                    background: rgba(255,255,255,0.05);
+                    border-radius: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 32px;
+                    border: 1px solid rgba(255,255,255,0.1);
+                }
+
+                @media (max-width: 1400px) {
+                    .stats-row { grid-template-columns: repeat(2, 1fr); }
+                    .main-title { font-size: 48px; }
+                }
+
+                @media (max-width: 1024px) {
+                    .dashboard-main-grid { grid-template-columns: 1fr; }
+                    .course-card { flex-direction: column; text-align: center; }
+                    .course-card-img { width: 100%; height: 200px; }
+                }
+
+                @media (max-width: 640px) {
+                    .stats-row { grid-template-columns: 1fr; }
+                    .main-title { font-size: 36px; }
+                    .stat-card { padding: 24px; gap: 16px; }
+                }
+            `}</style>
+
             {/* Page Header */}
-            <div className="animate-slide-up" style={{ marginBottom: '40px' }}>
-                <h1 style={{
-                    fontSize: 'clamp(28px, 4vw, 36px)',
-                    fontWeight: 950,
-                    fontFamily: 'var(--font-heading)',
-                    color: '#0F172A',
-                    letterSpacing: '-1.5px',
-                    marginBottom: '8px'
-                }}>
+            <div className="animate-slide-up" style={{ marginBottom: '60px' }}>
+                <h1 className="main-title">
                     Welcome back, <span style={{ color: '#FF7D00' }}>Alex!</span> 👋
                 </h1>
-                <p style={{ color: '#64748B', fontSize: '16px', fontWeight: 500 }}>
-                    You've completed <span style={{ color: '#005B52', fontWeight: 800 }}>75%</span> of your weekly learning quota. Excellence is a habit!
+                <p className="subtitle">
+                    You've completed <span style={{ color: '#005B52', fontWeight: 950 }}>75%</span> of your weekly learning quota. Excellence is a habit!
                 </p>
             </div>
 
             {/* Stats Grid */}
-            <div className="stats-row" style={{ marginBottom: '40px' }}>
+            <div className="stats-row">
                 {stats.map((stat, i) => (
-                    <div key={i} className={`glass-card animate-scale-in delay-${i + 1}`} style={{
-                        padding: '24px',
-                        borderRadius: '24px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '16px'
-                    }}>
-                        <div style={{
-                            width: '52px',
-                            height: '52px',
-                            background: stat.bg,
-                            color: stat.color,
-                            borderRadius: '16px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0
-                        }}>
-                            <stat.icon size={24} />
+                    <div key={i} className={`stat-card animate-scale-in delay-${i + 1}`}>
+                        <div className="stat-icon-wrapper" style={{ background: stat.bg, color: stat.color }}>
+                            <stat.icon size={28} />
                         </div>
                         <div>
-                            <p style={{ fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>{stat.label}</p>
-                            <p style={{ fontSize: '24px', fontWeight: 950, color: '#0F172A', fontFamily: 'var(--font-heading)' }}>{stat.value}</p>
+                            <p className="stat-label">{stat.label}</p>
+                            <p className="stat-value">{stat.value}</p>
                         </div>
                     </div>
                 ))}
@@ -74,34 +220,32 @@ export default function Dashboard() {
 
             <div className="dashboard-main-grid">
                 {/* Primary Column */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
 
                     {/* Active Courses Section */}
                     <section className="animate-slide-up delay-2">
-                        <div className="flex align-center justify-between" style={{ marginBottom: '24px' }}>
-                            <h3 style={{ fontSize: '22px', fontWeight: 900, fontFamily: 'var(--font-heading)', color: '#0F172A' }}>Active Progress</h3>
-                            <Link href="/courses" className="hover-scale" style={{ color: '#FF7D00', fontSize: '14px', fontWeight: 900, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                Full Catalog <ArrowRight size={16} />
+                        <div className="flex align-center justify-between" style={{ marginBottom: '40px' }}>
+                            <h3 className="section-title">Active Progress</h3>
+                            <Link href="/courses" className="hover-scale" style={{ color: '#FF7D00', fontSize: '14px', fontWeight: 950, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                                Full Catalog →
                             </Link>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                             {currentCourses.map((course, i) => (
-                                <div key={i} className="glass-card course-card hover-scale" style={{ padding: '24px', borderRadius: '28px' }}>
+                                <div key={i} className="course-card hover-scale">
                                     <img src={course.img} alt="" className="course-card-img" />
-                                    <div style={{ flex: 1, minWidth: 0 }}>
+                                    <div style={{ flex: 1 }}>
                                         <div className="flex align-center justify-between" style={{ marginBottom: '8px' }}>
-                                            <h4 style={{ fontSize: '18px', fontWeight: 900, color: '#0F172A', fontFamily: 'var(--font-heading)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{course.title}</h4>
-                                            <span style={{ fontSize: '13px', fontWeight: 900, color: '#FF7D00' }}>{course.progress}%</span>
+                                            <h4 style={{ fontSize: '20px', fontWeight: 950, color: '#0F172A', fontFamily: 'var(--font-heading)' }}>{course.title}</h4>
+                                            <span style={{ fontSize: '15px', fontWeight: 950, color: '#FF7D00' }}>{course.progress}%</span>
                                         </div>
-                                        <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '16px', fontWeight: 500 }}>{course.instructor}</p>
-                                        <div style={{ width: '100%', height: '8px', background: '#F1F5F9', borderRadius: '4px', overflow: 'hidden' }}>
-                                            <div style={{ width: `${course.progress}%`, height: '100%', background: 'linear-gradient(90deg, #FF7D00 0%, #FFB444 100%)', borderRadius: '4px' }}></div>
+                                        <p style={{ fontSize: '15px', color: '#64748B', fontWeight: 700 }}>{course.instructor}</p>
+                                        <div className="progress-bar-container">
+                                            <div className="progress-bar-fill" style={{ width: `${course.progress}%` }}></div>
                                         </div>
                                     </div>
-                                    <div className="course-card-actions">
-                                        <button className="hover-scale" style={{ padding: '10px 20px', borderRadius: '14px', background: '#0F172A', color: 'white', fontWeight: 800, fontSize: '13px' }}>Resume</button>
-                                    </div>
+                                    <button className="hover-scale" style={{ padding: '16px 32px', borderRadius: '16px', background: '#0F172A', color: 'white', fontWeight: 950, fontSize: '14px', border: 'none' }}>Resume</button>
                                 </div>
                             ))}
                         </div>
@@ -109,12 +253,11 @@ export default function Dashboard() {
 
                     {/* Academic Performance Section */}
                     <section className="animate-slide-up delay-3">
-                        <h3 style={{ fontSize: '22px', fontWeight: 900, fontFamily: 'var(--font-heading)', color: '#0F172A', marginBottom: '24px' }}>Performance Baseline</h3>
-                        <div className="glass-card" style={{ borderRadius: '28px', padding: '16px', overflowX: 'auto' }}>
+                        <h3 className="section-title">Performance Baseline</h3>
+                        <div className="table-container">
                             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                                 <thead>
                                     <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
-                                        <th style={{ padding: '16px', fontSize: '12px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px' }}>Subject</th>
                                         <th style={{ padding: '16px', fontSize: '12px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px' }}>Assessment</th>
                                         <th style={{ padding: '16px', fontSize: '12px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px' }}>Grade</th>
                                         <th style={{ padding: '16px', fontSize: '12px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px' }}>Metric</th>

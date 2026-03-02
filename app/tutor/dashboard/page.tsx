@@ -144,102 +144,128 @@ export default function TutorDashboard() {
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;
-                    margin-bottom: 48px;
-                    gap: 24px;
+                    margin-bottom: 60px;
+                    gap: 32px;
+                    padding: 40px;
+                    background: white;
+                    border-radius: 40px;
+                    border: 1px solid #E2E8F0;
+                    box-shadow: var(--shadow-md);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .welcome-banner::after {
+                    content: '';
+                    position: absolute;
+                    top: -50px;
+                    right: -50px;
+                    width: 200px;
+                    height: 200px;
+                    background: radial-gradient(circle, rgba(255,125,0,0.05) 0%, transparent 70%);
+                    border-radius: 50%;
                 }
 
                 .badge {
                     display: inline-block;
-                    padding: 6px 12px;
+                    padding: 8px 16px;
                     background: #FFF7ED;
                     color: #FF7D00;
-                    border-radius: 8px;
-                    font-size: 11px;
-                    font-weight: 900;
+                    border-radius: 12px;
+                    font-size: 12px;
+                    font-weight: 950;
                     text-transform: uppercase;
-                    letter-spacing: 1.5px;
-                    margin-bottom: 16px;
+                    letter-spacing: 2px;
+                    margin-bottom: 20px;
                 }
 
                 .main-title {
-                    font-size: 40px;
+                    font-size: 56px;
                     font-weight: 950;
                     font-family: var(--font-heading);
-                    letter-spacing: -1.5px;
+                    letter-spacing: -0.04em;
                     color: #0F172A;
-                    margin: 0 0 8px 0;
+                    margin: 0 0 12px 0;
+                    line-height: 1;
                 }
 
                 .text-primary { color: #FF7D00; }
 
                 .subtitle {
-                    font-size: 16px;
+                    font-size: 18px;
                     color: #64748B;
-                    font-weight: 500;
+                    font-weight: 600;
+                    max-width: 600px;
                 }
 
                 .create-btn {
-                    padding: 16px 28px;
+                    padding: 20px 40px;
                     background: #0F172A;
                     color: white;
-                    border-radius: 16px;
-                    font-weight: 800;
+                    border-radius: 20px;
+                    font-weight: 900;
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 12px;
                     font-family: var(--font-heading);
-                    box-shadow: 0 10px 20px rgba(15,23,42,0.1);
+                    font-size: 16px;
+                    box-shadow: var(--shadow-lg);
                 }
 
                 .metrics-grid {
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
-                    gap: 24px;
-                    margin-bottom: 48px;
+                    gap: 32px;
+                    margin-bottom: 60px;
                 }
 
                 .stat-card {
                     background: white;
-                    padding: 24px;
-                    border-radius: 24px;
+                    padding: 32px;
+                    border-radius: 40px;
                     border: 1px solid #E2E8F0;
                     display: flex;
                     flex-direction: column;
                     position: relative;
                     overflow: hidden;
+                    box-shadow: var(--shadow-md);
                 }
 
                 .stat-icon-wrapper {
-                    width: 48px;
-                    height: 48px;
-                    border-radius: 14px;
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 20px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    margin-bottom: 20px;
+                    margin-bottom: 24px;
+                    box-shadow: var(--shadow-sm);
                 }
 
                 .stat-value {
-                    font-size: 28px;
+                    font-size: 36px;
                     font-weight: 950;
                     color: #0F172A;
                     font-family: var(--font-heading);
                     margin: 0 0 4px 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .stat-label {
-                    font-size: 14px;
+                    font-size: 15px;
                     color: #64748B;
-                    font-weight: 600;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
                 }
 
                 .stat-delta {
                     position: absolute;
-                    top: 24px;
-                    right: 24px;
-                    font-size: 12px;
-                    font-weight: 800;
-                    padding: 4px 10px;
+                    top: 32px;
+                    right: 32px;
+                    font-size: 13px;
+                    font-weight: 950;
+                    padding: 6px 14px;
                     border-radius: 30px;
                 }
 
@@ -248,83 +274,95 @@ export default function TutorDashboard() {
 
                 .dashboard-main-layout {
                     display: grid;
-                    grid-template-columns: 2fr 1fr;
-                    gap: 32px;
+                    grid-template-columns: 2.2fr 1fr;
+                    gap: 40px;
                 }
 
                 .section-header {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 32px;
+                    margin-bottom: 40px;
                 }
 
                 .section-title {
-                    font-size: 22px;
+                    font-size: 28px;
                     font-weight: 950;
                     font-family: var(--font-heading);
                     color: #0F172A;
                     margin: 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .view-all {
                     background: none;
                     border: none;
                     color: #FF7D00;
-                    font-weight: 800;
-                    font-size: 13px;
+                    font-weight: 950;
+                    font-size: 14px;
                     cursor: pointer;
                     display: flex;
                     align-items: center;
-                    gap: 4px;
+                    gap: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
                 }
 
                 .course-performance-list {
                     display: flex;
                     flex-direction: column;
-                    gap: 16px;
+                    gap: 24px;
                 }
 
                 .course-row {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    padding: 16px;
-                    background: #F8FAFC;
-                    border-radius: 20px;
+                    padding: 24px;
+                    background: white;
+                    border-radius: 32px;
                     border: 1px solid #E2E8F0;
+                    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                    box-shadow: var(--shadow-sm);
+                }
+
+                .course-row:hover {
+                    box-shadow: var(--shadow-md);
+                    border-color: var(--primary);
                 }
 
                 .course-preview {
                     display: flex;
                     align-items: center;
-                    gap: 16px;
+                    gap: 20px;
                 }
 
                 .course-color-box {
-                    width: 48px;
-                    height: 48px;
+                    width: 64px;
+                    height: 64px;
                     background: linear-gradient(135deg, #FF7D00 0%, #FFB444 100%);
-                    border-radius: 12px;
+                    border-radius: 18px;
+                    box-shadow: var(--shadow-sm);
                 }
 
                 .course-meta h4 {
-                    font-size: 15px;
-                    font-weight: 800;
+                    font-size: 18px;
+                    font-weight: 950;
                     color: #0F172A;
-                    margin: 0 0 2px 0;
+                    margin: 0 0 4px 0;
+                    font-family: var(--font-heading);
                 }
 
                 .course-meta p {
-                    font-size: 12px;
+                    font-size: 14px;
                     color: #64748B;
-                    font-weight: 600;
+                    font-weight: 700;
                     margin: 0;
                 }
 
                 .course-stats {
                     display: flex;
-                    gap: 32px;
+                    gap: 48px;
                 }
 
                 .mini-stat {
@@ -333,103 +371,110 @@ export default function TutorDashboard() {
                     align-items: flex-start;
                 }
 
-                .mini-stat span { font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase; }
-                .mini-stat strong { font-size: 14px; color: #0F172A; font-weight: 800; }
+                .mini-stat span { font-size: 12px; color: #94A3B8; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+                .mini-stat strong { font-size: 18px; color: #0F172A; font-weight: 950; font-family: var(--font-heading); }
 
                 .manage-btn {
-                    padding: 8px 16px;
-                    background: white;
+                    padding: 12px 24px;
+                    background: #F8FAFC;
                     border: 1px solid #E2E8F0;
-                    border-radius: 10px;
-                    font-size: 12px;
-                    font-weight: 800;
+                    border-radius: 14px;
+                    font-size: 14px;
+                    font-weight: 900;
                     cursor: pointer;
                     transition: all 0.2s;
                 }
 
-                .manage-btn:hover { border-color: #FF7D00; color: #FF7D00; }
+                .manage-btn:hover { background: #0F172A; color: white; border-color: #0F172A; }
 
                 .widgets-column {
                     display: flex;
                     flex-direction: column;
-                    gap: 32px;
+                    gap: 40px;
                 }
 
                 .widget-card {
-                    padding: 32px;
-                    border-radius: 32px;
+                    padding: 40px;
+                    border-radius: 40px;
                 }
 
                 .premium-widget {
                     background: #0F172A;
                     color: white;
                     display: flex;
-                    align-items: flex-start;
-                    gap: 20px;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    min-height: 280px;
+                    box-shadow: var(--shadow-lg);
                 }
 
                 .widget-icon.primary {
-                    width: 40px;
-                    height: 40px;
+                    width: 56px;
+                    height: 56px;
                     background: #FF7D00;
-                    border-radius: 12px;
+                    border-radius: 18px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    flex-shrink: 0;
+                    margin-bottom: 24px;
                 }
 
-                .widget-content h3 { font-size: 18px; font-weight: 900; margin: 0 0 8px 0; font-family: var(--font-heading); }
-                .widget-content p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.5; }
+                .widget-content h3 { font-size: 24px; font-weight: 950; margin: 0 0 12px 0; font-family: var(--font-heading); }
+                .widget-content p { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 32px; line-height: 1.6; }
 
                 .accent-btn {
-                    padding: 10px 20px;
+                    padding: 16px 32px;
                     background: rgba(255,255,255,0.1);
                     border: 1px solid rgba(255,255,255,0.2);
                     color: white;
-                    border-radius: 12px;
-                    font-size: 12px;
-                    font-weight: 800;
+                    border-radius: 16px;
+                    font-size: 14px;
+                    font-weight: 900;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
                 }
 
                 .action-grid {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-                    gap: 16px;
-                    margin-top: 24px;
+                    gap: 20px;
+                    margin-top: 32px;
                 }
 
                 .action-item {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    gap: 10px;
-                    padding: 16px;
+                    gap: 12px;
+                    padding: 24px;
                     background: #F8FAFC;
-                    border-radius: 16px;
+                    border-radius: 24px;
                     border: 1px solid #E2E8F0;
                     color: #0F172A;
-                    font-weight: 800;
-                    font-size: 11px;
-                    transition: all 0.2s;
+                    font-weight: 900;
+                    font-size: 13px;
+                    transition: all 0.3s;
                 }
 
-                .action-item:hover { background: white; border-color: #FF7D00; }
+                .action-item:hover { background: white; border-color: #FF7D00; transform: translateY(-4px); }
 
-                @media (max-width: 1200px) {
+                @media (max-width: 1400px) {
                     .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+                    .main-title { font-size: 48px; }
                 }
 
-                @media (max-width: 900px) {
+                @media (max-width: 1024px) {
                     .dashboard-main-layout { grid-template-columns: 1fr; }
-                    .welcome-banner { flex-direction: column; align-items: flex-start; }
+                    .welcome-banner { flex-direction: column; align-items: flex-start; padding: 32px; }
                     .create-btn { width: 100%; justify-content: center; }
                     .course-stats { display: none; }
                 }
 
-                @media (max-width: 500px) {
+                @media (max-width: 640px) {
                     .metrics-grid { grid-template-columns: 1fr; }
-                    .main-title { font-size: 32px; }
+                    .main-title { font-size: 36px; }
+                    .stat-card { padding: 24px; }
+                    .welcome-banner { margin-bottom: 40px; }
                 }
             `}</style>
         </AppLayout>

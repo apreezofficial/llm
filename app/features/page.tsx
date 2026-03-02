@@ -91,15 +91,16 @@ export default function FeaturesPage() {
                             Capabilities
                         </span>
                         <h1 style={{
-                            fontSize: 'clamp(40px, 5vw, 64px)',
-                            fontWeight: 900,
-                            marginBottom: '24px',
-                            fontFamily: 'var(--font-orbitron)',
-                            lineHeight: 1.1
+                            fontSize: 'clamp(48px, 6vw, 84px)',
+                            fontWeight: 950,
+                            marginBottom: '32px',
+                            fontFamily: 'var(--font-heading)',
+                            lineHeight: 1,
+                            letterSpacing: '-0.04em'
                         }}>
                             The Tools of <span style={{ color: '#FF7D00' }}>Tomorrow</span>
                         </h1>
-                        <p className="animate-fade delay-2" style={{ fontSize: '20px', opacity: 0.8, lineHeight: 1.6 }}>
+                        <p className="animate-fade delay-2" style={{ fontSize: '22px', opacity: 0.9, lineHeight: 1.7, fontWeight: 500 }}>
                             Every feature is designed with a singular focus: to make teaching more efficient and learning more engaging.
                         </p>
                     </div>
@@ -112,14 +113,15 @@ export default function FeaturesPage() {
                     <div className="grid grid-3" style={{ gap: '32px' }}>
                         {features.map((f, i) => (
                             <div key={i} className={`card animate-scale-in delay-${(i % 3) + 1}`} style={{
-                                padding: '40px',
+                                padding: '48px',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '24px',
+                                gap: '32px',
                                 border: '1px solid var(--border)',
                                 background: 'white',
-                                borderRadius: '24px',
-                                transition: 'all 0.3s ease'
+                                borderRadius: '40px',
+                                transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                                boxShadow: 'var(--shadow-md)'
                             }}>
                                 <div style={{
                                     width: '64px',
@@ -134,7 +136,7 @@ export default function FeaturesPage() {
                                     {f.icon}
                                 </div>
                                 <div>
-                                    <h3 style={{ fontSize: '24px', marginBottom: '12px', fontFamily: 'var(--font-orbitron)', color: 'var(--secondary)', fontWeight: 800 }}>{f.title}</h3>
+                                    <h3 style={{ fontSize: '28px', marginBottom: '16px', fontFamily: 'var(--font-heading)', color: '#0F172A', fontWeight: 950, letterSpacing: '-0.02em' }}>{f.title}</h3>
                                     <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>{f.desc}</p>
                                     <div className="flex column gap-12">
                                         {f.benefits.map((b, idx) => (
@@ -156,7 +158,7 @@ export default function FeaturesPage() {
                 <div className="container">
                     <div className="grid grid-2" style={{ alignItems: 'center', gap: '80px' }}>
                         <div className="animate-slide-left">
-                            <h2 style={{ fontSize: '42px', marginBottom: '24px', fontFamily: 'var(--font-orbitron)', color: 'var(--secondary)', fontWeight: 800 }}>Built for Administrators, Loved by Teachers.</h2>
+                            <h2 style={{ fontSize: '56px', marginBottom: '32px', fontFamily: 'var(--font-heading)', color: '#0F172A', fontWeight: 950, letterSpacing: '-0.03em', lineHeight: 1.1 }}>Built for Administrators, Loved by Teachers.</h2>
                             <p style={{ fontSize: '18px', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '32px' }}>
                                 We understand that the best technology is invisible. Our platform integrates seamlessly into existing workflows, allowing educators to focus on what they do best: inspire students.
                             </p>
