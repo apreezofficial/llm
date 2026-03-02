@@ -93,12 +93,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     </div>
                 </header>
 
-                {/* Search for Mobile only */}
-                <div className="mobile-search-bar desktop-hide">
-                    <Search size={18} className="search-icon-mobile" />
-                    <input type="text" placeholder="Search..." className="search-input-mobile" />
-                </div>
-
                 {/* Page Content Container */}
                 <div className="page-container">
                     <div className="content-inner animate-fade">
@@ -261,31 +255,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     align-items: center;
                     justify-content: center;
                     color: white;
-                }
-
-                .mobile-search-bar {
-                    padding: 12px 24px;
-                    position: relative;
-                    background: white;
-                    border-bottom: 1px solid #E2E8F0;
-                }
-
-                .search-input-mobile {
-                    width: 100%;
-                    padding: 14px 16px 14px 48px;
-                    border-radius: 16px;
-                    border: 1px solid #E2E8F0;
-                    background: #F8FAFC;
-                    font-size: 15px;
-                    outline: none;
-                }
-
-                .search-icon-mobile {
-                    position: absolute;
-                    left: 40px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    color: #94A3B8;
                 }
 
                 .page-container {

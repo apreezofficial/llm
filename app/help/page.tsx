@@ -17,70 +17,70 @@ export default function HelpCenter() {
         <div className="help-page-wrapper" style={{ minHeight: '100vh', background: '#F8FAFC' }}>
             <Navbar />
 
-            <main style={{ paddingTop: '160px', paddingBottom: '120px' }}>
-                <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 32px' }}>
+            <main style={{ paddingTop: '180px', paddingBottom: '140px' }}>
+                <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 40px' }}>
 
                     {/* Hero Section */}
-                    <div className="animate-slide-up" style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto 100px' }}>
-                        <div style={{ display: 'inline-flex', padding: '8px 20px', background: '#FFF7ED', borderRadius: '30px', color: '#FF7D00', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '24px', fontFamily: 'var(--font-heading)' }}>
+                    <div className="animate-slide-up" style={{ textAlign: 'center', maxWidth: '1000px', margin: '0 auto 120px' }}>
+                        <div style={{ display: 'inline-flex', padding: '10px 24px', background: '#FFF7ED', borderRadius: '40px', color: '#FF7D00', fontSize: '12px', fontWeight: 950, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '32px', fontFamily: 'var(--font-heading)' }}>
                             Support Ecosystem
                         </div>
-                        <h1 style={{ fontSize: 'clamp(36px, 6vw, 64px)', marginBottom: '32px', fontFamily: 'var(--font-heading)', fontWeight: 950, lineHeight: 1, letterSpacing: '-2px', color: '#0F172A' }}>
+                        <h1 style={{ fontSize: 'clamp(48px, 6vw, 84px)', marginBottom: '40px', fontFamily: 'var(--font-heading)', fontWeight: 950, lineHeight: 1, letterSpacing: '-0.04em', color: '#0F172A' }}>
                             How can we <span style={{ color: '#FF7D00' }}>accelerate</span> your learning?
                         </h1>
 
-                        <div style={{ position: 'relative', marginTop: '48px' }}>
-                            <Search size={22} style={{ position: 'absolute', left: '26px', top: '50%', transform: 'translateY(-50%)', color: '#FF7D00', opacity: 0.8 }} />
+                        <div style={{ position: 'relative', marginTop: '60px', maxWidth: '800px', margin: '60px auto 0' }}>
+                            <Search size={28} style={{ position: 'absolute', left: '32px', top: '50%', transform: 'translateY(-50%)', color: '#FF7D00', opacity: 0.8 }} />
                             <input
                                 type="text"
                                 placeholder="Search our knowledge base for answers..."
                                 style={{
                                     width: '100%',
-                                    padding: '28px 32px 28px 72px',
-                                    borderRadius: '28px',
+                                    padding: '36px 40px 36px 84px',
+                                    borderRadius: '40px',
                                     border: '1px solid rgba(255, 125, 0, 0.1)',
                                     background: 'white',
-                                    fontSize: '18px',
-                                    fontWeight: 500,
-                                    boxShadow: '0 30px 60px -12px rgba(0,0,0,0.06)',
+                                    fontSize: '20px',
+                                    fontWeight: 600,
+                                    boxShadow: 'var(--shadow-lg)',
                                     outline: 'none',
-                                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                                    fontFamily: 'var(--font-heading)'
                                 }}
-                                className="focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                             />
                         </div>
                     </div>
 
                     {/* Resources Grid */}
-                    <div className="grid grid-3" style={{ marginBottom: '120px', gap: '32px' }}>
+                    <div className="grid grid-3" style={{ marginBottom: '140px', gap: '32px' }}>
                         {[
-                            { icon: <Book size={32} color="#FF7D00" />, title: "Learning Guides", desc: "Detailed step-by-step documentation for every module.", bg: '#FFF7ED' },
-                            { icon: <Play size={32} color="#005B52" />, title: "Visual Tutorials", desc: "High-definition video walkthroughs of the platform.", bg: '#E6F0EF' },
-                            { icon: <LifeBuoy size={32} color="#0F172A" />, title: "Technical Support", desc: "For integration, performance and account issues.", bg: '#F1F5F9' }
+                            { icon: <Book size={40} color="#FF7D00" />, title: "Learning Guides", desc: "Detailed step-by-step documentation for every module.", bg: '#FFF7ED' },
+                            { icon: <Play size={40} color="#005B52" />, title: "Visual Tutorials", desc: "High-definition video walkthroughs of the platform.", bg: '#E6F0EF' },
+                            { icon: <LifeBuoy size={40} color="#0F172A" />, title: "Technical Support", desc: "For integration, performance and account issues.", bg: '#F1F5F9' }
                         ].map((item, i) => (
-                            <div key={i} className="glass-card hover-scale" style={{
-                                padding: '48px 40px',
-                                borderRadius: '32px',
+                            <div key={i} className="hover-scale" style={{
+                                padding: '60px 48px',
+                                borderRadius: '48px',
                                 background: 'white',
                                 border: '1px solid #E2E8F0',
-                                boxShadow: '0 10px 40px rgba(0,0,0,0.03)',
+                                boxShadow: 'var(--shadow-md)',
                                 textAlign: 'center',
-                                transition: 'all 0.3s'
+                                transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
                             }}>
                                 <div style={{
-                                    width: '80px', height: '80px', background: item.bg,
-                                    borderRadius: '24px', display: 'flex', alignItems: 'center',
-                                    justifyContent: 'center', margin: '0 auto 28px'
+                                    width: '96px', height: '96px', background: item.bg,
+                                    borderRadius: '28px', display: 'flex', alignItems: 'center',
+                                    justifyContent: 'center', margin: '0 auto 32px'
                                 }}>
                                     {item.icon}
                                 </div>
-                                <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: 'var(--font-heading)', fontWeight: 800 }}>{item.title}</h3>
-                                <p style={{ color: '#64748B', fontSize: '15px', marginBottom: '32px', lineHeight: 1.6 }}>{item.desc}</p>
+                                <h3 style={{ fontSize: '26px', marginBottom: '16px', fontFamily: 'var(--font-heading)', fontWeight: 950, letterSpacing: '-0.02em' }}>{item.title}</h3>
+                                <p style={{ color: '#64748B', fontSize: '16px', marginBottom: '40px', lineHeight: 1.7, fontWeight: 500 }}>{item.desc}</p>
                                 <button style={{
-                                    width: '100%', padding: '14px', borderRadius: '16px',
-                                    fontWeight: 800, border: '1px solid #E2E8F0', background: 'transparent',
-                                    color: '#0F172A', transition: 'all 0.3s'
-                                }} onMouseEnter={(e) => e.currentTarget.style.background = '#F8FAFC'} onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                                    width: '100%', padding: '18px', borderRadius: '20px',
+                                    fontWeight: 950, border: ' none', background: '#F1F5F9',
+                                    color: '#0F172A', transition: 'all 0.3s', fontSize: '15px'
+                                }}>
                                     Open Portal
                                 </button>
                             </div>
@@ -88,76 +88,76 @@ export default function HelpCenter() {
                     </div>
 
                     {/* FAQ Area */}
-                    <div style={{ maxWidth: '900px', margin: '0 auto 120px' }}>
-                        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-                            <h2 style={{ fontSize: '36px', fontFamily: 'var(--font-heading)', fontWeight: 900, marginBottom: '16px' }}>Common Inquiries</h2>
-                            <p style={{ color: '#64748B', fontSize: '16px' }}>Quick answers to the most frequent technical questions.</p>
+                    <div style={{ maxWidth: '1000px', margin: '0 auto 140px' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+                            <h2 style={{ fontSize: '52px', fontFamily: 'var(--font-heading)', fontWeight: 950, marginBottom: '20px', letterSpacing: '-0.03em' }}>Common Inquiries</h2>
+                            <p style={{ color: '#64748B', fontSize: '18px', fontWeight: 500 }}>Quick answers to the most frequent technical questions.</p>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                             {faqs.map((faq, i) => (
                                 <div key={i} style={{
-                                    padding: '28px 32px', borderRadius: '24px',
+                                    padding: '36px 40px', borderRadius: '32px',
                                     background: 'white', border: '1px solid #E2E8F0',
-                                    transition: 'all 0.3s'
+                                    transition: 'all 0.3s',
+                                    boxShadow: 'var(--shadow-sm)'
                                 }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}>
-                                        <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#0F172A' }}>{faq.q}</h3>
-                                        <div style={{ width: '32px', height: '32px', background: '#F8FAFC', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FF7D00' }}>
-                                            <ChevronRight size={18} />
+                                        <h3 style={{ fontSize: '22px', fontWeight: 950, color: '#0F172A', fontFamily: 'var(--font-heading)' }}>{faq.q}</h3>
+                                        <div style={{ width: '40px', height: '40px', background: '#F8FAFC', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FF7D00' }}>
+                                            <ChevronRight size={24} />
                                         </div>
                                     </div>
-                                    <p style={{ marginTop: '16px', color: '#64748B', lineHeight: 1.7, fontSize: '15px', fontWeight: 500 }}>{faq.a}</p>
+                                    <p style={{ marginTop: '20px', color: '#64748B', lineHeight: 1.7, fontSize: '16px', fontWeight: 600 }}>{faq.a}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Contact Banner */}
-                    <div className="glass-card animate-slide-up" style={{
+                    <div className="animate-slide-up" style={{
                         background: '#0F172A',
                         color: 'white',
-                        padding: '80px 60px',
-                        borderRadius: '48px',
+                        padding: '100px 80px',
+                        borderRadius: '60px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         flexWrap: 'wrap',
-                        gap: '40px',
+                        gap: '60px',
                         position: 'relative',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        boxShadow: 'var(--shadow-xl)'
                     }}>
-                        {/* Decorative background circle */}
-                        <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '300px', height: '300px', background: 'rgba(255, 125, 0, 0.1)', borderRadius: '50%', filter: 'blur(60px)' }}></div>
+                        <div style={{ position: 'absolute', top: '-20%', right: '-10%', width: '400px', height: '400px', background: 'rgba(255, 125, 0, 0.1)', borderRadius: '50%', filter: 'blur(100px)' }}></div>
 
                         <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-                            <h2 style={{ fontSize: '42px', fontWeight: 900, marginBottom: '20px', fontFamily: 'var(--font-heading)', letterSpacing: '-1px', color: 'white' }}>
+                            <h2 style={{ fontSize: '56px', fontWeight: 950, marginBottom: '24px', fontFamily: 'var(--font-heading)', letterSpacing: '-0.04em', color: 'white', lineHeight: 1 }}>
                                 Can't find a <span style={{ color: '#FF7D00' }}>solution</span>?
                             </h2>
-                            <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', maxWidth: '500px', lineHeight: 1.6 }}>
-                                Speak with our global support squad in real-time or schedule a call with an expert.
+                            <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.7)', maxWidth: '600px', lineHeight: 1.7, fontWeight: 500 }}>
+                                Speak with our global support squad in real-time or schedule a call with an expert learner path designer.
                             </p>
                         </div>
 
-                        <div className="flex gap-20" style={{ position: 'relative', zIndex: 1 }}>
+                        <div className="flex gap-24" style={{ position: 'relative', zIndex: 1 }}>
                             <button
-                                onClick={() => showSuccess('Support Squad', 'Initiating live chat session with a technical mentor...')}
-                                className="hover-scale"
+                                onClick={() => showSuccess('Support Squad', 'Initiating live chat session...')}
                                 style={{
-                                    padding: '18px 40px', background: '#FF7D00', color: 'white',
-                                    border: 'none', borderRadius: '20px', fontWeight: 900, fontSize: '15px',
+                                    padding: '24px 48px', background: '#FF7D00', color: 'white',
+                                    border: 'none', borderRadius: '24px', fontWeight: 950, fontSize: '16px',
                                     fontFamily: 'var(--font-heading)', letterSpacing: '1px',
                                     boxShadow: '0 20px 40px rgba(255,125,0,0.3)'
                                 }}
                             >
                                 Start Live Chat
                             </button>
-                            <Link href="/auth" className="hover-scale" style={{
-                                padding: '18px 40px', background: 'white', color: '#0F172A',
-                                borderRadius: '20px', fontWeight: 900, fontSize: '15px',
-                                display: 'flex', alignItems: 'center', gap: '10px'
+                            <Link href="/auth" style={{
+                                padding: '24px 48px', background: 'white', color: '#0F172A',
+                                borderRadius: '24px', fontWeight: 950, fontSize: '16px',
+                                display: 'flex', alignItems: 'center', gap: '12px'
                             }}>
-                                Support Ticket <ArrowRight size={18} />
+                                Support Ticket <ArrowRight size={20} />
                             </Link>
                         </div>
                     </div>

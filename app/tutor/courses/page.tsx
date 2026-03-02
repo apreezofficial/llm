@@ -61,28 +61,28 @@ export default function CourseManager() {
         <AppLayout>
             <div className="manager-container">
                 {/* Header Section */}
-                <div className="flex justify-between align-end animate-slide-up" style={{ marginBottom: '40px' }}>
+                <div className="flex justify-between align-center animate-slide-up" style={{ marginBottom: '60px' }}>
                     <div>
-                        <h1 style={{ fontSize: '36px', fontWeight: 950, color: '#0F172A', fontFamily: 'var(--font-heading)', letterSpacing: '-1.5px', marginBottom: '8px' }}>
+                        <h1 style={{ fontSize: '56px', fontWeight: 950, color: '#0F172A', fontFamily: 'var(--font-heading)', letterSpacing: '-0.04em', lineHeight: 1, marginBottom: '12px' }}>
                             Course Manager
                         </h1>
-                        <p style={{ color: '#64748B', fontWeight: 500 }}>Organize, edit, and monitor your curriculum content.</p>
+                        <p style={{ color: '#64748B', fontWeight: 600, fontSize: '18px' }}>Organize, edit, and monitor your curriculum content.</p>
                     </div>
                     <Link href="/tutor/courses/new" className="create-btn hover-scale">
-                        <Plus size={20} />
+                        <Plus size={24} />
                         Create New Course
                     </Link>
                 </div>
 
                 {/* Filters & Search */}
-                <div className="filters-bar animate-fade delay-1">
+                <div className="filters-bar animate-fade delay-1" style={{ padding: '24px', borderRadius: '40px', marginBottom: '48px' }}>
                     <div className="search-box">
-                        <Search size={18} className="search-icon" />
-                        <input type="text" placeholder="Search your courses..." />
+                        <Search size={24} className="search-icon" style={{ left: '32px' }} />
+                        <input type="text" placeholder="Search your courses..." style={{ padding: '20px 24px 20px 72px', borderRadius: '24px', fontSize: '16px', fontWeight: 600 }} />
                     </div>
-                    <div className="filter-actions">
-                        <button className="filter-btn"><Filter size={18} /> Filters</button>
-                        <select className="sort-select">
+                    <div className="filter-actions" style={{ gap: '20px' }}>
+                        <button className="filter-btn" style={{ padding: '16px 32px', borderRadius: '20px', fontSize: '14px', fontWeight: 950 }}><Filter size={20} /> Filters</button>
+                        <select className="sort-select" style={{ padding: '16px 32px', borderRadius: '20px', fontSize: '14px', fontWeight: 950 }}>
                             <option>Newest First</option>
                             <option>Highest Rated</option>
                             <option>Most Students</option>
@@ -91,50 +91,49 @@ export default function CourseManager() {
                 </div>
 
                 {/* Courses Grid */}
-                <div className="courses-list animate-slide-up delay-2">
+                <div className="courses-list animate-slide-up delay-2" style={{ gap: '32px' }}>
                     {courses.map((course) => (
                         <div key={course.id} className="course-manager-card hover-scale">
                             <div className="course-info-primary">
-                                <div className="course-icon-preview">
-                                    <BookOpen size={24} color="white" />
+                                <div className="course-icon-preview" style={{ width: '80px', height: '80px', borderRadius: '24px' }}>
+                                    <BookOpen size={32} color="white" />
                                 </div>
                                 <div className="course-title-meta">
-                                    <h3>{course.title}</h3>
+                                    <h3 style={{ fontSize: '24px', fontWeight: 950, marginBottom: '8px' }}>{course.title}</h3>
                                     <div className="meta-tags">
-                                        <span className={`status-badge ${course.status.toLowerCase().replace(' ', '-')}`}>
+                                        <span className={`status-badge ${course.status.toLowerCase().replace(' ', '-')}`} style={{ padding: '6px 16px', borderRadius: '30px', fontSize: '11px', fontWeight: 950 }}>
                                             {course.status}
                                         </span>
-                                        <span className="update-time"><Clock size={12} /> {course.lastUpdated}</span>
+                                        <span className="update-time" style={{ fontSize: '13px', fontWeight: 700 }}><Clock size={14} /> {course.lastUpdated}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="course-metrics-row">
-                                <div className="metric-item">
-                                    <Users size={16} />
-                                    <span><strong>{course.students}</strong> Students</span>
+                            <div className="course-metrics-row" style={{ gap: '12px' }}>
+                                <div className="metric-item" style={{ fontSize: '15px' }}>
+                                    <Users size={20} color="#FF7D00" />
+                                    <span><strong style={{ fontSize: '18px' }}>{course.students}</strong> Students</span>
                                 </div>
-                                <div className="metric-item">
-                                    <BarChart2 size={16} />
-                                    <span><strong>{course.rating}</strong> Rating</span>
+                                <div className="metric-item" style={{ fontSize: '15px' }}>
+                                    <BarChart2 size={20} color="#005B52" />
+                                    <span><strong style={{ fontSize: '18px' }}>{course.rating}</strong> Rating</span>
                                 </div>
                             </div>
 
-                            <div className="course-progress-section">
+                            <div className="course-progress-section" style={{ gap: '16px' }}>
                                 <div className="progress-labels">
-                                    <span>Content Completion</span>
-                                    <span>{course.progress}%</span>
+                                    <span style={{ fontSize: '14px', fontWeight: 950 }}>Content Completion</span>
+                                    <span style={{ fontSize: '14px', fontWeight: 950 }}>{course.progress}%</span>
                                 </div>
-                                <div className="progress-track">
+                                <div className="progress-track" style={{ height: '10px' }}>
                                     <div className="progress-fill" style={{ width: `${course.progress}%`, background: course.progress === 100 ? '#005B52' : '#FF7D00' }}></div>
                                 </div>
                             </div>
 
-                            <div className="course-actions">
-                                <button className="action-button secondary"><Eye size={18} /> Preview</button>
-                                <button className="action-button secondary"><Edit3 size={18} /> Edit Content</button>
-                                <button className="action-button danger"><Trash2 size={18} /></button>
-                                <button className="more-btn"><MoreVertical size={20} /></button>
+                            <div className="course-actions" style={{ gap: '16px' }}>
+                                <button className="action-button secondary" style={{ padding: '16px 24px', borderRadius: '18px', fontSize: '13px', fontWeight: 950 }}><Eye size={18} /> Preview</button>
+                                <button className="action-button secondary" style={{ padding: '16px 24px', borderRadius: '18px', fontSize: '13px', fontWeight: 950 }}><Edit3 size={18} /> Edit</button>
+                                <button className="action-button danger" style={{ padding: '16px', borderRadius: '18px' }}><Trash2 size={20} /></button>
                             </div>
                         </div>
                     ))}
@@ -145,16 +144,16 @@ export default function CourseManager() {
                 .manager-container { width: 100%; }
 
                 .create-btn {
-                    padding: 14px 24px;
+                    padding: 20px 40px;
                     background: #FF7D00;
                     color: white;
-                    border-radius: 14px;
-                    font-weight: 800;
+                    border-radius: 20px;
+                    font-weight: 950;
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 12px;
                     font-family: var(--font-heading);
-                    box-shadow: 0 10px 20px rgba(255,125,0,0.15);
+                    box-shadow: 0 20px 40px rgba(255,125,0,0.25);
                 }
 
                 .filters-bar {
@@ -166,6 +165,7 @@ export default function CourseManager() {
                     border: 1px solid #E2E8F0;
                     margin-bottom: 32px;
                     gap: 20px;
+                    box-shadow: var(--shadow-sm);
                 }
 
                 .search-box {
@@ -217,19 +217,21 @@ export default function CourseManager() {
 
                 .course-manager-card {
                     background: white;
-                    padding: 32px;
-                    border-radius: 28px;
+                    padding: 48px;
+                    border-radius: 40px;
                     border: 1px solid #E2E8F0;
                     display: grid;
-                    grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+                    grid-template-columns: 2.2fr 1fr 1.5fr 1.5fr;
                     align-items: center;
-                    gap: 40px;
+                    gap: 60px;
+                    box-shadow: var(--shadow-md);
+                    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 .course-info-primary {
                     display: flex;
                     align-items: center;
-                    gap: 20px;
+                    gap: 32px;
                 }
 
                 .course-icon-preview {
@@ -240,6 +242,7 @@ export default function CourseManager() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    box-shadow: var(--shadow-md);
                 }
 
                 .course-title-meta h3 {
@@ -248,6 +251,7 @@ export default function CourseManager() {
                     color: #0F172A;
                     margin: 0 0 6px 0;
                     font-family: var(--font-heading);
+                    letter-spacing: -0.02em;
                 }
 
                 .meta-tags {
@@ -312,13 +316,13 @@ export default function CourseManager() {
                 .progress-track {
                     height: 6px;
                     background: #F1F5F9;
-                    border-radius: 3px;
+                    border-radius: 5px;
                     overflow: hidden;
                 }
 
                 .progress-fill {
                     height: 100%;
-                    border-radius: 3px;
+                    border-radius: 5px;
                 }
 
                 .course-actions {
@@ -337,6 +341,7 @@ export default function CourseManager() {
                     align-items: center;
                     gap: 8px;
                     transition: all 0.2s;
+                    font-family: var(--font-heading);
                 }
 
                 .action-button.secondary {
@@ -351,22 +356,16 @@ export default function CourseManager() {
                     padding: 10px;
                 }
 
-                .more-btn {
-                    padding: 8px;
-                    color: #94A3B8;
-                }
-
-                @media (max-width: 1400px) {
+                @media (max-width: 1500px) {
                     .course-manager-card {
-                        grid-template-columns: 1fr 1fr;
-                        gap: 24px;
+                        grid-template-columns: 1.5fr 1fr;
+                        gap: 40px;
                     }
-                    .course-actions { grid-column: span 2; justify-content: flex-start; }
+                    .course-progress-section, .course-actions { grid-column: span 1; }
                 }
 
                 @media (max-width: 900px) {
-                    .course-manager-card { grid-template-columns: 1fr; }
-                    .course-actions { grid-column: span 1; }
+                    .course-manager-card { grid-template-columns: 1fr; padding: 32px; }
                     .filter-actions { display: none; }
                 }
             `}</style>
