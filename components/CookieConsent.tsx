@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { X, ShieldCheck, ChevronRight, Settings, Check, Info } from 'lucide-react';
+import { showSuccess } from '@/utils/swal';
 
 export default function CookieConsent() {
     const [isVisible, setIsVisible] = useState(false);
@@ -37,6 +38,7 @@ export default function CookieConsent() {
         localStorage.setItem('lmszone-cookie-consent', value);
         setIsVisible(false);
         setShowSettings(false);
+        showSuccess('Preferences Saved', 'Your privacy settings have been updated across the LMS ecosystem.');
     };
 
     const handleAcceptAll = () => {

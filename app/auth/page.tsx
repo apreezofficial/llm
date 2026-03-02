@@ -18,6 +18,7 @@ import {
     Settings,
     CheckCircle2
 } from 'lucide-react';
+import { showSuccess, showError } from '@/utils/swal';
 
 const LayoutIcon = ({ size = 18, color = "currentColor" }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -33,16 +34,22 @@ export default function AuthPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
 
         if (authType === 'login') {
             if (email === 'ap@example.com' && password === 'aaaaaa01') {
-                router.push('/dashboard');
+                showSuccess('Access Granted', 'Initializing your dashboard session...');
+                setTimeout(() => router.push('/dashboard'), 1500);
             } else {
-                setError('Invalid credentials. Hint: ap@example.com / aaaaaa01');
+                showError('Auth Failed', 'The credentials provided do not match our secure records.');
+                setError('Invalid credentials.');
             }
+        } else {
+            // Mock signup
+            showSuccess('Account Initialized', 'Welcome to the LMSZONE ecosystem!');
+            setTimeout(() => setAuthType('login'), 2000);
         }
     };
 
@@ -140,7 +147,7 @@ export default function AuthPage() {
                             fontWeight: 950,
                             fontSize: '24px',
                             letterSpacing: '-1px',
-                            fontFamily: 'var(--font-orbitron)',
+                            fontFamily: 'var(--font-heading)',
                             display: 'flex',
                             alignItems: 'baseline'
                         }}>
@@ -153,7 +160,7 @@ export default function AuthPage() {
                     <div className="flex align-center mobile-hide" style={{ gap: '32px' }}>
                         <Link href="/help" className="nav-link" style={{ fontSize: '12px' }}>Help Center</Link>
                         <div style={{ height: '16px', width: '1px', background: '#E2E8F0' }}></div>
-                        <div className="flex align-center gap-8" style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', cursor: 'pointer', fontFamily: 'var(--font-orbitron)', letterSpacing: '1px' }}>
+                        <div className="flex align-center gap-8" style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', cursor: 'pointer', fontFamily: 'var(--font-heading)', letterSpacing: '1px' }}>
                             <Globe size={16} color="#FF7D00" />
                             ENG
                         </div>
@@ -179,7 +186,7 @@ export default function AuthPage() {
                                     fontSize: '14px',
                                     textTransform: 'uppercase',
                                     letterSpacing: '1.5px',
-                                    fontFamily: 'var(--font-orbitron)',
+                                    fontFamily: 'var(--font-heading)',
                                     color: authType === 'signup' ? '#FF7D00' : '#64748B'
                                 }}
                             >
@@ -193,7 +200,7 @@ export default function AuthPage() {
                                     fontSize: '14px',
                                     textTransform: 'uppercase',
                                     letterSpacing: '1.5px',
-                                    fontFamily: 'var(--font-orbitron)',
+                                    fontFamily: 'var(--font-heading)',
                                     color: authType === 'login' ? '#FF7D00' : '#64748B'
                                 }}
                             >
@@ -206,7 +213,7 @@ export default function AuthPage() {
                                 <div style={{ display: 'inline-flex', padding: '8px 16px', background: '#FFF7ED', borderRadius: '30px', color: '#FF7D00', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '16px' }}>
                                     Secure Access
                                 </div>
-                                <h2 className="auth-title" style={{ fontSize: '32px', color: '#0F172A', marginBottom: '8px', fontWeight: 900, fontFamily: 'var(--font-orbitron)', letterSpacing: '-1px' }}>
+                                <h2 className="auth-title" style={{ fontSize: '32px', color: '#0F172A', marginBottom: '8px', fontWeight: 900, fontFamily: 'var(--font-heading)', letterSpacing: '-1px' }}>
                                     {authType === 'signup' ? 'Create Account' : 'Welcome Back'}
                                 </h2>
                                 <p style={{ color: '#64748B', fontSize: '15px', fontWeight: 500 }}>
@@ -214,18 +221,61 @@ export default function AuthPage() {
                                 </p>
                             </div>
 
-                            {/* User Type Switcher */}
-                            <div className="user-type-group animate-slide-up delay-2" style={{ marginBottom: '32px' }}>
-                                <button className={`user-type-btn ${userType === 'student' ? 'active' : ''}`} onClick={() => setUserType('student')}>
-                                    <GraduationCap size={18} /> Student
-                                </button>
-                                <button className={`user-type-btn ${userType === 'tutor' ? 'active' : ''}`} onClick={() => setUserType('tutor')}>
-                                    <User size={18} /> Tutor
-                                </button>
-                                <button className={`user-type-btn ${userType === 'admin' ? 'active' : ''}`} onClick={() => setUserType('admin')}>
-                                    <ShieldCheck size={18} /> Admin
-                                </button>
-                            </div>
+                            {/* User Type Switcher - Only for Signup */}
+                            {authType === 'signup' && (
+                                <div className="user-type-container animate-slide-up delay-2" style={{ marginBottom: '32px', position: 'relative' }}>
+                                    {/* Desktop Version: Horizontal Tabs */}
+                                    <div className="user-type-desktop">
+                                        <div className="user-type-group">
+                                            <button className={`user-type-btn ${userType === 'student' ? 'active' : ''}`} onClick={() => setUserType('student')}>
+                                                <GraduationCap size={18} /> Student
+                                            </button>
+                                            <button className={`user-type-btn ${userType === 'tutor' ? 'active' : ''}`} onClick={() => setUserType('tutor')}>
+                                                <User size={18} /> Tutor
+                                            </button>
+                                            <button className={`user-type-btn ${userType === 'admin' ? 'active' : ''}`} onClick={() => setUserType('admin')}>
+                                                <ShieldCheck size={18} /> Admin
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Mobile Version: Custom Premium Dropdown */}
+                                    <div className="user-type-mobile">
+                                        <label className="input-label" style={{ marginBottom: '12px', display: 'block' }}>I AM A...</label>
+                                        <div className="input-wrapper" style={{ cursor: 'pointer' }}>
+                                            <select
+                                                value={userType}
+                                                onChange={(e) => setUserType(e.target.value as any)}
+                                                style={{
+                                                    appearance: 'none',
+                                                    width: '100%',
+                                                    padding: '18px 24px',
+                                                    borderRadius: '16px',
+                                                    border: '1px solid #E2E8F0',
+                                                    background: 'white',
+                                                    fontSize: '15px',
+                                                    fontWeight: 800,
+                                                    color: '#0F172A',
+                                                    outline: 'none',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <option value="student">Student</option>
+                                                <option value="tutor">Tutor</option>
+                                                <option value="admin">Administrator</option>
+                                            </select>
+                                            <div style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <div style={{ color: '#FF7D00' }}>
+                                                    {userType === 'student' && <GraduationCap size={20} />}
+                                                    {userType === 'tutor' && <User size={20} />}
+                                                    {userType === 'admin' && <ShieldCheck size={20} />}
+                                                </div>
+                                                <ChevronDown size={18} color="#94A3B8" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
 
                             {error && (
                                 <div className="animate-bounce-in" style={{ padding: '16px', background: '#FEF2F2', color: '#DC2626', borderRadius: '16px', fontSize: '14px', marginBottom: '24px', textAlign: 'center', fontWeight: 700, border: '1px solid rgba(220, 38, 38, 0.1)' }}>
@@ -295,7 +345,7 @@ export default function AuthPage() {
                                     fontSize: '15px',
                                     fontWeight: 900,
                                     background: '#FF7D00',
-                                    fontFamily: 'var(--font-orbitron)',
+                                    fontFamily: 'var(--font-heading)',
                                     letterSpacing: '1px',
                                     boxShadow: '0 12px 30px rgba(255,125,0,0.25)'
                                 }}>
@@ -305,31 +355,41 @@ export default function AuthPage() {
 
                                 <div style={{ margin: '40px 0', position: 'relative', textAlign: 'center' }}>
                                     <hr style={{ border: 'none', borderTop: '1px solid #E2E8F0' }} />
-                                    <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'white', padding: '0 20px', fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'var(--font-orbitron)' }}>
+                                    <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'white', padding: '0 20px', fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'var(--font-heading)' }}>
                                         OR USE SSO
                                     </span>
                                 </div>
 
                                 <div className="flex social-btns" style={{ gap: '20px' }}>
-                                    <button className="social-btn hover-scale" type="button" style={{
-                                        flex: 1,
-                                        padding: '16px',
-                                        borderRadius: '16px',
-                                        fontSize: '13px',
-                                        fontWeight: 800,
-                                        border: '1px solid #E2E8F0'
-                                    }}>
+                                    <button
+                                        className="social-btn hover-scale"
+                                        type="button"
+                                        onClick={() => showSuccess('SSO Bridge', 'Redirecting to Google Classroom secure portal...')}
+                                        style={{
+                                            flex: 1,
+                                            padding: '16px',
+                                            borderRadius: '16px',
+                                            fontSize: '13px',
+                                            fontWeight: 800,
+                                            border: '1px solid #E2E8F0'
+                                        }}
+                                    >
                                         <img src="https://www.gstatic.com/classroom/logo_square_48.svg" alt="Google" style={{ width: '20px' }} />
                                         Classroom
                                     </button>
-                                    <button className="social-btn hover-scale" type="button" style={{
-                                        flex: 1,
-                                        padding: '16px',
-                                        borderRadius: '16px',
-                                        fontSize: '13px',
-                                        fontWeight: 800,
-                                        border: '1px solid #E2E8F0'
-                                    }}>
+                                    <button
+                                        className="social-btn hover-scale"
+                                        type="button"
+                                        onClick={() => showSuccess('SSO Bridge', 'Connecting to Microsoft Office 365 services...')}
+                                        style={{
+                                            flex: 1,
+                                            padding: '16px',
+                                            borderRadius: '16px',
+                                            fontSize: '13px',
+                                            fontWeight: 800,
+                                            border: '1px solid #E2E8F0'
+                                        }}
+                                    >
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{ width: '20px' }} />
                                         Office 365
                                     </button>
@@ -356,7 +416,7 @@ export default function AuthPage() {
 
             <style jsx>{`
                 .nav-link {
-                    font-family: var(--font-orbitron);
+                    font-family: var(--font-heading);
                     font-weight: 800;
                     letter-spacing: 1px;
                     text-transform: uppercase;
@@ -366,7 +426,12 @@ export default function AuthPage() {
                 .nav-link:hover {
                     color: #FF7D00;
                 }
+                .user-type-mobile { display: none; }
+                .user-type-desktop { display: block; }
+
                 @media (max-width: 768px) {
+                    .user-type-desktop { display: none; }
+                    .user-type-mobile { display: block; }
                     .auth-card-padding { padding: 40px 24px !important; }
                     .user-type-group { flex-direction: column !important; }
                     .social-btns { flex-direction: column !important; gap: 12px !important; }

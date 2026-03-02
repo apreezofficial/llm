@@ -12,7 +12,9 @@
     "lucide-react": "^0.563.0",
     "next": "^16.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sweetalert2": "^11.26.21",
+    "sweetalert2-react-content": "^5.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",
