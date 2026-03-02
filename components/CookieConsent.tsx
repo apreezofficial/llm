@@ -72,18 +72,14 @@ export default function CookieConsent() {
                 />
             )}
 
-            <div style={{
+            <div className={`cookie-container ${showSettings ? 'settings-open' : ''}`} style={{
                 position: 'fixed',
                 bottom: '32px',
-                right: showSettings ? '50%' : '32px',
-                transform: showSettings ? 'translateX(50%)' : 'none',
-                width: 'calc(100% - 64px)',
-                maxWidth: showSettings ? '720px' : '420px',
                 zIndex: 10000,
                 transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
                 opacity: 1
             }}>
-                <div className="glass-card" style={{
+                <div className="glass-card main-wrapper" style={{
                     background: 'rgba(255, 255, 255, 0.98)',
                     borderRadius: '28px',
                     boxShadow: '0 40px 100px -20px rgba(0,0,0,0.25)',
@@ -95,8 +91,8 @@ export default function CookieConsent() {
 
                     {!showSettings ? (
                         /* Minimalist Corner Banner */
-                        <div style={{ padding: '32px' }}>
-                            <div style={{ display: 'flex', gap: '20px', marginBottom: '28px' }}>
+                        <div className="banner-content" style={{ padding: '32px' }}>
+                            <div className="flex-layout" style={{ display: 'flex', gap: '20px', marginBottom: '28px' }}>
                                 <div style={{
                                     width: '56px', height: '56px', borderRadius: '18px',
                                     background: 'linear-gradient(135deg, #FF7D00 0%, #FFB444 100%)',
@@ -113,7 +109,7 @@ export default function CookieConsent() {
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', gap: '12px' }}>
+                            <div className="button-group" style={{ display: 'flex', gap: '12px' }}>
                                 <button
                                     onClick={handleAcceptAll}
                                     style={{
@@ -151,9 +147,9 @@ export default function CookieConsent() {
                         </div>
                     ) : (
                         /* Expanded Deluxe Settings Panel */
-                        <div style={{ display: 'flex', height: '540px' }}>
+                        <div className="settings-panel" style={{ display: 'flex' }}>
                             {/* Sidebar */}
-                            <div style={{ width: '240px', background: '#F8FAFC', padding: '40px 24px', borderRight: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column' }}>
+                            <div className="settings-sidebar" style={{ width: '240px', background: '#F8FAFC', padding: '40px 24px', borderRight: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column' }}>
                                 <div style={{ marginBottom: '32px' }}>
                                     <h4 style={{ fontSize: '12px', color: '#FF7D00', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px', fontFamily: 'var(--font-orbitron)' }}>Preferences</h4>
                                     <p style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 600 }}>Configure your trackable data points.</p>
@@ -171,7 +167,7 @@ export default function CookieConsent() {
                                         </div>
                                     ))}
                                 </div>
-                                <div style={{ marginTop: 'auto', background: '#FFF7ED', padding: '16px', borderRadius: '16px', border: '1px solid #FFEDD5' }}>
+                                <div className="sidebar-footer" style={{ marginTop: 'auto', background: '#FFF7ED', padding: '16px', borderRadius: '16px', border: '1px solid #FFEDD5' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#C2410C', fontWeight: 800, fontSize: '11px', marginBottom: '4px' }}>
                                         <Info size={14} /> SECURITY FIRST
                                     </div>
@@ -180,13 +176,13 @@ export default function CookieConsent() {
                             </div>
 
                             {/* Main Content */}
-                            <div style={{ flex: 1, padding: '40px', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                            <div className="settings-content" style={{ flex: 1, padding: '40px', display: 'flex', flexDirection: 'column', position: 'relative' }}>
                                 <div style={{ marginBottom: '32px' }}>
                                     <h3 style={{ fontSize: '24px', fontWeight: 900, color: '#0F172A', fontFamily: 'var(--font-orbitron)', letterSpacing: '-0.5px', marginBottom: '8px' }}>Cookie Preferences</h3>
                                     <p style={{ fontSize: '14px', color: '#64748B', fontWeight: 500 }}>Select the level of data tracking you are comfortable with.</p>
                                 </div>
 
-                                <div style={{ flex: 1, overflowY: 'auto', paddingRight: '8px', marginBottom: '32px' }}>
+                                <div className="preferences-list" style={{ flex: 1, overflowY: 'auto', paddingRight: '8px', marginBottom: '32px' }}>
                                     {[
                                         { key: 'necessary', label: 'Critical Operations', desc: 'Secure login, fraud prevention, and core checkout systems.', locked: true },
                                         { key: 'analytics', label: 'Performance Analytics', desc: 'Anonymized usage stats to help us improve the interface.', locked: false },
@@ -232,7 +228,7 @@ export default function CookieConsent() {
                                     ))}
                                 </div>
 
-                                <div style={{ display: 'flex', gap: '16px' }}>
+                                <div className="settings-actions" style={{ display: 'flex', gap: '16px' }}>
                                     <button
                                         onClick={handleSavePrefs}
                                         style={{
@@ -260,7 +256,7 @@ export default function CookieConsent() {
                                 <button
                                     onClick={() => setShowSettings(false)}
                                     style={{ position: 'absolute', top: '32px', right: '32px', color: '#94A3B8' }}
-                                    className="hover-scale"
+                                    className="hover-scale close-settings-btn"
                                 >
                                     <X size={24} />
                                 </button>
@@ -271,10 +267,69 @@ export default function CookieConsent() {
             </div>
 
             <style jsx>{`
+                .cookie-container {
+                    left: 32px;
+                    width: 420px;
+                }
+                .cookie-container.settings-open {
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: calc(100% - 64px);
+                    max-width: 720px;
+                }
+                .settings-panel {
+                    height: 540px;
+                }
                 .glass-card {
                     @supports (backdrop-filter: blur(20px)) {
                         background: rgba(255, 255, 255, 0.9);
                         backdrop-filter: blur(20px);
+                    }
+                }
+                @media (max-width: 768px) {
+                    .cookie-container {
+                        left: 20px;
+                        right: 20px;
+                        bottom: 20px;
+                        width: auto;
+                    }
+                    .cookie-container.settings-open {
+                        width: calc(100% - 40px);
+                        max-width: none;
+                        bottom: 10px;
+                    }
+                    .banner-content {
+                        padding: 24px !important;
+                    }
+                    .flex-layout {
+                        gap: 16px !important;
+                    }
+                    .button-group {
+                        flex-wrap: wrap;
+                    }
+                    .settings-panel {
+                        flex-direction: column;
+                        height: auto;
+                        max-height: 85vh;
+                        overflow-y: auto; /* Enable vertical scrolling for settings on mobile */
+                    }
+                    .settings-sidebar {
+                        width: 100% !important;
+                        padding: 20px !important;
+                        border-right: none !important;
+                        border-bottom: 1px solid #E2E8F0;
+                        display: none !important; /* Hide sidebar on mobile to save space */
+                    }
+                    .settings-content {
+                        padding: 24px !important;
+                    }
+                    .settings-actions {
+                        flex-direction: column;
+                        gap: 10px !important;
+                    }
+                    .close-settings-btn {
+                        top: 15px !important;
+                        right: 15px !important;
                     }
                 }
             `}</style>

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
-    Layout,
     User,
     GraduationCap,
     ShieldCheck,
@@ -15,14 +14,21 @@ import {
     ArrowRight,
     ChevronDown,
     BookOpen,
-    ClipboardCheck
+    ClipboardCheck,
+    Settings,
+    CheckCircle2
 } from 'lucide-react';
+
+const LayoutIcon = ({ size = 18, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><line x1="3" x2="21" y1="9" y2="9" /><line x1="9" x2="9" y1="21" y2="9" />
+    </svg>
+);
 
 export default function AuthPage() {
     const router = useRouter();
     const [authType, setAuthType] = useState<'signup' | 'login'>('signup');
     const [userType, setUserType] = useState<'student' | 'tutor' | 'admin'>('student');
-    const [language, setLanguage] = useState('English');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -46,7 +52,7 @@ export default function AuthPage() {
         switch (userType) {
             case 'student':
                 return (
-                    <div className="grid grid-2" style={{ gap: '20px', marginBottom: '20px' }}>
+                    <div className="grid grid-2 animate-slide-up delay-1" style={{ gap: '20px', marginBottom: '20px' }}>
                         <div className="input-group">
                             <label className="input-label">Grade / Level</label>
                             <div className="input-wrapper">
@@ -69,7 +75,7 @@ export default function AuthPage() {
                 );
             case 'tutor':
                 return (
-                    <div className="grid grid-2" style={{ gap: '20px', marginBottom: '20px' }}>
+                    <div className="grid grid-2 animate-slide-up delay-1" style={{ gap: '20px', marginBottom: '20px' }}>
                         <div className="input-group">
                             <label className="input-label">Expertise / Subject</label>
                             <div className="input-wrapper">
@@ -88,7 +94,7 @@ export default function AuthPage() {
                 );
             case 'admin':
                 return (
-                    <div className="grid grid-2" style={{ gap: '20px', marginBottom: '20px' }}>
+                    <div className="grid grid-2 animate-slide-up delay-1" style={{ gap: '20px', marginBottom: '20px' }}>
                         <div className="input-group">
                             <label className="input-label">Administrative Role</label>
                             <div className="input-wrapper">
@@ -114,173 +120,260 @@ export default function AuthPage() {
     };
 
     return (
-        <div className="auth-page">
-            <style jsx global>{`
-                @media (max-width: 768px) {
-                    .auth-card-padding { padding: 40px 20px !important; }
-                    .auth-header { margin-bottom: 40px !important; }
-                    .auth-title { font-size: 24px !important; }
-                    .user-type-group { flex-direction: column !important; }
-                    .social-btns { flex-direction: column !important; }
-                }
-            `}</style>
-            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+        <div className="auth-page" style={{
+            background: 'radial-gradient(circle at top right, #FFF7ED 0%, #F8FAFC 100%)',
+            position: 'relative',
+            overflow: 'hidden'
+        }}>
+            {/* Background Decorative Elements */}
+            <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '400px', height: '400px', background: 'rgba(255, 125, 0, 0.03)', borderRadius: '50%', filter: 'blur(80px)', pointerEvents: 'none' }}></div>
+            <div style={{ position: 'absolute', bottom: '10%', left: '-10%', width: '500px', height: '500px', background: 'rgba(0, 91, 82, 0.03)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }}></div>
+
+            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
                 {/* Header */}
-                <div className="flex justify-between align-center auth-header" style={{ marginBottom: '60px' }}>
-                    <Link href="/" className="flex align-center gap-8">
-                        <div style={{ background: '#0066FF', width: '36px', height: '36px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Layout size={20} color="white" />
+                <div className="flex justify-between align-center animate-slide-up" style={{ padding: '40px 0 60px' }}>
+                    <Link href="/" className="flex align-center gap-8 group">
+                        <div className="hover-scale" style={{ background: '#FF7D00', width: '40px', height: '40px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px rgba(255,125,0,0.3)' }}>
+                            <LayoutIcon size={24} color="white" />
                         </div>
-                        <span style={{ fontWeight: 800, fontSize: '22px', color: '#0F172A', letterSpacing: '-0.5px' }}>EduTrack<span style={{ color: '#0066FF' }}>Pro</span></span>
+                        <span style={{
+                            fontWeight: 950,
+                            fontSize: '24px',
+                            letterSpacing: '-1px',
+                            fontFamily: 'var(--font-orbitron)',
+                            display: 'flex',
+                            alignItems: 'baseline'
+                        }}>
+                            <span style={{ color: '#0F172A' }}>LMS</span>
+                            <span style={{ color: '#FF7D00' }}>ZONE</span>
+                            <span style={{ color: '#FF7D00', marginLeft: '2px' }}>.</span>
+                        </span>
                     </Link>
 
                     <div className="flex align-center mobile-hide" style={{ gap: '32px' }}>
-                        <Link href="/features" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>Resources</Link>
-                        <a href="mailto:support@edustream.com" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>Contact Support</a>
+                        <Link href="/help" className="nav-link" style={{ fontSize: '12px' }}>Help Center</Link>
                         <div style={{ height: '16px', width: '1px', background: '#E2E8F0' }}></div>
-                        <div className="flex align-center gap-8" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B', cursor: 'pointer' }}>
-                            <Globe size={16} />
-                            <select
-                                value={language}
-                                onChange={(e) => setLanguage(e.target.value)}
-                                style={{ background: 'none', border: 'none', fontWeight: 600, color: '#64748B', cursor: 'pointer', outline: 'none' }}
-                            >
-                                <option>English</option>
-                                <option>French</option>
-                                <option>Spanish</option>
-                            </select>
+                        <div className="flex align-center gap-8" style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', cursor: 'pointer', fontFamily: 'var(--font-orbitron)', letterSpacing: '1px' }}>
+                            <Globe size={16} color="#FF7D00" />
+                            ENG
                         </div>
                     </div>
                 </div>
 
-                <div className="auth-card animate-fade">
-                    {/* Tabs */}
-                    <div className="auth-tabs">
-                        <div className={`auth-tab ${authType === 'signup' ? 'active' : ''}`} onClick={() => { setAuthType('signup'); setError(''); }}>Sign Up</div>
-                        <div className={`auth-tab ${authType === 'login' ? 'active' : ''}`} onClick={() => { setAuthType('login'); setError(''); }}>Login</div>
-                    </div>
-
-                    <div className="auth-card-padding" style={{ padding: '60px 50px' }}>
-                        <div className="text-center" style={{ marginBottom: '40px' }}>
-                            <h2 className="auth-title" style={{ fontSize: '32px', color: '#1E293B', marginBottom: '12px', fontWeight: 800, letterSpacing: '-1px' }}>
-                                {authType === 'signup' ? 'Create your account' : 'Welcome back'}
-                            </h2>
-                            <p style={{ color: '#64748B', fontSize: '15px' }}>Join thousands of students and educators worldwide.</p>
-                        </div>
-
-                        {/* User Type Switcher */}
-                        <div className="user-type-group">
-                            <button className={`user-type-btn ${userType === 'student' ? 'active' : ''}`} onClick={() => setUserType('student')}>
-                                <GraduationCap size={18} /> Student
-                            </button>
-                            <button className={`user-type-btn ${userType === 'tutor' ? 'active' : ''}`} onClick={() => setUserType('tutor')}>
-                                <User size={18} /> Tutor
-                            </button>
-                            <button className={`user-type-btn ${userType === 'admin' ? 'active' : ''}`} onClick={() => setUserType('admin')}>
-                                <ShieldCheck size={18} /> Admin
-                            </button>
-                        </div>
-
-                        {error && (
-                            <div style={{ padding: '12px', background: '#FEF2F2', color: '#DC2626', borderRadius: '8px', fontSize: '14px', marginBottom: '24px', textAlign: 'center' }}>
-                                {error}
+                <div className="flex justify-center">
+                    <div className="auth-card glass-card animate-scale-in" style={{
+                        width: '100%',
+                        maxWidth: '600px',
+                        borderRadius: '32px',
+                        background: 'rgba(255, 255, 255, 0.85)',
+                        border: '1px solid rgba(255, 255, 255, 0.6)',
+                        boxShadow: '0 50px 100px -20px rgba(0,0,0,0.12)'
+                    }}>
+                        {/* Tabs */}
+                        <div className="auth-tabs" style={{ background: 'rgba(15, 23, 42, 0.03)', borderRadius: '32px 32px 0 0' }}>
+                            <div
+                                className={`auth-tab ${authType === 'signup' ? 'active' : ''}`}
+                                onClick={() => { setAuthType('signup'); setError(''); }}
+                                style={{
+                                    padding: '20px',
+                                    fontSize: '14px',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1.5px',
+                                    fontFamily: 'var(--font-orbitron)',
+                                    color: authType === 'signup' ? '#FF7D00' : '#64748B'
+                                }}
+                            >
+                                Get Started
                             </div>
-                        )}
+                            <div
+                                className={`auth-tab ${authType === 'login' ? 'active' : ''}`}
+                                onClick={() => { setAuthType('login'); setError(''); }}
+                                style={{
+                                    padding: '20px',
+                                    fontSize: '14px',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1.5px',
+                                    fontFamily: 'var(--font-orbitron)',
+                                    color: authType === 'login' ? '#FF7D00' : '#64748B'
+                                }}
+                            >
+                                Member Login
+                            </div>
+                        </div>
 
-                        <form className="animate-fade" key={`${authType}-${userType}`} onSubmit={handleLogin}>
-                            {renderDynamicFields()}
-
-                            <div className="input-group">
-                                <label className="input-label">{authType === 'signup' ? 'Full Name' : 'Institutional Email'}</label>
-                                <div className="input-wrapper">
-                                    <span className="input-icon">
-                                        {authType === 'signup' ? <User size={18} /> : <Mail size={18} />}
-                                    </span>
-                                    <input
-                                        type={authType === 'signup' ? 'text' : 'email'}
-                                        placeholder={authType === 'signup' ? 'Johnathan Doe' : 'ap@example.com'}
-                                        className="auth-input"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
+                        <div className="auth-card-padding" style={{ padding: '50px 60px' }}>
+                            <div className="text-center animate-slide-up delay-1" style={{ marginBottom: '40px' }}>
+                                <div style={{ display: 'inline-flex', padding: '8px 16px', background: '#FFF7ED', borderRadius: '30px', color: '#FF7D00', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '16px' }}>
+                                    Secure Access
                                 </div>
+                                <h2 className="auth-title" style={{ fontSize: '32px', color: '#0F172A', marginBottom: '8px', fontWeight: 900, fontFamily: 'var(--font-orbitron)', letterSpacing: '-1px' }}>
+                                    {authType === 'signup' ? 'Create Account' : 'Welcome Back'}
+                                </h2>
+                                <p style={{ color: '#64748B', fontSize: '15px', fontWeight: 500 }}>
+                                    Join the next generation of digital learning.
+                                </p>
                             </div>
 
-                            {authType === 'signup' && (
+                            {/* User Type Switcher */}
+                            <div className="user-type-group animate-slide-up delay-2" style={{ marginBottom: '32px' }}>
+                                <button className={`user-type-btn ${userType === 'student' ? 'active' : ''}`} onClick={() => setUserType('student')}>
+                                    <GraduationCap size={18} /> Student
+                                </button>
+                                <button className={`user-type-btn ${userType === 'tutor' ? 'active' : ''}`} onClick={() => setUserType('tutor')}>
+                                    <User size={18} /> Tutor
+                                </button>
+                                <button className={`user-type-btn ${userType === 'admin' ? 'active' : ''}`} onClick={() => setUserType('admin')}>
+                                    <ShieldCheck size={18} /> Admin
+                                </button>
+                            </div>
+
+                            {error && (
+                                <div className="animate-bounce-in" style={{ padding: '16px', background: '#FEF2F2', color: '#DC2626', borderRadius: '16px', fontSize: '14px', marginBottom: '24px', textAlign: 'center', fontWeight: 700, border: '1px solid rgba(220, 38, 38, 0.1)' }}>
+                                    {error}
+                                </div>
+                            )}
+
+                            <form className="animate-fade delay-3" key={`${authType}-${userType}`} onSubmit={handleLogin}>
+                                {renderDynamicFields()}
+
                                 <div className="input-group">
-                                    <label className="input-label">Institutional Email</label>
+                                    <label className="input-label">{authType === 'signup' ? 'FULL NAME' : 'EMAIL ADDRESS'}</label>
                                     <div className="input-wrapper">
-                                        <span className="input-icon"><Mail size={18} /></span>
-                                        <input type="email" placeholder="john.doe@school.edu" className="auth-input" />
+                                        <span className="input-icon" style={{ color: '#FF7D00' }}>
+                                            {authType === 'signup' ? <User size={18} /> : <Mail size={18} />}
+                                        </span>
+                                        <input
+                                            type={authType === 'signup' ? 'text' : 'email'}
+                                            placeholder={authType === 'signup' ? 'John Wick' : 'ap@example.com'}
+                                            className="auth-input"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                        />
                                     </div>
                                 </div>
-                            )}
 
-                            <div className="input-group" style={{ marginBottom: authType === 'signup' ? '24px' : '40px' }}>
-                                <label className="input-label">Password</label>
-                                <div className="input-wrapper">
-                                    <span className="input-icon"><Lock size={18} /></span>
-                                    <input
-                                        type="password"
-                                        placeholder="••••••••••••"
-                                        className="auth-input"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
-                                    <Eye size={18} style={{ position: 'absolute', right: '16px', color: '#94A3B8', cursor: 'pointer' }} />
+                                {authType === 'signup' && (
+                                    <div className="input-group animate-slide-up">
+                                        <label className="input-label">INSTITUTIONAL EMAIL</label>
+                                        <div className="input-wrapper">
+                                            <span className="input-icon" style={{ color: '#FF7D00' }}><Mail size={18} /></span>
+                                            <input type="email" placeholder="wick@continental.edu" className="auth-input" />
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="input-group" style={{ marginBottom: authType === 'signup' ? '24px' : '40px' }}>
+                                    <label className="input-label">PASSWORD</label>
+                                    <div className="input-wrapper">
+                                        <span className="input-icon" style={{ color: '#FF7D00' }}><Lock size={18} /></span>
+                                        <input
+                                            type="password"
+                                            placeholder="••••••••••••"
+                                            className="auth-input"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                        <Eye size={18} style={{ position: 'absolute', right: '16px', color: '#94A3B8', cursor: 'pointer' }} />
+                                    </div>
                                 </div>
-                            </div>
 
-                            {authType === 'signup' && (
-                                <div className="flex gap-12" style={{ marginBottom: '40px' }}>
-                                    <input type="checkbox" id="terms" style={{ width: '20px', height: '20px', accentColor: '#0066FF', cursor: 'pointer', flexShrink: 0, marginTop: '2px' }} />
-                                    <label htmlFor="terms" style={{ fontSize: '14px', color: '#64748B', lineHeight: 1.6 }}>
-                                        I agree to the <Link href="#" style={{ color: '#0066FF', fontWeight: 700 }}>Terms of Service</Link> and <Link href="#" style={{ color: '#0066FF', fontWeight: 700 }}>Privacy Policy</Link>.
-                                    </label>
+                                {authType === 'signup' && (
+                                    <div className="flex gap-12" style={{ marginBottom: '40px' }}>
+                                        <input type="checkbox" id="terms" style={{ width: '20px', height: '20px', accentColor: '#FF7D00', cursor: 'pointer', flexShrink: 0, marginTop: '2px' }} />
+                                        <label htmlFor="terms" style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.6, fontWeight: 500 }}>
+                                            I agree to the <Link href="#" style={{ color: '#FF7D00', fontWeight: 800 }}>Terms of Service</Link> and <Link href="#" style={{ color: '#FF7D00', fontWeight: 800 }}>Privacy Policy</Link>.
+                                        </label>
+                                    </div>
+                                )}
+
+                                <button type="submit" className="btn btn-primary hover-scale" style={{
+                                    width: '100%',
+                                    padding: '20px',
+                                    borderRadius: '16px',
+                                    fontSize: '15px',
+                                    fontWeight: 900,
+                                    background: '#FF7D00',
+                                    fontFamily: 'var(--font-orbitron)',
+                                    letterSpacing: '1px',
+                                    boxShadow: '0 12px 30px rgba(255,125,0,0.25)'
+                                }}>
+                                    {authType === 'signup' ? `INITIALIZE ACCOUNT` : 'ACCESS DASHBOARD'}
+                                    <ArrowRight size={18} style={{ marginLeft: '10px' }} />
+                                </button>
+
+                                <div style={{ margin: '40px 0', position: 'relative', textAlign: 'center' }}>
+                                    <hr style={{ border: 'none', borderTop: '1px solid #E2E8F0' }} />
+                                    <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'white', padding: '0 20px', fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'var(--font-orbitron)' }}>
+                                        OR USE SSO
+                                    </span>
                                 </div>
-                            )}
 
-                            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '18px', borderRadius: '14px', fontSize: '16px', fontWeight: 700 }}>
-                                {authType === 'signup' ? `Create Account` : 'Sign In Now'}
-                                <ArrowRight size={18} style={{ marginLeft: '10px' }} />
-                            </button>
-
-                            <div style={{ margin: '40px 0', position: 'relative', textAlign: 'center' }}>
-                                <hr style={{ border: 'none', borderTop: '1px solid #E2E8F0' }} />
-                                <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'white', padding: '0 20px', fontSize: '11px', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
-                                    Or {authType === 'signup' ? 'sign up' : 'sign in'} with
-                                </span>
-                            </div>
-
-                            <div className="flex social-btns" style={{ gap: '20px' }}>
-                                <button className="social-btn" type="button" style={{ flex: 1 }}>
-                                    <img src="https://www.gstatic.com/classroom/logo_square_48.svg" alt="Google Classroom" style={{ width: '22px' }} />
-                                    Classroom
-                                </button>
-                                <button className="social-btn" type="button" style={{ flex: 1 }}>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Office 365" style={{ width: '22px' }} />
-                                    Office 365
-                                </button>
-                            </div>
-                        </form>
+                                <div className="flex social-btns" style={{ gap: '20px' }}>
+                                    <button className="social-btn hover-scale" type="button" style={{
+                                        flex: 1,
+                                        padding: '16px',
+                                        borderRadius: '16px',
+                                        fontSize: '13px',
+                                        fontWeight: 800,
+                                        border: '1px solid #E2E8F0'
+                                    }}>
+                                        <img src="https://www.gstatic.com/classroom/logo_square_48.svg" alt="Google" style={{ width: '20px' }} />
+                                        Classroom
+                                    </button>
+                                    <button className="social-btn hover-scale" type="button" style={{
+                                        flex: 1,
+                                        padding: '16px',
+                                        borderRadius: '16px',
+                                        fontSize: '13px',
+                                        fontWeight: 800,
+                                        border: '1px solid #E2E8F0'
+                                    }}>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{ width: '20px' }} />
+                                        Office 365
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
                 {/* Footer Links */}
-                <div style={{ marginTop: '60px', textAlign: 'center' }}>
-                    <div className="flex justify-center flex-wrap" style={{ gap: '32px' }}>
-                        <Link href="/features" className="flex align-center gap-8" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>
-                            <Info size={16} /> Need help?
+                <div className="animate-slide-up delay-4" style={{ marginTop: '60px', paddingBottom: '60px', textAlign: 'center' }}>
+                    <div className="flex justify-center flex-wrap" style={{ gap: '40px' }}>
+                        <Link href="/help" className="flex align-center gap-8 group" style={{ fontSize: '13px', fontWeight: 700, color: '#64748B' }}>
+                            <div className="group-hover:text-primary transition-colors"><Info size={18} /></div>
+                            Need technical help?
                         </Link>
-                        <Link href="/solutions" className="flex align-center gap-8 mobile-hide" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>
-                            <ShieldCheck size={16} /> For Institutions
+                        <Link href="/solutions" className="flex align-center gap-8 mobile-hide" style={{ fontSize: '13px', fontWeight: 700, color: '#64748B' }}>
+                            <CheckCircle2 size={18} color="#005B52" />
+                            LMSZONE for Enterprise
                         </Link>
-                        <Link href="#" className="mobile-hide" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>Accessibility Statement</Link>
                     </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                .nav-link {
+                    font-family: var(--font-orbitron);
+                    font-weight: 800;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    color: #64748B;
+                    transition: all 0.3s;
+                }
+                .nav-link:hover {
+                    color: #FF7D00;
+                }
+                @media (max-width: 768px) {
+                    .auth-card-padding { padding: 40px 24px !important; }
+                    .user-type-group { flex-direction: column !important; }
+                    .social-btns { flex-direction: column !important; gap: 12px !important; }
+                    .auth-title { font-size: 26px !important; }
+                    .container { padding: 0 20px !important; }
+                }
+            `}</style>
         </div>
     );
 }
