@@ -70,7 +70,7 @@ export default function PricingPage() {
                 background: '#F8FAFC',
                 textAlign: 'center'
             }}>
-                <div className="container">
+                <div className="container animate-slide-up">
                     <span style={{
                         color: 'var(--primary)',
                         textTransform: 'uppercase',
@@ -135,7 +135,7 @@ export default function PricingPage() {
                 <div className="container">
                     <div className="grid grid-3" style={{ gap: '32px' }}>
                         {plans.map((p, i) => (
-                            <div key={i} className={`card ${p.featured ? 'animate-fade' : ''}`} style={{
+                            <div key={i} className={`card animate-slide-up delay-${i + 1}`} style={{
                                 padding: '48px',
                                 background: 'white',
                                 border: p.featured ? '2px solid var(--primary)' : '1px solid var(--border)',

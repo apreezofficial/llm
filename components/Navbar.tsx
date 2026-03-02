@@ -52,11 +52,11 @@ export default function Navbar() {
                 {/* Desktop Nav */}
                 <div className="flex align-center mobile-hide" style={{ gap: '24px' }}>
                     <nav className="flex align-center gap-24">
-                        <Link href="/features" className="nav-link">Features</Link>
-                        <Link href="/pricing" className="nav-link">Pricing</Link>
-                        <Link href="/mobile-app" className="nav-link">Mobile App</Link>
-                        <Link href="/blog" className="nav-link">Blog</Link>
-                        <Link href="/about" className="nav-link">About Us</Link>
+                        <Link href="/features" className="nav-link animate-slide-up delay-1">Features</Link>
+                        <Link href="/pricing" className="nav-link animate-slide-up delay-2">Pricing</Link>
+                        <Link href="/mobile-app" className="nav-link animate-slide-up delay-3">Mobile App</Link>
+                        <Link href="/blog" className="nav-link animate-slide-up delay-4">Blog</Link>
+                        <Link href="/about" className="nav-link animate-slide-up delay-5">About Us</Link>
                     </nav>
 
                     <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.2)', margin: '0 10px' }}></div>
@@ -113,9 +113,6 @@ export default function Navbar() {
                             )}
                         </div>
 
-                        <div style={{ position: 'relative', color: 'white', cursor: 'pointer' }}>
-                            <ShoppingBag size={22} />
-                        </div>
                         <Link href="/auth" className="btn" style={{ background: 'white', color: '#005B52', padding: '10px 24px', borderRadius: '30px', fontWeight: 700 }}>Join for Free</Link>
                     </div>
                 </div>
@@ -131,21 +128,8 @@ export default function Navbar() {
             </nav>
 
             <style jsx>{`
-                .nav-link {
-                    color: white;
-                    font-size: 15px;
-                    font-weight: 600;
-                    display: flex;
-                    align-items: center;
-                    gap: 4px;
-                    transition: opacity 0.2s;
-                }
-                .nav-link:hover {
-                    opacity: 0.8;
-                }
-                .lang-option:hover {
-                    background: #F8FAFC !important;
-                }
+                .lang-option:hover { background: #F1F5F9 !important; }
+                .nav-link { color: white; }
             `}</style>
 
             {/* Mobile Menu Overlay */}
@@ -177,8 +161,3 @@ export default function Navbar() {
 const ChevronDown = ({ size = 16 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
 );
-
-const ShoppingBag = ({ size = 20 }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
-);
-

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Orbitron } from "next/font/google";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
+import PageTransition from "@/components/PageTransition";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -12,11 +13,13 @@ const manrope = Manrope({
 const orbitron = Orbitron({
   variable: "--font-orbitron",
   subsets: ["latin"],
+  weight: ['400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
-  title: "LMSZONE - Let's New Course Best Platform",
-  description: "A unified platform for K-12 and Higher Ed virtual excellence.",
+  title: "LMSZONE — The Most Advanced Learning Ecosystem",
+  description: "Empowering institutions and individuals with world-class virtual classroom tools, AI-powered analytics, and enterprise-grade security.",
+  keywords: "LMS, online learning, virtual classroom, education platform, e-learning",
 };
 
 export default function RootLayout({
@@ -27,10 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className={`${manrope.variable} ${orbitron.variable} antialiased`}>
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
         <CookieConsent />
       </body>
     </html>
