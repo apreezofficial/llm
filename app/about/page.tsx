@@ -10,15 +10,27 @@ export default function AboutPage() {
             <Navbar />
 
             {/* Hero Section */}
-            <section style={{ padding: '120px 0 80px', background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)' }}>
-                <div className="container">
+            <section style={{
+                padding: '160px 0 100px',
+                background: '#046B63',
+                color: 'white',
+                position: 'relative'
+            }}>
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
+                    backgroundSize: '40px 40px',
+                    pointerEvents: 'none'
+                }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="text-center" style={{ maxWidth: '800px', margin: '0 auto' }}>
-                        <div className="badge-pill badge-blue" style={{ marginBottom: '24px' }}>Our Mission</div>
-                        <h1 style={{ fontSize: '56px', fontWeight: 800, marginBottom: '24px', letterSpacing: '-2px' }}>
-                            Redefining the <span style={{ color: '#0066FF' }}>Future of Learning</span>
+                        <div style={{ background: '#FF7D00', color: 'white', padding: '6px 16px', borderRadius: '30px', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '24px', display: 'inline-block' }}>Our Mission</div>
+                        <h1 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, marginBottom: '24px', fontFamily: 'var(--font-heading)' }}>
+                            Redefining the <span style={{ color: '#FF7D00' }}>Future of Learning</span>
                         </h1>
-                        <p style={{ fontSize: '20px', color: '#64748B', lineHeight: 1.6 }}>
-                            We're on a mission to democratize elite education through AI-driven personalization and seamless virtual classroom experiences.
+                        <p style={{ fontSize: '20px', opacity: 0.8, lineHeight: 1.6 }}>
+                            We&apos;re on a mission to democratize elite education through AI-driven personalization and seamless virtual classroom experiences.
                         </p>
                     </div>
                 </div>
@@ -40,8 +52,8 @@ export default function AboutPage() {
                                     { title: 'Enterprise Security', desc: 'Institutional level data protection for every student.' }
                                 ].map((item, i) => (
                                     <div key={i} className="flex gap-16">
-                                        <div style={{ background: '#EEF2FF', padding: '10px', borderRadius: '12px', height: 'fit-content' }}>
-                                            <CheckCircle2 size={20} color="#0066FF" />
+                                        <div style={{ background: '#FFF7ED', padding: '10px', borderRadius: '12px', height: 'fit-content' }}>
+                                            <CheckCircle2 size={20} color="#FF7D00" />
                                         </div>
                                         <div>
                                             <h4 style={{ fontSize: '16px', marginBottom: '4px' }}>{item.title}</h4>
@@ -57,7 +69,7 @@ export default function AboutPage() {
                                 alt="Team collaborating"
                                 style={{ width: '100%', borderRadius: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                             />
-                            <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', background: '#0066FF', color: 'white', padding: '32px', borderRadius: '24px', maxWidth: '240px' }}>
+                            <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', background: '#005B52', color: 'white', padding: '32px', borderRadius: '24px', maxWidth: '240px' }}>
                                 <div style={{ fontSize: '40px', fontWeight: 800 }}>98%</div>
                                 <div style={{ fontSize: '14px', fontWeight: 600 }}>Student Satisfaction Rate across 15 countries.</div>
                             </div>
@@ -82,7 +94,7 @@ export default function AboutPage() {
                             { icon: <Award size={32} />, title: 'Global Community', desc: 'Connecting students across borders and cultures.' }
                         ].map((item, i) => (
                             <div key={i} className="card" style={{ padding: '32px', background: 'white' }}>
-                                <div style={{ color: '#0066FF', marginBottom: '20px' }}>{item.icon}</div>
+                                <div style={{ color: '#FF7D00', marginBottom: '20px' }}>{item.icon}</div>
                                 <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>{item.title}</h3>
                                 <p style={{ fontSize: '15px', color: '#64748B' }}>{item.desc}</p>
                             </div>

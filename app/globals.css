@@ -1,22 +1,22 @@
 :root {
-  --primary: #0066FF;
-  --primary-hover: #0052CC;
-  --secondary: #0F172A;
-  --text-main: #1E293B;
-  --text-muted: #64748B;
+  --primary: #FF7D00;
+  --primary-hover: #E67000;
+  --secondary: #005B52;
+  --text-main: #1F2937;
+  --text-muted: #6B7280;
   --bg-white: #FFFFFF;
-  --bg-soft: #F8FAFC;
-  --accent-blue: #E0F2FE;
-  --border: #E2E8F0;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --font-heading: var(--font-outfit), sans-serif;
-  --font-body: var(--font-inter), sans-serif;
+  --bg-soft: #F9FAFB;
+  --accent-blue: #FFF7ED;
+  --border: #E5E7EB;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
+  --radius-xl: 50px;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+  --font-heading: 'Satoshi', 'Outfit', sans-serif;
+  --font-body: var(--font-manrope), sans-serif;
 }
 
 * {
@@ -136,6 +136,12 @@ button {
 }
 
 /* Responsive Grid System */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -260,11 +266,14 @@ button {
   letter-spacing: 1.5px;
   margin-bottom: 16px;
   display: block;
+  font-family: var(--font-heading);
 }
 
 .section-title {
   font-size: 40px;
   margin-bottom: 20px;
+  font-family: var(--font-heading);
+  font-weight: 900;
 }
 
 @media (max-width: 768px) {
@@ -326,11 +335,10 @@ button {
   padding: 0 !important;
 }
 
-/* Animations */
-@keyframes fadeIn {
+@keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
 
   to {
@@ -339,8 +347,50 @@ button {
   }
 }
 
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .animate-fade {
   animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  opacity: 0;
+  animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
 }
 
 /* Auth Specific Styles */

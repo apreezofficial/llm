@@ -12,6 +12,8 @@ const LayoutIcon = ({ size = 18, color = "currentColor" }) => (
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [langOpen, setLangOpen] = useState(false);
+    const [currentLang, setCurrentLang] = useState('Eng');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,6 +22,13 @@ export default function Navbar() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const languages = [
+        { code: 'Eng', name: 'English' },
+        { code: 'Yor', name: 'Yoruba' },
+        { code: 'Igb', name: 'Igbo' },
+        { code: 'Hau', name: 'Hausa' }
+    ];
 
     return (
         <header style={{
@@ -37,28 +46,75 @@ export default function Navbar() {
                     <div style={{ background: '#FF7D00', width: '36px', height: '36px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <LayoutIcon size={20} color="white" />
                     </div>
-                    <span style={{ fontWeight: 800, fontSize: '24px', color: 'white', letterSpacing: '-1px' }}>LMS<span style={{ color: '#FF7D00' }}>ZONE</span>.</span>
+                    <span style={{ fontWeight: 800, fontSize: '24px', color: 'white', letterSpacing: '-1px', fontFamily: 'var(--font-heading)' }}>LMS<span style={{ color: '#FF7D00' }}>ZONE</span>.</span>
                 </Link>
 
                 {/* Desktop Nav */}
                 <div className="flex align-center mobile-hide" style={{ gap: '24px' }}>
                     <nav className="flex align-center gap-24">
-                        <Link href="/" className="nav-link">Courses <ChevronDown size={14} /></Link>
-                        <Link href="/pricing" className="nav-link">Courses Bundle</Link>
-                        <Link href="/about" className="nav-link">Instructors <ChevronDown size={14} /></Link>
-                        <Link href="/blog" className="nav-link">Page <ChevronDown size={14} /></Link>
-                        <Link href="/support" className="nav-link">Forums</Link>
+                        <Link href="/features" className="nav-link">Features</Link>
+                        <Link href="/pricing" className="nav-link">Pricing</Link>
+                        <Link href="/mobile-app" className="nav-link">Mobile App</Link>
+                        <Link href="/blog" className="nav-link">Blog</Link>
+                        <Link href="/about" className="nav-link">About Us</Link>
                     </nav>
 
                     <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.2)', margin: '0 10px' }}></div>
 
                     <div className="flex align-center gap-20">
-                        <div className="flex align-center gap-4" style={{ color: 'white', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}>
-                            🇺🇸 Eng <ChevronDown size={14} />
+                        {/* Language Dropdown */}
+                        <div style={{ position: 'relative' }}>
+                            <div
+                                onClick={() => setLangOpen(!langOpen)}
+                                className="flex align-center gap-4"
+                                style={{ color: 'white', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}
+                            >
+                                {currentLang} <ChevronDown size={14} />
+                            </div>
+
+                            {langOpen && (
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '40px',
+                                    right: 0,
+                                    background: 'white',
+                                    borderRadius: '12px',
+                                    padding: '8px',
+                                    width: '120px',
+                                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '2px',
+                                    zIndex: 100
+                                }}>
+                                    {languages.map((l) => (
+                                        <div
+                                            key={l.code}
+                                            onClick={() => {
+                                                setCurrentLang(l.code);
+                                                setLangOpen(false);
+                                            }}
+                                            style={{
+                                                padding: '10px 12px',
+                                                fontSize: '13px',
+                                                fontWeight: 600,
+                                                color: currentLang === l.code ? '#FF7D00' : '#005B52',
+                                                cursor: 'pointer',
+                                                borderRadius: '8px',
+                                                background: currentLang === l.code ? '#FFF7ED' : 'transparent',
+                                                transition: 'all 0.2s'
+                                            }}
+                                            className="lang-option"
+                                        >
+                                            {l.name}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
+
                         <div style={{ position: 'relative', color: 'white', cursor: 'pointer' }}>
                             <ShoppingBag size={22} />
-                            <span style={{ position: 'absolute', top: '-8px', right: '-8px', background: '#FF7D00', color: 'white', fontSize: '10px', width: '18px', height: '18px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #005B52' }}>2</span>
                         </div>
                         <Link href="/auth" className="btn" style={{ background: 'white', color: '#005B52', padding: '10px 24px', borderRadius: '30px', fontWeight: 700 }}>Join for Free</Link>
                     </div>
@@ -86,6 +142,9 @@ export default function Navbar() {
                 }
                 .nav-link:hover {
                     opacity: 0.8;
+                }
+                .lang-option:hover {
+                    background: #F8FAFC !important;
                 }
             `}</style>
 

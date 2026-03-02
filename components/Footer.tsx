@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { Layout, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import Wave from './Wave';
 
+const LayoutIcon = ({ size = 18, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><line x1="3" x2="21" y1="9" y2="9" /><line x1="9" x2="9" y1="21" y2="9" />
+    </svg>
+);
+
 export default function Footer() {
     const currentYear = new Date().getFullYear();
 
@@ -15,20 +21,14 @@ export default function Footer() {
                 <div className="grid grid-4" style={{ gap: '48px', marginBottom: '80px' }}>
                     <div className="footer-brand" style={{ gridColumn: 'span 2' }}>
                         <Link href="/" className="flex align-center gap-8" style={{ marginBottom: '24px' }}>
-                            <div style={{ background: '#0066FF', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <Layout size={18} color="white" />
+                            <div style={{ background: '#FF7D00', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <LayoutIcon size={18} color="white" />
                             </div>
-                            <span style={{ fontWeight: 700, fontSize: '20px', color: '#0F172A' }}>EduTrack<span style={{ color: '#0066FF' }}>Pro</span></span>
+                            <span style={{ fontWeight: 800, fontSize: '20px', color: '#0F172A', fontFamily: 'var(--font-heading)' }}>LMS<span style={{ color: '#FF7D00' }}>ZONE</span>.</span>
                         </Link>
                         <p style={{ color: 'var(--text-muted)', fontSize: '15px', marginBottom: '24px', maxWidth: '300px', lineHeight: '1.6' }}>
                             The world&apos;s leading LMS designed for student success and teacher efficiency in the digital age.
                         </p>
-                        <div className="flex" style={{ gap: '16px' }}>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="Facebook"><Facebook size={20} /></Link>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="Twitter"><Twitter size={20} /></Link>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="LinkedIn"><Linkedin size={20} /></Link>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="Instagram"><Instagram size={20} /></Link>
-                        </div>
                     </div>
 
                     <div>
@@ -54,7 +54,7 @@ export default function Footer() {
                     <div>
                         <h4 style={{ fontSize: '16px', marginBottom: '24px', fontWeight: 700, color: 'var(--secondary)' }}>Resources</h4>
                         <div className="flex column" style={{ gap: '12px' }}>
-                            <Link href="/help" className="text-muted hover-link">Help Center</Link>
+                            <Link href="/help-center" className="text-muted hover-link">Help Center</Link>
                             <Link href="/community" className="text-muted hover-link">Community</Link>
                             <Link href="/privacy" className="text-muted hover-link">Privacy</Link>
                             <Link href="/terms" className="text-muted hover-link">Terms</Link>
@@ -70,9 +70,9 @@ export default function Footer() {
                     flexWrap: 'wrap',
                     gap: '24px'
                 }}>
-                    <div>© {currentYear} EduTrack Pro LMS. All rights reserved.</div>
+                    <div>© {currentYear} LMSZONE. All rights reserved.</div>
                     <div className="flex" style={{ gap: '24px' }}>
-                        <Link href="#" className="hover-link">Privacy Policy</Link>
+                        <Link href="/privacy" className="hover-link">Privacy Policy</Link>
                         <Link href="#" className="hover-link">Cookie Settings</Link>
                     </div>
                 </div>

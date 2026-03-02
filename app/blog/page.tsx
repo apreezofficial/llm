@@ -2,100 +2,73 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Search, Calendar, User, ArrowRight } from 'lucide-react';
+import { Bookmark, Calendar, User, Search } from 'lucide-react';
 
 export default function BlogPage() {
     const posts = [
         {
-            title: "How AI is Personalizing K-12 Education in 2024",
-            excerpt: "Learn how modern LMS platforms are leveraging machine learning to identify individual student learning gaps.",
-            category: "Innovation",
-            author: "Dr. Sarah Mitchell",
-            date: "Mar 12, 2024",
-            img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800"
+            title: "How AI is Bridging the Global Learning Gap",
+            excerpt: "Discover how predictive analytics are helping students in remote regions achieve better outcomes than ever before.",
+            author: "Dr. Elena Rossi",
+            date: "May 12, 2024",
+            img: "https://images.unsplash.com/photo-1501504905953-f87530c3c99a?auto=format&fit=crop&q=80&w=800",
+            cat: "Innovation"
         },
         {
-            title: "5 Strategies for Increasing Student Engagement Online",
-            excerpt: "Practical tips for teachers to maintain high participation rates in virtual classrooms.",
-            category: "Teaching Tips",
-            author: "James Wilson",
-            date: "Mar 10, 2024",
-            img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800"
+            title: "5 Strategies for Engaging Students in Virtual Classrooms",
+            excerpt: "Learn how top educators are using gamification and breakout rooms to maintain 90%+ engagement rates.",
+            author: "Mark Thompson",
+            date: "May 10, 2024",
+            img: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800",
+            cat: "Teaching Tips"
         },
         {
-            title: "The Future of Hybrid Learning Models",
-            excerpt: "Why the blend of physical and digital environments is here to stay in higher education.",
-            category: "EdTech Trends",
-            author: "Elena Rodriguez",
-            date: "Mar 05, 2024",
-            img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800"
+            title: "The Security of Online Education: What You Need to Know",
+            excerpt: "Institutional data protection is more critical than ever. We break down the essentials of SOC2 and GDPR compliance.",
+            author: "Sarah Chen",
+            date: "May 8, 2024",
+            img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+            cat: "Security"
         }
     ];
 
     return (
-        <div style={{ background: '#FFFFFF' }}>
+        <div style={{ background: 'white' }}>
             <Navbar />
 
-            {/* Header */}
-            <header style={{ padding: '120px 0 60px', background: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
+            <section style={{ padding: '160px 0 60px' }}>
                 <div className="container">
-                    <div className="flex justify-between align-center flex-mobile-column" style={{ gap: '32px' }}>
-                        <div style={{ maxWidth: '600px' }}>
-                            <h1 style={{ fontSize: '48px', fontWeight: 800, marginBottom: '16px', letterSpacing: '-1.5px' }}>Insights & Resources</h1>
-                            <p style={{ fontSize: '18px', color: '#64748B' }}>Discover the latest trends in educational technology, teaching strategies, and platform updates.</p>
-                        </div>
-                        <div style={{ width: '100%', maxWidth: '400px', position: 'relative' }}>
-                            <Search size={20} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
-                            <input
-                                type="text"
-                                placeholder="Search articles..."
-                                style={{ width: '100%', padding: '16px 16px 16px 48px', borderRadius: '12px', border: '1px solid #E2E8F0', outline: 'none', fontSize: '15px' }}
-                            />
-                        </div>
+                    <div className="text-center" style={{ maxWidth: '700px', margin: '0 auto 80px' }}>
+                        <h1 style={{ fontSize: '56px', fontWeight: 900, fontFamily: 'var(--font-heading)', marginBottom: '24px' }}>Insights & <span style={{ color: '#FF7D00' }}>Edu-Tech</span></h1>
+                        <p style={{ fontSize: '18px', color: 'var(--text-muted)' }}>The latest trends in virtual learning, institutional management, and academic innovation.</p>
                     </div>
-                </div>
-            </header>
 
-            {/* Featured Post */}
-            <section className="section">
-                <div className="container">
-                    <div className="card" style={{ padding: '0', overflow: 'hidden', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '0' }} className="grid-2">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200" alt="Featured" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    {/* Featured Post */}
+                    <div className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border)', display: 'grid', gridTemplateColumns: '1.2fr 1fr', marginBottom: '80px' }}>
+                        <img src={posts[0].img} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Featured" />
                         <div style={{ padding: '60px' }}>
-                            <div style={{ color: '#0066FF', fontWeight: 700, textTransform: 'uppercase', fontSize: '12px', marginBottom: '16px', letterSpacing: '1px' }}>Featured Article</div>
-                            <h2 style={{ fontSize: '32px', marginBottom: '20px' }}>Scaling Educational Impact: A Global Case Study</h2>
-                            <p style={{ fontSize: '16px', color: '#64748B', marginBottom: '32px', lineHeight: 1.6 }}>
-                                We explored how 20 nations integrated EduTrack Pro into their national curriculum to solve rural education gaps. The results were astounding.
-                            </p>
-                            <div className="flex align-center gap-16" style={{ marginBottom: '32px' }}>
-                                <img src="https://i.pravatar.cc/100?u=admin" style={{ width: '48px', height: '48px', borderRadius: '50%' }} />
-                                <div>
-                                    <div style={{ fontWeight: 700, fontSize: '15px' }}>Marcus Thorne</div>
-                                    <div style={{ fontSize: '13px', color: '#64748B' }}>Chief Product Officer</div>
-                                </div>
+                            <span style={{ color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', marginBottom: '16px', display: 'block' }}>{posts[0].cat}</span>
+                            <h2 style={{ fontSize: '32px', marginBottom: '24px', fontFamily: 'var(--font-heading)' }}>{posts[0].title}</h2>
+                            <p style={{ color: 'var(--text-muted)', marginBottom: '32px', lineHeight: 1.7 }}>{posts[0].excerpt}</p>
+                            <div className="flex align-center gap-16" style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
+                                <span className="flex align-center gap-8"><User size={16} /> {posts[0].author}</span>
+                                <span className="flex align-center gap-8"><Calendar size={16} /> {posts[0].date}</span>
                             </div>
-                            <button className="btn btn-primary">Read Case Study <ArrowRight size={18} /></button>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            {/* Blog Grid */}
-            <section className="section" style={{ paddingTop: 0 }}>
-                <div className="container">
-                    <div className="grid grid-3">
-                        {posts.map((post, i) => (
-                            <div key={i} className="card" style={{ padding: '0', overflow: 'hidden', background: 'white', border: '1px solid #E2E8F0' }}>
-                                <img src={post.img} alt={post.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-                                <div style={{ padding: '24px' }}>
-                                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#0066FF', textTransform: 'uppercase', letterSpacing: '1px' }}>{post.category}</span>
-                                    <h3 style={{ fontSize: '20px', margin: '12px 0', lineHeight: 1.4 }}>{post.title}</h3>
-                                    <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '24px', lineHeight: 1.5 }}>{post.excerpt}</p>
-                                    <div className="flex align-center justify-between" style={{ paddingTop: '20px', borderTop: '1px solid #F1F5F9' }}>
-                                        <div className="flex align-center gap-8" style={{ fontSize: '13px', color: '#64748B', fontWeight: 500 }}>
-                                            <Calendar size={14} /> {post.date}
-                                        </div>
-                                        <div style={{ fontWeight: 700, fontSize: '13px', color: '#1E293B' }}>Read More</div>
+                    {/* Grid */}
+                    <div className="grid grid-3" style={{ gap: '32px' }}>
+                        {posts.slice(1).concat(posts).map((post, i) => (
+                            <div key={i} className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+                                <img src={post.img} style={{ width: '100%', height: '200px', objectFit: 'cover' }} alt="Post" />
+                                <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                    <span style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase', marginBottom: '12px', display: 'block' }}>{post.cat}</span>
+                                    <h3 style={{ fontSize: '20px', marginBottom: '16px' }}>{post.title}</h3>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: 1.6, marginBottom: '24px', flex: 1 }}>{post.excerpt}</p>
+                                    <div className="flex align-center justify-between" style={{ fontSize: '12px', color: 'var(--text-muted)', paddingTop: '16px', borderTop: '1px solid #F1F5F9' }}>
+                                        <span>{post.date}</span>
+                                        <button style={{ color: 'var(--primary)', fontWeight: 700 }}>Read More</button>
                                     </div>
                                 </div>
                             </div>
