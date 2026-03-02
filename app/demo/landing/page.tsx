@@ -12,7 +12,9 @@ import {
     Instagram,
     Twitter,
     Linkedin,
-    Monitor
+    Monitor,
+    Star,
+    Code
 } from 'lucide-react';
 
 const LandingPage = () => {
