@@ -16,6 +16,7 @@ import {
     Download,
     Calendar,
     Layout,
+    Sparkles,
     Video
 } from 'lucide-react';
 
@@ -234,7 +235,7 @@ const EduTrackProDashboard = () => {
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                                 <div style={{ position: 'relative', display: 'flex', gap: '16px', paddingBottom: '32px' }}>
                                     <div style={{ position: 'absolute', left: '11px', top: '24px', bottom: '0', width: '2px', background: '#E2E8F0' }}></div>
-                                    <CheckCircle2 size={24} color="#22C55E" style={{ relative: true, zIndex: 1, background: 'white' }} />
+                                    <CheckCircle2 size={24} color="#22C55E" style={{ position: 'relative', zIndex: 1, background: 'white' }} />
                                     <div>
                                         <div style={{ fontSize: '10px', fontWeight: 800, color: '#22C55E', textTransform: 'uppercase', marginBottom: '4px' }}>COMPLETED</div>
                                         <div style={{ fontSize: '16px', fontWeight: 800, color: '#1E293B' }}>Foundations of Logic</div>
