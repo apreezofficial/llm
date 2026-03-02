@@ -21,27 +21,35 @@ import {
     CheckSquare
 } from 'lucide-react';
 
-const sidebarLinks = [
+const studentLinks = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Courses', href: '/courses', icon: BookOpen },
     { name: 'Assignments', href: '/assignments', icon: CheckSquare },
     { name: 'Quizzes', href: '/quizzes', icon: FileText },
     { name: 'Schedule', href: '/schedule', icon: Calendar },
     { name: 'Analytics', href: '/analytics', icon: BarChart3 },
-    { name: 'Community', href: '/community', icon: MessageSquare },
-    { name: 'Instructors', href: '/instructors', icon: Users },
-    { name: 'Library', href: '/library', icon: Library },
-    { name: 'Certificates', href: '/certificates', icon: Award },
-    { name: 'Leaderboard', href: '/leaderboard', icon: Trophy },
     { name: 'AI Tutor', href: '/ai-companion', icon: Bot },
-    { name: 'Notifications', href: '/notifications', icon: Bell },
-    { name: 'Billing', href: '/billing', icon: CreditCard },
+    { name: 'Support', href: '/help', icon: HelpCircle },
+    { name: 'Settings', href: '/settings', icon: Settings },
+];
+
+const tutorLinks = [
+    { name: 'Tutor Dashboard', href: '/tutor/dashboard', icon: LayoutDashboard },
+    { name: 'Course Manager', href: '/tutor/courses', icon: Library },
+    { name: 'Student Roster', href: '/tutor/students', icon: Users },
+    { name: 'Gradebook', href: '/tutor/grades', icon: Award },
+    { name: 'Curriculum', href: '/tutor/curriculum', icon: BookOpen },
+    { name: 'Schedule', href: '/tutor/schedule', icon: Calendar },
+    { name: 'Analytics', href: '/tutor/analytics', icon: BarChart3 },
+    { name: 'Payouts', href: '/tutor/payouts', icon: CreditCard },
     { name: 'Support', href: '/help', icon: HelpCircle },
     { name: 'Settings', href: '/settings', icon: Settings },
 ];
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const isTutor = pathname.startsWith('/tutor');
+    const activeLinks = isTutor ? tutorLinks : studentLinks;
 
     return (
         <aside style={{
@@ -85,36 +93,11 @@ export default function Sidebar() {
             {/* Navigation Sections */}
             <nav style={{ flex: 1, overflowY: 'auto', paddingRight: '4px' }} className="custom-scrollbar">
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '8px', paddingLeft: '16px' }}>Main Navigation</p>
+                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '8px', paddingLeft: '16px' }}>
+                        {isTutor ? 'Instructor Portal' : 'Student Portal'}
+                    </p>
 
-                    {sidebarLinks.slice(0, 12).map((link) => {
-                        const Icon = link.icon;
-                        const isActive = pathname === link.href;
-                        return (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="flex align-center gap-16 hover-scale"
-                                style={{
-                                    padding: '14px 18px',
-                                    borderRadius: '16px',
-                                    fontSize: '14px',
-                                    fontWeight: isActive ? 800 : 600,
-                                    color: isActive ? 'white' : '#64748B',
-                                    background: isActive ? '#0F172A' : 'transparent',
-                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                                    boxShadow: isActive ? '0 10px 20px rgba(15,23,42,0.15)' : 'none'
-                                }}
-                            >
-                                <Icon size={20} strokeWidth={isActive ? 2.5 : 2} style={{ color: isActive ? '#FF7D00' : 'inherit' }} />
-                                {link.name}
-                            </Link>
-                        );
-                    })}
-
-                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1.5px', marginTop: '24px', marginBottom: '8px', paddingLeft: '16px' }}>System</p>
-
-                    {sidebarLinks.slice(12).map((link) => {
+                    {activeLinks.map((link) => {
                         const Icon = link.icon;
                         const isActive = pathname === link.href;
                         return (

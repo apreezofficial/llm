@@ -36,7 +36,7 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h4 style={{ fontSize: '16px', marginBottom: '24px', fontWeight: 700, color: 'var(--secondary)' }}>Product</h4>
+                        <h4 style={{ fontSize: '16px', marginBottom: '24px', fontWeight: 900, color: '#0F172A', fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '1px' }}>Product</h4>
                         <div className="flex column" style={{ gap: '12px' }}>
                             <Link href="/features" className="text-muted hover-link">Features</Link>
                             <Link href="/pricing" className="text-muted hover-link">Pricing</Link>
@@ -46,7 +46,7 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h4 style={{ fontSize: '16px', marginBottom: '24px', fontWeight: 700, color: 'var(--secondary)' }}>Company</h4>
+                        <h4 style={{ fontSize: '16px', marginBottom: '24px', fontWeight: 900, color: '#0F172A', fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '1px' }}>Company</h4>
                         <div className="flex column" style={{ gap: '12px' }}>
                             <Link href="/about" className="text-muted hover-link">About Us</Link>
                             <Link href="/careers" className="text-muted hover-link">Careers</Link>
@@ -56,7 +56,7 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h4 style={{ fontSize: '16px', marginBottom: '24px', fontWeight: 700, color: 'var(--secondary)' }}>Resources</h4>
+                        <h4 style={{ fontSize: '16px', marginBottom: '24px', fontWeight: 900, color: '#0F172A', fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '1px' }}>Resources</h4>
                         <div className="flex column" style={{ gap: '12px' }}>
                             <Link href="/help-center" className="text-muted hover-link">Help Center</Link>
                             <Link href="/community" className="text-muted hover-link">Community</Link>

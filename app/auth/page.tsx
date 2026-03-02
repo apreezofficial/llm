@@ -39,9 +39,15 @@ export default function AuthPage() {
         setError('');
 
         if (authType === 'login') {
+            // Updated login logic for demo
             if (email === 'ap@example.com' && password === 'aaaaaa01') {
-                showSuccess('Access Granted', 'Initializing your dashboard session...');
-                setTimeout(() => router.push('/dashboard'), 1500);
+                showSuccess('Access Granted', `Initializing ${userType} dashboard...`);
+                const target = userType === 'tutor' ? '/tutor/dashboard' : '/dashboard';
+                setTimeout(() => router.push(target), 1500);
+            } else if (email === 'tutor@lms.com') {
+                // Shortcut for tutor demo
+                showSuccess('Tutor Access', 'Loading instructor portal...');
+                setTimeout(() => router.push('/tutor/dashboard'), 1500);
             } else {
                 showError('Auth Failed', 'The credentials provided do not match our secure records.');
                 setError('Invalid credentials.');

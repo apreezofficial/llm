@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Link from "next/link";
-import { Bell, Search, User, Menu, X } from "lucide-react";
+import { Bell, Search, User, Menu, X, Rocket } from "lucide-react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -33,7 +33,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 {/* Fixed Top Glass Header */}
                 <header className="fixed-header">
                     <div className="header-left">
-                        {/* Mobile Hamburger */}
                         <button
                             onClick={() => setSidebarOpen(true)}
                             className="mobile-menu-btn"
@@ -41,37 +40,50 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                             <Menu size={24} />
                         </button>
 
-                        <div className="search-container animate-slide-up">
+                        <div className="search-wrapper mobile-hide">
                             <Search size={18} className="search-icon" />
                             <input
                                 type="text"
-                                placeholder="Find resources..."
+                                placeholder="Search courses, docs, labs..."
                                 className="search-input"
                             />
                         </div>
+
+                        <div className="logo-mobile desktop-hide">
+                            <Rocket size={18} color="#FF7D00" />
+                            <span style={{ fontWeight: 950, fontSize: '18px', color: '#0F172A', fontFamily: 'var(--font-heading)' }}>LMS</span>
+                        </div>
                     </div>
 
-                    <div className="flex align-center gap-24 animate-slide-up delay-1">
-                        <button className="notification-btn hover-scale mobile-hide">
-                            <Bell size={22} />
+                    <div className="header-right">
+                        <button className="icon-btn mobile-hide">
+                            <Bell size={20} />
                             <span className="notification-dot"></span>
                         </button>
 
-                        <div className="user-pill hover-scale">
-                            <div className="mobile-hide">
+                        <div className="user-profile">
+                            <div className="user-text mobile-hide">
                                 <p className="user-name">Alex Rivers</p>
-                                <p className="user-role">Pro Learner</p>
+                                <p className="user-role">Premium Instructor</p>
                             </div>
-                            <div className="user-avatar">
-                                <User size={22} />
+                            <div className="user-avatar-hex">
+                                <User size={20} />
                             </div>
                         </div>
                     </div>
                 </header>
 
+                {/* Search for Mobile only */}
+                <div className="mobile-search-bar desktop-hide">
+                    <Search size={18} className="search-icon-mobile" />
+                    <input type="text" placeholder="Search..." className="search-input-mobile" />
+                </div>
+
                 {/* Page Content Container */}
-                <div className="content-inner animate-fade">
-                    {children}
+                <div className="page-container">
+                    <div className="content-inner animate-fade">
+                        {children}
+                    </div>
                 </div>
             </main>
 
@@ -81,55 +93,48 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     left: 0;
                     top: 0;
                     height: 100vh;
-                    z-index: 100;
+                    z-index: 1000;
                     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                    width: 280px;
                 }
 
                 .main-content {
                     flex: 1;
-                    padding: 40px 60px;
                     margin-left: 280px;
-                    min-width: 0;
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    background: #F8FAFC;
+                    transition: all 0.4s ease;
                 }
 
                 .fixed-header {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    margin-bottom: 48px;
                     position: sticky;
                     top: 0;
-                    z-index: 80;
+                    z-index: 100;
                     background: rgba(248, 250, 252, 0.85);
-                    backdrop-filter: blur(12px);
-                    padding: 16px 0;
+                    backdrop-filter: blur(20px);
+                    padding: 20px 40px;
+                    border-bottom: 1px solid rgba(0,0,0,0.03);
                 }
 
-                .header-left {
+                .header-left, .header-right {
                     display: flex;
                     align-items: center;
-                    gap: 16px;
-                    flex: 1;
-                    max-width: 500px;
+                    gap: 20px;
                 }
 
-                .mobile-menu-btn {
-                    display: none;
-                    color: #0F172A;
-                    padding: 8px;
-                    background: white;
-                    border-radius: 12px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-                }
-
-                .search-container {
+                .search-wrapper {
                     position: relative;
-                    width: 100%;
+                    width: 320px;
                 }
 
                 .search-icon {
                     position: absolute;
-                    left: 20px;
+                    left: 16px;
                     top: 50%;
                     transform: translateY(-50%);
                     color: #94A3B8;
@@ -137,38 +142,43 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
                 .search-input {
                     width: 100%;
-                    padding: 14px 20px 14px 56px;
-                    border-radius: 20px;
+                    padding: 12px 16px 12px 48px;
+                    border-radius: 12px;
                     border: 1px solid #E2E8F0;
                     background: white;
                     font-size: 14px;
                     font-weight: 500;
                     outline: none;
-                    transition: all 0.3s ease;
+                    transition: border-color 0.2s;
                 }
 
                 .search-input:focus {
                     border-color: #FF7D00;
-                    box-shadow: 0 0 0 4px rgba(255,125,0,0.05);
                 }
 
-                .notification-btn {
+                .logo-mobile {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .icon-btn {
                     position: relative;
-                    color: #64748B;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 10px;
                     background: white;
-                    width: 44px;
-                    height: 44px;
-                    border-radius: 14px;
+                    border: 1px solid #E2E8F0;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    border: 1px solid #E2E8F0;
+                    color: #64748B;
                 }
 
                 .notification-dot {
                     position: absolute;
-                    top: 10px;
-                    right: 10px;
+                    top: 8px;
+                    right: 8px;
                     width: 8px;
                     height: 8px;
                     background: #FF7D00;
@@ -176,38 +186,36 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     border: 2px solid white;
                 }
 
-                .user-pill {
-                    padding: 6px 6px 6px 16px;
-                    background: white;
-                    border-radius: 20px;
-                    border: 1px solid #E2E8F0;
-                    cursor: pointer;
+                .user-profile {
                     display: flex;
                     align-items: center;
                     gap: 12px;
+                    padding: 6px 6px 6px 16px;
+                    background: white;
+                    border-radius: 14px;
+                    border: 1px solid #E2E8F0;
+                    cursor: pointer;
                 }
 
                 .user-name {
-                    font-size: 13px;
-                    font-weight: 950;
+                    font-size: 14px;
+                    font-weight: 800;
                     color: #0F172A;
                     font-family: var(--font-heading);
-                    line-height: 1;
-                    margin-bottom: 2px;
+                    margin: 0;
                 }
 
                 .user-role {
-                    font-size: 10px;
+                    font-size: 11px;
                     color: #64748B;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
+                    font-weight: 600;
+                    margin: 0;
                 }
 
-                .user-avatar {
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 12px;
+                .user-avatar-hex {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 8px;
                     background: linear-gradient(135deg, #FF7D00 0%, #FFB444 100%);
                     display: flex;
                     align-items: center;
@@ -215,9 +223,47 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     color: white;
                 }
 
+                .mobile-search-bar {
+                    padding: 0 20px 16px;
+                    position: relative;
+                }
+
+                .search-input-mobile {
+                    width: 100%;
+                    padding: 12px 16px 12px 44px;
+                    border-radius: 12px;
+                    border: 1px solid #E2E8F0;
+                    background: white;
+                    font-size: 14px;
+                    outline: none;
+                }
+
+                .search-icon-mobile {
+                    position: absolute;
+                    left: 36px;
+                    top: 14px;
+                    color: #94A3B8;
+                }
+
+                .page-container {
+                    padding: 40px;
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                }
+
                 .content-inner {
-                    max-width: 1400px;
-                    margin: 0 auto;
+                    width: 100%;
+                    max-width: 1200px;
+                }
+
+                .mobile-menu-btn {
+                    display: none;
+                    color: #0F172A;
+                    padding: 8px;
+                    background: white;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
                 }
 
                 @media (max-width: 1024px) {
@@ -229,21 +275,24 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     }
                     .main-content {
                         margin-left: 0;
-                        padding: 24px 20px;
                     }
                     .mobile-menu-btn {
                         display: block;
                     }
-                    .mobile-hide {
-                        display: none;
-                    }
                     .fixed-header {
-                        padding: 10px 0;
-                        margin-bottom: 32px;
+                        padding: 16px 20px;
                     }
-                    .search-container {
-                        max-width: none;
+                    .page-container {
+                        padding: 24px 20px;
                     }
+                }
+
+                @media (max-width: 640px) {
+                    .mobile-hide { display: none; }
+                    .desktop-hide { display: block; }
+                }
+                @media (min-width: 641px) {
+                    .desktop-hide { display: none; }
                 }
             `}</style>
         </div>
