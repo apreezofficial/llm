@@ -42,11 +42,12 @@ export default function AboutPage() {
                             Our Mission
                         </div>
                         <h1 style={{
-                            fontSize: 'clamp(36px, 5vw, 64px)',
-                            fontWeight: 900,
-                            marginBottom: '24px',
-                            fontFamily: 'var(--font-orbitron)',
-                            lineHeight: 1.1
+                            fontSize: 'clamp(48px, 6vw, 84px)',
+                            fontWeight: 950,
+                            marginBottom: '32px',
+                            fontFamily: 'var(--font-heading)',
+                            lineHeight: 1,
+                            letterSpacing: '-0.04em'
                         }}>
                             Redefining the <span style={{ color: '#FF7D00' }}>Future of Learning</span>
                         </h1>
@@ -62,7 +63,7 @@ export default function AboutPage() {
                 <div className="container">
                     <div className="grid grid-2" style={{ gap: '60px', alignItems: 'center' }}>
                         <div className="animate-slide-left">
-                            <h2 style={{ fontSize: '40px', marginBottom: '24px', fontFamily: 'var(--font-orbitron)', fontWeight: 800 }}>Innovation at the Core</h2>
+                            <h2 style={{ fontSize: '52px', marginBottom: '32px', fontFamily: 'var(--font-heading)', fontWeight: 950, letterSpacing: '-0.03em', color: '#0F172A', lineHeight: 1.1 }}>Innovation at the Core</h2>
                             <p style={{ fontSize: '18px', color: '#64748B', marginBottom: '32px', lineHeight: 1.7 }}>
                                 Founded in 2024, EduTrack Pro was born out of a simple observation: traditional leaning management systems were fragmented and uninspiring. We built a platform that bridges the gap between administrators, educators, and students.
                             </p>
@@ -90,9 +91,9 @@ export default function AboutPage() {
                                 alt="Team collaborating"
                                 style={{ width: '100%', borderRadius: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                             />
-                            <div className="animate-bounce-in delay-4" style={{ position: 'absolute', bottom: '-24px', right: '-24px', background: '#005B52', color: 'white', padding: '32px', borderRadius: '24px', maxWidth: '240px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}>
-                                <div style={{ fontSize: '40px', fontWeight: 900, fontFamily: 'var(--font-orbitron)' }}>98%</div>
-                                <div style={{ fontSize: '13px', fontWeight: 600, opacity: 0.9 }}>Student Satisfaction Rate across 15 countries.</div>
+                            <div className="animate-bounce-in delay-4" style={{ position: 'absolute', bottom: '-40px', right: '-40px', background: '#005B52', color: 'white', padding: '48px', borderRadius: '40px', maxWidth: '300px', boxShadow: 'var(--shadow-lg)' }}>
+                                <div style={{ fontSize: '56px', fontWeight: 950, fontFamily: 'var(--font-heading)', letterSpacing: '-0.04em' }}>98%</div>
+                                <div style={{ fontSize: '15px', fontWeight: 700, opacity: 0.9 }}>Student Satisfaction Rate across 15 countries.</div>
                             </div>
                         </div>
                     </div>
@@ -105,6 +106,7 @@ export default function AboutPage() {
                     <div className="text-center animate-slide-up" style={{ marginBottom: '64px' }}>
                         <h2 style={{ fontSize: '42px', fontWeight: 800, fontFamily: 'var(--font-orbitron)', color: 'var(--secondary)' }}>Our Core Values</h2>
                     </div>
+                    {/* Cards section update */}
                     <div className="grid grid-3" style={{ gap: '32px' }}>
                         {[
                             { icon: <Target size={32} />, title: 'Student First', desc: 'Every feature we build starts with the student experience.' },
@@ -114,10 +116,10 @@ export default function AboutPage() {
                             { icon: <CheckCircle2 size={32} />, title: 'Continuous Growth', desc: 'We iterate as fast as the world changes.' },
                             { icon: <Award size={32} />, title: 'Global Community', desc: 'Connecting students across borders and cultures.' }
                         ].map((item, i) => (
-                            <div key={i} className={`card animate-scale-in delay-${(i % 3) + 1}`} style={{ padding: '32px', background: 'white', borderRadius: '24px', border: '1px solid var(--border)', transition: 'all 0.3s ease' }}>
-                                <div style={{ color: '#FF7D00', marginBottom: '20px' }}>{item.icon}</div>
-                                <h3 style={{ fontSize: '20px', marginBottom: '12px', fontFamily: 'var(--font-orbitron)', fontWeight: 700 }}>{item.title}</h3>
-                                <p style={{ fontSize: '15px', color: 'var(--text-muted)', lineHeight: 1.6 }}>{item.desc}</p>
+                            <div key={i} className={`card animate-scale-in delay-${(i % 3) + 1}`} style={{ padding: '48px', background: 'white', borderRadius: '40px', border: '1px solid var(--border)', transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)', boxShadow: 'var(--shadow-md)' }}>
+                                <div style={{ color: '#FF7D00', marginBottom: '24px' }}>{item.icon}</div>
+                                <h3 style={{ fontSize: '24px', marginBottom: '16px', fontFamily: 'var(--font-heading)', fontWeight: 950, color: '#0F172A', letterSpacing: '-0.02em' }}>{item.title}</h3>
+                                <p style={{ fontSize: '16px', color: 'var(--text-muted)', lineHeight: 1.7, fontWeight: 500 }}>{item.desc}</p>
                             </div>
                         ))}
                     </div>

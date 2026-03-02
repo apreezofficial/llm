@@ -5,222 +5,357 @@ import Link from "next/link";
 
 export default function Dashboard() {
     const stats = [
-        { label: 'Courses in Progress', value: '4', icon: BookOpen, color: '#3B82F6' },
-        { label: 'Completed Lessons', value: '28', icon: Play, color: '#10B981' },
-        { label: 'Learning Hours', value: '12.5h', icon: Clock, color: '#8B5CF6' },
-        { label: 'Achievement Points', value: '1,250', icon: Star, color: '#F59E0B' },
+        { label: 'Active Progress', value: '4', icon: BookOpen, color: '#FF7D00', bg: '#FFF7ED' },
+        { label: 'Completed Units', value: '28', icon: Play, color: '#005B52', bg: '#E6F0EF' },
+        { label: 'Study Velocity', value: '12.5h', icon: Clock, color: '#3B82F6', bg: '#EFF6FF' },
+        { label: 'Intellect Score', value: '1,250', icon: Star, color: '#F59E0B', bg: '#FFFBEB' },
     ];
 
     const currentCourses = [
-        { title: 'Advanced React Architecture', progress: 65, instructor: 'Sarah Drasner', img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=100&q=80' },
-        { title: 'UI/UX Design Masterclass', progress: 32, instructor: 'Gary Simon', img: 'https://images.unsplash.com/photo-1541462608141-ad60397d427d?auto=format&fit=crop&w=100&q=80' },
+        { title: 'Advanced React Architecture', progress: 65, instructor: 'Sarah Drasner', img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=300&q=80' },
+        { title: 'UI/UX Design Masterclass', progress: 32, instructor: 'Gary Simon', img: 'https://images.unsplash.com/photo-1541462608141-ad60397d427d?auto=format&fit=crop&w=300&q=80' },
     ];
 
     const grades = [
-        { subject: 'Mathematics', assignment: 'Algebra II Midterm', date: 'Mar 01', grade: '92%', color: '#22C55E' },
-        { subject: 'Physics', assignment: 'Kinematics Quiz', date: 'Feb 28', grade: '88%', color: '#F59E0B' },
-        { subject: 'Chemistry', assignment: 'Stoichiometry Lab', date: 'Feb 25', grade: 'A-', color: '#0066FF' },
+        { subject: 'Mathematics', assignment: 'Algebra II Midterm', date: 'Mar 01', grade: '92%', status: 'Excellent', color: '#FF7D00', bg: '#FFF7ED' },
+        { subject: 'Physics', assignment: 'Kinematics Quiz', date: 'Feb 28', grade: '88%', status: 'Great', color: '#005B52', bg: '#E6F0EF' },
+        { subject: 'Chemistry', assignment: 'Stoichiometry Lab', date: 'Feb 25', grade: 'A-', status: 'Excellent', color: '#0F172A', bg: '#F1F5F9' },
     ];
 
     return (
         <AppLayout>
-            <style jsx global>{`
-                @media (max-width: 1200px) {
-                    .dashboard-container { grid-template-columns: 1fr !important; }
-                    .side-column { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+            <style jsx>{`
+                .main-title {
+                    font-size: 56px;
+                    font-weight: 950;
+                    font-family: var(--font-heading);
+                    color: #0F172A;
+                    letter-spacing: -0.04em;
+                    margin-bottom: 12px;
+                    line-height: 1;
                 }
+
+                .subtitle {
+                    font-size: 18px;
+                    color: #64748B;
+                    font-weight: 600;
+                    max-width: 600px;
+                }
+
+                .stats-row {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 32px;
+                    margin-bottom: 60px;
+                }
+
+                .stat-card {
+                    background: white;
+                    padding: 32px;
+                    border-radius: var(--radius-lg);
+                    border: 1px solid #E2E8F0;
+                    display: flex;
+                    align-items: center;
+                    gap: 24px;
+                    box-shadow: var(--shadow-md);
+                }
+
+                .stat-icon-wrapper {
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    box-shadow: var(--shadow-sm);
+                }
+
+                .stat-label {
+                    font-size: 12px;
+                    font-weight: 950;
+                    color: #94A3B8;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    margin-bottom: 4px;
+                }
+
+                .stat-value {
+                    font-size: 32px;
+                    font-weight: 950;
+                    color: #0F172A;
+                    font-family: var(--font-heading);
+                    letter-spacing: -0.02em;
+                }
+
+                .dashboard-main-grid {
+                    display: grid;
+                    grid-template-columns: 2.2fr 1fr;
+                    gap: 40px;
+                }
+
+                .section-title {
+                    font-size: 28px;
+                    font-weight: 950;
+                    font-family: var(--font-heading);
+                    color: #0F172A;
+                    margin-bottom: 32px;
+                    letter-spacing: -0.02em;
+                }
+
+                .course-card {
+                    padding: 32px;
+                    border-radius: var(--radius-lg);
+                    display: flex;
+                    align-items: center;
+                    gap: 32px;
+                    background: white;
+                    border: 1px solid #E2E8F0;
+                    box-shadow: var(--shadow-md);
+                    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .course-card:hover {
+                    box-shadow: var(--shadow-lg);
+                    transform: translateY(-8px);
+                    border-color: var(--primary);
+                }
+
+                .course-card-img {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 28px;
+                    object-fit: cover;
+                    box-shadow: var(--shadow-md);
+                }
+
+                .progress-bar-container {
+                    width: 100%;
+                    height: 10px;
+                    background: #F1F5F9;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    margin-top: 20px;
+                }
+
+                .progress-bar-fill {
+                    height: 100%;
+                    background: linear-gradient(90deg, #FF7D00 0%, #FFB444 100%);
+                    border-radius: 5px;
+                }
+
+                .table-container {
+                    padding: 24px;
+                    background: white;
+                    border-radius: var(--radius-lg);
+                    border: 1px solid #E2E8F0;
+                    box-shadow: var(--shadow-md);
+                    overflow: hidden;
+                }
+
+                .ai-widget {
+                    padding: 40px;
+                    border-radius: var(--radius-lg);
+                    background: #0F172A;
+                    color: white;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: var(--shadow-lg);
+                }
+
+                .ai-icon-box {
+                    width: 64px;
+                    height: 64px;
+                    background: rgba(255,255,255,0.05);
+                    border-radius: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 32px;
+                    border: 1px solid rgba(255,255,255,0.1);
+                }
+
+                @media (max-width: 1400px) {
+                    .stats-row { grid-template-columns: repeat(2, 1fr); }
+                    .main-title { font-size: 48px; }
+                }
+
                 @media (max-width: 1024px) {
-                    .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+                    .dashboard-main-grid { grid-template-columns: 1fr; }
+                    .course-card { flex-direction: column; text-align: center; }
+                    .course-card-img { width: 100%; height: 200px; }
                 }
-                @media (max-width: 768px) {
-                    .side-column { grid-template-columns: 1fr !important; }
-                    .stats-grid { grid-template-columns: 1fr !important; }
-                    .grades-table { display: block !important; overflow-x: auto !important; }
-                    .grades-table th:nth-child(3), .grades-table td:nth-child(3) { display: none !important; }
+
+                @media (max-width: 640px) {
+                    .stats-row { grid-template-columns: 1fr; }
+                    .main-title { font-size: 36px; }
+                    .stat-card { padding: 24px; gap: 16px; }
                 }
             `}</style>
-            <div style={{ marginBottom: '32px' }}>
-                <h1 style={{ fontSize: '32px', marginBottom: '8px' }}>Welcome back, Alex! 👋</h1>
-                <p style={{ color: 'var(--text-muted)' }}>You've completed 75% of your weekly goal. Keep it up!</p>
+
+            {/* Page Header */}
+            <div className="animate-slide-up" style={{ marginBottom: '60px' }}>
+                <h1 className="main-title">
+                    Welcome back, <span style={{ color: '#FF7D00' }}>Alex!</span> 👋
+                </h1>
+                <p className="subtitle">
+                    You've completed <span style={{ color: '#005B52', fontWeight: 950 }}>75%</span> of your weekly learning quota. Excellence is a habit!
+                </p>
             </div>
 
             {/* Stats Grid */}
-            <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
+            <div className="stats-row">
                 {stats.map((stat, i) => (
-                    <div key={i} className="card" style={{ padding: '24px', display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <div style={{ padding: '12px', background: `${stat.color}15`, color: stat.color, borderRadius: '12px' }}>
-                            <stat.icon size={24} />
+                    <div key={i} className={`stat-card animate-scale-in delay-${i + 1}`}>
+                        <div className="stat-icon-wrapper" style={{ background: stat.bg, color: stat.color }}>
+                            <stat.icon size={28} />
                         </div>
                         <div>
-                            <p style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: 500 }}>{stat.label}</p>
-                            <p style={{ fontSize: '24px', fontWeight: 700 }}>{stat.value}</p>
+                            <p className="stat-label">{stat.label}</p>
+                            <p className="stat-value">{stat.value}</p>
                         </div>
                     </div>
                 ))}
             </div>
 
-            <div className="dashboard-container" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px' }}>
-                {/* Left Column */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                    {/* Continue Learning */}
-                    <div>
-                        <div className="flex align-center justify-between" style={{ marginBottom: '20px' }}>
-                            <h3 style={{ fontSize: '20px' }}>Continue Learning</h3>
-                            <Link href="/courses" className="flex align-center gap-4" style={{ color: 'var(--primary)', fontSize: '14px', fontWeight: 600 }}>
-                                View All <ArrowRight size={16} />
+            <div className="dashboard-main-grid">
+                {/* Primary Column */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
+
+                    {/* Active Courses Section */}
+                    <section className="animate-slide-up delay-2">
+                        <div className="flex align-center justify-between" style={{ marginBottom: '40px' }}>
+                            <h3 className="section-title">Active Progress</h3>
+                            <Link href="/courses" className="hover-scale" style={{ color: '#FF7D00', fontSize: '14px', fontWeight: 950, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                                Full Catalog →
                             </Link>
                         </div>
 
-                        <div className="flex column gap-16">
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                             {currentCourses.map((course, i) => (
-                                <div key={i} className="card" style={{ padding: '20px', display: 'flex', alignItems: 'center', gap: '20px' }}>
-                                    <img src={course.img} alt="" style={{ width: '80px', height: '60px', borderRadius: '8px', objectFit: 'cover' }} />
+                                <div key={i} className="course-card hover-scale">
+                                    <img src={course.img} alt="" className="course-card-img" />
                                     <div style={{ flex: 1 }}>
-                                        <h4 style={{ fontSize: '16px', marginBottom: '4px' }}>{course.title}</h4>
-                                        <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '12px' }}>{course.instructor}</p>
-                                        <div style={{ width: '100%', height: '6px', background: 'var(--border)', borderRadius: '3px', position: 'relative' }}>
-                                            <div style={{ position: 'absolute', left: 0, top: 0, height: '100%', background: 'var(--primary)', borderRadius: '3px', width: `${course.progress}%` }}></div>
+                                        <div className="flex align-center justify-between" style={{ marginBottom: '8px' }}>
+                                            <h4 style={{ fontSize: '20px', fontWeight: 950, color: '#0F172A', fontFamily: 'var(--font-heading)' }}>{course.title}</h4>
+                                            <span style={{ fontSize: '15px', fontWeight: 950, color: '#FF7D00' }}>{course.progress}%</span>
+                                        </div>
+                                        <p style={{ fontSize: '15px', color: '#64748B', fontWeight: 700 }}>{course.instructor}</p>
+                                        <div className="progress-bar-container">
+                                            <div className="progress-bar-fill" style={{ width: `${course.progress}%` }}></div>
                                         </div>
                                     </div>
-                                    <div style={{ textAlign: 'right' }}>
-                                        <p style={{ fontSize: '14px', fontWeight: 700, marginBottom: '8px' }}>{course.progress}%</p>
-                                        <button className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '12px' }}>Continue</button>
-                                    </div>
+                                    <button className="hover-scale" style={{ padding: '16px 32px', borderRadius: '16px', background: '#0F172A', color: 'white', fontWeight: 950, fontSize: '14px', border: 'none' }}>Resume</button>
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </section>
 
-                    {/* Recent Grades */}
-                    <div className="grades-table">
-                        <div className="flex align-center justify-between" style={{ marginBottom: '20px' }}>
-                            <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#1E293B' }}>Recent Grades</h3>
-                            <Link href="#" style={{ fontSize: '13px', fontWeight: 700, color: '#0066FF' }}>Full Transcript</Link>
-                        </div>
-                        <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
-                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    {/* Academic Performance Section */}
+                    <section className="animate-slide-up delay-3">
+                        <h3 className="section-title">Performance Baseline</h3>
+                        <div className="table-container">
+                            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                                 <thead>
-                                    <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
-                                        <th style={{ textAlign: 'left', padding: '16px 24px', fontSize: '11px', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase' }}>Subject</th>
-                                        <th style={{ textAlign: 'left', padding: '16px 24px', fontSize: '11px', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase' }}>Assignment</th>
-                                        <th style={{ textAlign: 'left', padding: '16px 24px', fontSize: '11px', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase' }}>Date</th>
-                                        <th style={{ textAlign: 'right', padding: '16px 24px', fontSize: '11px', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase' }}>Grade</th>
+                                    <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
+                                        <th style={{ padding: '16px', fontSize: '12px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px' }}>Assessment</th>
+                                        <th style={{ padding: '16px', fontSize: '12px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px' }}>Grade</th>
+                                        <th style={{ padding: '16px', fontSize: '12px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '1px' }}>Metric</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {grades.map((g, idx) => (
-                                        <tr key={idx} style={{ borderBottom: idx === grades.length - 1 ? 'none' : '1px solid #F1F5F9' }}>
-                                            <td style={{ padding: '20px 24px' }}>
-                                                <div className="flex align-center gap-12">
-                                                    <div style={{ background: `${g.color}15`, width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                        {idx === 0 ? <CheckCircle2 size={14} color={g.color} /> : idx === 1 ? <BookOpen size={14} color={g.color} /> : <Zap size={14} color={g.color} />}
-                                                    </div>
-                                                    <span style={{ fontSize: '14px', fontWeight: 700, color: '#1E293B' }}>{g.subject}</span>
-                                                </div>
-                                            </td>
-                                            <td style={{ padding: '20px 24px', fontSize: '14px', fontWeight: 600, color: '#64748B' }}>{g.assignment}</td>
-                                            <td style={{ padding: '20px 24px', fontSize: '14px', fontWeight: 600, color: '#64748B' }}>{g.date}</td>
-                                            <td style={{ padding: '20px 24px', textAlign: 'right' }}>
-                                                <span style={{
-                                                    background: '#F1F5F9',
-                                                    padding: '4px 12px',
-                                                    borderRadius: '20px',
-                                                    fontSize: '13px',
-                                                    fontWeight: 800,
-                                                    color: '#1E293B',
-                                                    border: g.grade.includes('A') || parseFloat(g.grade) > 90 ? '1px solid #BBF7D0' : 'none',
-                                                    backgroundColor: g.grade.includes('A') || parseFloat(g.grade) > 90 ? '#F0FDF4' : '#F1F5F9'
-                                                }}>
-                                                    {g.grade}
-                                                </span>
+                                    {grades.map((item, i) => (
+                                        <tr key={i} style={{ borderBottom: i === grades.length - 1 ? 'none' : '1px solid #F1F5F9' }}>
+                                            <td style={{ padding: '20px 16px', fontWeight: 800, color: '#0F172A', fontSize: '14px' }}>{item.subject}</td>
+                                            <td style={{ padding: '20px 16px', color: '#64748B', fontSize: '14px', fontWeight: 500 }}>{item.assignment}</td>
+                                            <td style={{ padding: '20px 16px', fontWeight: 950, color: item.color, fontSize: '16px', fontFamily: 'var(--font-heading)' }}>{item.grade}</td>
+                                            <td style={{ padding: '20px 16px' }}>
+                                                <span style={{ padding: '6px 12px', borderRadius: '30px', background: item.bg, color: item.color, fontSize: '11px', fontWeight: 900, textTransform: 'uppercase' }}>{item.status}</span>
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </section>
                 </div>
 
-                {/* Right Column */}
-                <div className="side-column" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                    {/* Quick Actions */}
-                    <div>
-                        <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#1E293B', marginBottom: '20px' }}>Quick Actions</h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            <Link href="/ai-tutor" style={{
-                                background: '#0066FF',
-                                color: 'white',
-                                padding: '16px 20px',
-                                borderRadius: '12px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'space-between',
-                                border: 'none',
-                                fontWeight: 700,
-                                fontSize: '15px',
-                                textDecoration: 'none'
-                            }}>
-                                <div className="flex align-center gap-12">
-                                    <Bot size={20} /> Launch AI Tutor
-                                </div>
-                                <ArrowUpRight size={18} />
-                            </Link>
-                            <Link href="/certificates" className="card" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700, fontSize: '14px', color: '#1E293B', textDecoration: 'none' }}>
-                                <Download size={20} color="#0066FF" /> Download Certificate
-                            </Link>
-                            <Link href="/schedule" className="card" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700, fontSize: '14px', color: '#1E293B', textDecoration: 'none' }}>
-                                <Calendar size={20} color="#0066FF" /> View Schedule
-                            </Link>
+                {/* Sidebar Column */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                    {/* Smart Assistant Widget */}
+                    <div className="glass-card animate-scale-in delay-4" style={{
+                        padding: '32px',
+                        borderRadius: '32px',
+                        background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+                        color: 'white',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        boxShadow: '0 20px 40px rgba(15,23,42,0.2)'
+                    }}>
+                        <div style={{ position: 'relative', zIndex: 1 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                                <div style={{ background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '12px' }}><Bot size={24} color="#FF7D00" /></div>
+                                <h4 style={{ fontSize: '18px', fontWeight: 900, fontFamily: 'var(--font-heading)', letterSpacing: '-0.5px' }}>Nexus AI</h4>
+                            </div>
+                            <p style={{ fontSize: '15px', color: '#94A3B8', lineHeight: 1.6, marginBottom: '24px', fontWeight: 500 }}>
+                                &quot;Based on your last session, I recommend focusing on <span style={{ color: 'white', fontWeight: 800 }}>Component Lifecycle</span> today.&quot;
+                            </p>
+                            <button className="hover-scale" style={{ width: '100%', padding: '14px', borderRadius: '16px', background: '#FF7D00', color: 'white', fontWeight: 900, fontSize: '14px', border: 'none' }}>
+                                Launch Session
+                            </button>
                         </div>
+                        {/* Decorative background element */}
+                        <div style={{ position: 'absolute', bottom: '-40px', right: '-40px', width: '150px', height: '150px', background: '#FF7D00', opacity: 0.1, filter: 'blur(50px)', borderRadius: '50%' }}></div>
                     </div>
 
                     {/* Learning Path */}
-                    <div className="card" style={{ padding: '24px' }}>
-                        <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#1E293B', marginBottom: '24px' }}>Learning Path</h3>
+                    <div className="glass-card animate-slide-up delay-5" style={{ padding: '32px', borderRadius: '28px' }}>
+                        <h3 style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'var(--font-heading)', marginBottom: '28px' }}>Mastery Track</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-                            <div className="flex gap-16" style={{ position: 'relative', paddingBottom: '32px' }}>
-                                <div style={{ position: 'absolute', left: '10px', top: '24px', bottom: '0', width: '2px', background: '#E2E8F0' }}></div>
-                                <CheckCircle2 size={22} color="#22C55E" style={{ flexShrink: 0, position: 'relative', background: 'white' }} />
-                                <div>
-                                    <div style={{ fontSize: '10px', fontWeight: 800, color: '#22C55E', textTransform: 'uppercase', marginBottom: '4px' }}>Completed</div>
-                                    <div style={{ fontSize: '15px', fontWeight: 800, color: '#1E293B' }}>Foundations of Logic</div>
-                                </div>
-                            </div>
-                            <div className="flex gap-16" style={{ position: 'relative', paddingBottom: '32px' }}>
-                                <div style={{ position: 'absolute', left: '10px', top: '24px', bottom: '0', width: '2px', background: '#E2E8F0' }}></div>
-                                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#0066FF', flexShrink: 0, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <Circle size={8} color="white" fill="white" />
+                            <div className="flex gap-20" style={{ position: 'relative', paddingBottom: '32px' }}>
+                                <div style={{ position: 'absolute', left: '11px', top: '24px', bottom: '0', width: '2px', background: '#E2E8F0' }}></div>
+                                <div style={{ background: '#005B52', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative', zIndex: 1 }}>
+                                    <CheckCircle2 size={16} color="white" />
                                 </div>
                                 <div>
-                                    <div style={{ fontSize: '10px', fontWeight: 800, color: '#0066FF', textTransform: 'uppercase', marginBottom: '4px' }}>Current Level</div>
-                                    <div style={{ fontSize: '15px', fontWeight: 800, color: '#1E293B' }}>Intermediate Algebra II</div>
-                                    <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>4 assignments remaining</div>
+                                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#005B52', textTransform: 'uppercase', marginBottom: '4px' }}>Validated</p>
+                                    <p style={{ fontSize: '15px', fontWeight: 800, color: '#0F172A' }}>Logic Foundations</p>
                                 </div>
                             </div>
-                            <div className="flex gap-16" style={{ position: 'relative' }}>
-                                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#F1F5F9', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <div className="flex gap-20" style={{ position: 'relative', paddingBottom: '32px' }}>
+                                <div style={{ position: 'absolute', left: '11px', top: '24px', bottom: '0', width: '2px', background: '#E2E8F0' }}></div>
+                                <div style={{ border: '2px solid #FF7D00', width: '24px', height: '24px', borderRadius: '50%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative', zIndex: 1 }}>
+                                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF7D00' }}></div>
+                                </div>
+                                <div>
+                                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#FF7D00', textTransform: 'uppercase', marginBottom: '4px' }}>Current Goal</p>
+                                    <p style={{ fontSize: '15px', fontWeight: 800, color: '#0F172A' }}>Intermediate Algebra II</p>
+                                    <p style={{ fontSize: '12px', color: '#64748B', marginTop: '4px' }}>4 units until milestone</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-20" style={{ position: 'relative' }}>
+                                <div style={{ background: '#F1F5F9', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative', zIndex: 1 }}>
                                     <Lock size={12} color="#94A3B8" />
                                 </div>
                                 <div>
-                                    <div style={{ fontSize: '10px', fontWeight: 800, color: '#64748B', textTransform: 'uppercase', marginBottom: '4px' }}>Next Milestone</div>
-                                    <div style={{ fontSize: '15px', fontWeight: 800, color: '#94A3B8' }}>Intro to Calculus</div>
+                                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#94A3B8', textTransform: 'uppercase', marginBottom: '4px' }}>Next Milestone</p>
+                                    <p style={{ fontSize: '15px', fontWeight: 800, color: '#94A3B8' }}>Intro to Calculus</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Study Tip */}
-                    <div style={{ background: '#2563EB', borderRadius: '16px', padding: '24px', color: 'white' }}>
-                        <div className="flex align-center gap-12" style={{ marginBottom: '16px' }}>
-                            <Lightbulb size={24} />
-                            <span style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '1px' }}>Study Tip</span>
+                    {/* Quick Support Tip */}
+                    <div className="glass-card animate-slide-up delay-6" style={{ padding: '24px', borderRadius: '24px', background: '#FFF7ED', border: '1px solid #FFEDD5' }}>
+                        <div className="flex align-center gap-12" style={{ marginBottom: '12px' }}>
+                            <Lightbulb size={20} color="#FF7D00" />
+                            <span style={{ fontSize: '12px', fontWeight: 900, color: '#FF7D00', textTransform: 'uppercase', letterSpacing: '1px' }}>Efficiency Tip</span>
                         </div>
-                        <p style={{ fontSize: '15px', lineHeight: 1.6, marginBottom: '20px', fontWeight: 500 }}>
-                            &quot;Taking short breaks every 45 minutes can improve your focus and retention by up to 20%.&quot;
+                        <p style={{ fontSize: '14px', color: '#9A3412', lineHeight: 1.6, fontWeight: 500 }}>
+                            &quot;Micro-learning for 15 mins a day is 5x more effective than one 2-hour session per week.&quot;
                         </p>
-                        <Link href="#" style={{ fontSize: '13px', fontWeight: 800, textDecoration: 'underline', color: 'rgba(255,255,255,0.8)' }}>Read more techniques</Link>
                     </div>
+
                 </div>
             </div>
         </AppLayout>
