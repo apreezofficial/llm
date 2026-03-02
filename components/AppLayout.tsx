@@ -100,7 +100,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
                 .main-content {
                     flex: 1;
-                    margin-left: 280px;
+                    margin-left: ${isSidebarOpen ? '280px' : '0'};
                     min-height: 100vh;
                     display: flex;
                     flex-direction: column;
