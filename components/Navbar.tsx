@@ -12,6 +12,8 @@ const LayoutIcon = ({ size = 18, color = "currentColor" }) => (
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [langOpen, setLangOpen] = useState(false);
+    const [currentLang, setCurrentLang] = useState('Eng');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,75 +23,141 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const languages = [
+        { code: 'Eng', name: 'English' },
+        { code: 'Yor', name: 'Yoruba' },
+        { code: 'Igb', name: 'Igbo' },
+        { code: 'Hau', name: 'Hausa' }
+    ];
+
     return (
         <header style={{
             position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
-            background: scrolled || isOpen ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.8)',
-            backdropFilter: 'blur(12px)',
-            borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+            background: scrolled || isOpen ? '#005B52' : 'transparent',
             zIndex: 1000,
-            transition: 'all 0.3s ease'
+            transition: 'all 0.3s ease',
+            borderBottom: scrolled ? '1px solid rgba(255,255,255,0.1)' : 'none'
         }}>
-            <nav className="container flex align-center justify-between" style={{ padding: '16px 0', height: '72px' }}>
+            <nav className="container flex align-center justify-between" style={{ height: '90px' }}>
                 <Link href="/" className="flex align-center gap-8">
-                    <div style={{ background: '#0066FF', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <LayoutIcon size={18} color="white" />
+                    <div style={{ background: '#FF7D00', width: '36px', height: '36px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <LayoutIcon size={20} color="white" />
                     </div>
-                    <span style={{ fontWeight: 700, fontSize: '20px', color: '#0F172A' }}>EduTrack<span style={{ color: '#0066FF' }}>Pro</span></span>
+                    <span style={{ fontWeight: 800, fontSize: '24px', color: 'white', letterSpacing: '-1px', fontFamily: 'var(--font-heading)' }}>LMS<span style={{ color: '#FF7D00' }}>ZONE</span>.</span>
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="flex align-center mobile-hide" style={{ gap: '32px' }}>
-                    <Link href="/features" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 500 }}>Features</Link>
-                    <Link href="/solutions" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 500 }}>Solutions</Link>
-                    <Link href="/pricing" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 500 }}>Pricing</Link>
-                    <Link href="/resources" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 500 }}>Resources</Link>
-                    <Link href="/dashboard" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 600, color: 'var(--primary)' }}>Dashboard</Link>
-                </div>
+                <div className="flex align-center mobile-hide" style={{ gap: '24px' }}>
+                    <nav className="flex align-center gap-24">
+                        <Link href="/features" className="nav-link animate-slide-up delay-1">Features</Link>
+                        <Link href="/pricing" className="nav-link animate-slide-up delay-2">Pricing</Link>
+                        <Link href="/mobile-app" className="nav-link animate-slide-up delay-3">Mobile App</Link>
+                        <Link href="/blog" className="nav-link animate-slide-up delay-4">Blog</Link>
+                        <Link href="/about" className="nav-link animate-slide-up delay-5">About Us</Link>
+                    </nav>
 
-                <div className="flex align-center mobile-hide" style={{ gap: '12px' }}>
-                    <Link href="/dashboard" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 600 }}>Login</Link>
-                    <Link href="/dashboard" className="btn btn-primary" style={{ padding: '8px 20px', borderRadius: '6px' }}>Get Started</Link>
+                    <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.2)', margin: '0 10px' }}></div>
+
+                    <div className="flex align-center gap-20">
+                        {/* Language Dropdown */}
+                        <div style={{ position: 'relative' }}>
+                            <div
+                                onClick={() => setLangOpen(!langOpen)}
+                                className="flex align-center gap-4"
+                                style={{ color: 'white', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}
+                            >
+                                {currentLang} <ChevronDown size={14} />
+                            </div>
+
+                            {langOpen && (
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '40px',
+                                    right: 0,
+                                    background: 'white',
+                                    borderRadius: '12px',
+                                    padding: '8px',
+                                    width: '120px',
+                                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '2px',
+                                    zIndex: 100
+                                }}>
+                                    {languages.map((l) => (
+                                        <div
+                                            key={l.code}
+                                            onClick={() => {
+                                                setCurrentLang(l.code);
+                                                setLangOpen(false);
+                                            }}
+                                            style={{
+                                                padding: '10px 12px',
+                                                fontSize: '13px',
+                                                fontWeight: 600,
+                                                color: currentLang === l.code ? '#FF7D00' : '#005B52',
+                                                cursor: 'pointer',
+                                                borderRadius: '8px',
+                                                background: currentLang === l.code ? '#FFF7ED' : 'transparent',
+                                                transition: 'all 0.2s'
+                                            }}
+                                            className="lang-option"
+                                        >
+                                            {l.name}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <Link href="/auth" className="btn" style={{ background: 'white', color: '#005B52', padding: '10px 24px', borderRadius: '30px', fontWeight: 700 }}>Join for Free</Link>
+                    </div>
                 </div>
 
                 {/* Mobile Toggle */}
                 <button
                     className="desktop-hide"
                     onClick={() => setIsOpen(!isOpen)}
-                    style={{ color: 'var(--secondary)' }}
+                    style={{ color: 'white' }}
                 >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </nav>
+
+            <style jsx>{`
+                .lang-option:hover { background: #F1F5F9 !important; }
+                .nav-link { color: white; }
+            `}</style>
 
             {/* Mobile Menu Overlay */}
             {isOpen && (
                 <div className="desktop-hide animate-fade" style={{
                     position: 'absolute',
-                    top: '72px',
+                    top: '90px',
                     left: 0,
                     right: 0,
-                    background: 'white',
-                    padding: '24px',
-                    borderBottom: '1px solid var(--border)',
-                    boxShadow: 'var(--shadow-lg)',
+                    background: '#005B52',
+                    padding: '32px 24px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '16px'
+                    gap: '20px'
                 }}>
-                    <Link href="/features" className="btn-ghost" style={{ justifyContent: 'flex-start' }} onClick={() => setIsOpen(false)}>Features</Link>
-                    <Link href="/solutions" className="btn-ghost" style={{ justifyContent: 'flex-start' }} onClick={() => setIsOpen(false)}>Solutions</Link>
-                    <Link href="/pricing" className="btn-ghost" style={{ justifyContent: 'flex-start' }} onClick={() => setIsOpen(false)}>Pricing</Link>
-                    <Link href="/resources" className="btn-ghost" style={{ justifyContent: 'flex-start' }} onClick={() => setIsOpen(false)}>Resources</Link>
-                    <hr style={{ border: 'none', borderTop: '1px solid var(--border)' }} />
-                    <button className="btn btn-outline" style={{ width: '100%' }}>Login</button>
-                    <button className="btn btn-primary" style={{ width: '100%' }}>Sign Up</button>
+                    <Link href="/features" className="nav-link" onClick={() => setIsOpen(false)}>Features</Link>
+                    <Link href="/solutions" className="nav-link" onClick={() => setIsOpen(false)}>Solutions</Link>
+                    <Link href="/pricing" className="nav-link" onClick={() => setIsOpen(false)}>Pricing</Link>
+                    <Link href="/resources" className="nav-link" onClick={() => setIsOpen(false)}>Resources</Link>
+                    <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.1)' }} />
+                    <button className="btn btn-primary" style={{ background: '#FF7D00', width: '100%', borderRadius: '30px' }}>Join for Free</button>
                 </div>
             )}
         </header>
     );
 }
 
+const ChevronDown = ({ size = 16 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+);

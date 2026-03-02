@@ -24,13 +24,28 @@ export default function Dashboard() {
 
     return (
         <AppLayout>
+            <style jsx global>{`
+                @media (max-width: 1200px) {
+                    .dashboard-container { grid-template-columns: 1fr !important; }
+                    .side-column { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+                }
+                @media (max-width: 1024px) {
+                    .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+                }
+                @media (max-width: 768px) {
+                    .side-column { grid-template-columns: 1fr !important; }
+                    .stats-grid { grid-template-columns: 1fr !important; }
+                    .grades-table { display: block !important; overflow-x: auto !important; }
+                    .grades-table th:nth-child(3), .grades-table td:nth-child(3) { display: none !important; }
+                }
+            `}</style>
             <div style={{ marginBottom: '32px' }}>
                 <h1 style={{ fontSize: '32px', marginBottom: '8px' }}>Welcome back, Alex! 👋</h1>
                 <p style={{ color: 'var(--text-muted)' }}>You've completed 75% of your weekly goal. Keep it up!</p>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
+            <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
                 {stats.map((stat, i) => (
                     <div key={i} className="card" style={{ padding: '24px', display: 'flex', alignItems: 'center', gap: '20px' }}>
                         <div style={{ padding: '12px', background: `${stat.color}15`, color: stat.color, borderRadius: '12px' }}>
@@ -44,7 +59,7 @@ export default function Dashboard() {
                 ))}
             </div>
 
-            <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px' }}>
+            <div className="dashboard-container" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px' }}>
                 {/* Left Column */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
                     {/* Continue Learning */}
@@ -77,7 +92,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* Recent Grades */}
-                    <div>
+                    <div className="grades-table">
                         <div className="flex align-center justify-between" style={{ marginBottom: '20px' }}>
                             <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#1E293B' }}>Recent Grades</h3>
                             <Link href="#" style={{ fontSize: '13px', fontWeight: 700, color: '#0066FF' }}>Full Transcript</Link>
@@ -128,7 +143,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Right Column */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                <div className="side-column" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
                     {/* Quick Actions */}
                     <div>
                         <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#1E293B', marginBottom: '20px' }}>Quick Actions</h3>

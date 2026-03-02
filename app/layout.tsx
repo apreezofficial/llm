@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Manrope, Orbitron } from "next/font/google";
 import "./globals.css";
+import CookieConsent from "@/components/CookieConsent";
+import PageTransition from "@/components/PageTransition";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
+  weight: ['400', '500', '600', '700', '800'],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
   subsets: ["latin"],
+  weight: ['400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
-  title: "EduTrackPro - Empowering the Next Generation of Learners",
-  description: "A unified platform for K-12 and Higher Ed virtual excellence.",
+  title: "LMSZONE — The Most Advanced Learning Ecosystem",
+  description: "Empowering institutions and individuals with world-class virtual classroom tools, AI-powered analytics, and enterprise-grade security.",
+  keywords: "LMS, online learning, virtual classroom, education platform, e-learning",
 };
 
 export default function RootLayout({
@@ -24,8 +29,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${outfit.variable} antialiased`}>
-        {children}
+      <head>
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className={`${manrope.variable} ${orbitron.variable} antialiased`}>
+        <PageTransition>
+          {children}
+        </PageTransition>
+        <CookieConsent />
       </body>
     </html>
   );
