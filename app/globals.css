@@ -2,19 +2,19 @@
   --primary: #FF7D00;
   --primary-hover: #E67000;
   --secondary: #005B52;
-  --text-main: #1F2937;
-  --text-muted: #6B7280;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
   --bg-white: #FFFFFF;
-  --bg-soft: #F9FAFB;
+  --bg-soft: #F8FAFC;
   --accent-blue: #FFF7ED;
-  --border: #E5E7EB;
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 32px;
-  --radius-xl: 50px;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+  --border: #E2E8F0;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 40px;
+  --radius-xl: 60px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 40px 80px rgba(15, 23, 42, 0.08);
   --font-heading: 'Satoshi', 'Outfit', sans-serif;
   --font-body: var(--font-manrope), sans-serif;
 }
@@ -32,8 +32,8 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--text-main);
-  background: var(--bg-white);
-  line-height: 1.5;
+  background: var(--bg-soft);
+  line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -43,9 +43,10 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
-  color: var(--secondary);
-  font-weight: 700;
-  line-height: 1.2;
+  color: #0F172A;
+  font-weight: 950;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 a {
@@ -64,9 +65,9 @@ button {
 
 /* Base Layout Classes */
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 40px;
 }
 
 .section {
@@ -784,16 +785,17 @@ button {
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
-  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .glass-card:hover {
-  border-color: #FF7D00 !important;
-  background: rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-8px) scale(1.01);
+  border-color: var(--primary) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* ── Custom Scrollbar ── */

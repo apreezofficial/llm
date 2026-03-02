@@ -114,18 +114,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     top: 0;
                     height: 100vh;
                     z-index: 1000;
-                    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                    width: 280px;
+                    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                    width: 300px;
+                    border-right: 1px solid rgba(0,0,0,0.05);
                 }
 
                 .main-content {
                     flex: 1;
-                    margin-left: ${showSidebar ? '280px' : '0'};
+                    margin-left: ${showSidebar ? '300px' : '0'};
                     min-height: 100vh;
                     display: flex;
                     flex-direction: column;
-                    background: #F8FAFC;
-                    transition: all 0.4s ease;
+                    background: var(--bg-soft);
+                    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
                 .fixed-header {
@@ -135,26 +136,26 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     position: sticky;
                     top: 0;
                     z-index: 100;
-                    background: rgba(248, 250, 252, 0.85);
-                    backdrop-filter: blur(20px);
-                    padding: 20px 40px;
-                    border-bottom: 1px solid rgba(0,0,0,0.03);
+                    background: rgba(248, 250, 252, 0.8);
+                    backdrop-filter: blur(24px) saturate(180%);
+                    padding: 24px 60px;
+                    border-bottom: 1px solid rgba(0,0,0,0.04);
                 }
 
                 .header-left, .header-right {
                     display: flex;
                     align-items: center;
-                    gap: 20px;
+                    gap: 32px;
                 }
 
                 .search-wrapper {
                     position: relative;
-                    width: 320px;
+                    width: 400px;
                 }
 
                 .search-icon {
                     position: absolute;
-                    left: 16px;
+                    left: 20px;
                     top: 50%;
                     transform: translateY(-50%);
                     color: #94A3B8;
@@ -162,45 +163,56 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
                 .search-input {
                     width: 100%;
-                    padding: 12px 16px 12px 48px;
-                    border-radius: 12px;
+                    padding: 16px 20px 16px 56px;
+                    border-radius: 18px;
                     border: 1px solid #E2E8F0;
                     background: white;
-                    font-size: 14px;
-                    font-weight: 500;
+                    font-size: 15px;
+                    font-weight: 600;
                     outline: none;
-                    transition: border-color 0.2s;
+                    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                    box-shadow: var(--shadow-sm);
                 }
 
                 .search-input:focus {
-                    border-color: #FF7D00;
+                    border-color: var(--primary);
+                    box-shadow: 0 0 0 4px rgba(255,125,0,0.1);
+                    width: 420px;
                 }
 
                 .logo-mobile {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
+                    gap: 12px;
                 }
 
                 .icon-btn {
                     position: relative;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 10px;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 16px;
                     background: white;
                     border: 1px solid #E2E8F0;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    color: #64748B;
+                    color: #0F172A;
+                    transition: all 0.2s;
+                    box-shadow: var(--shadow-sm);
+                }
+
+                .icon-btn:hover {
+                    border-color: var(--primary);
+                    color: var(--primary);
+                    transform: translateY(-2px);
                 }
 
                 .notification-dot {
                     position: absolute;
-                    top: 8px;
-                    right: 8px;
-                    width: 8px;
-                    height: 8px;
+                    top: 12px;
+                    right: 12px;
+                    width: 10px;
+                    height: 10px;
                     background: #FF7D00;
                     border-radius: 50%;
                     border: 2px solid white;
@@ -209,33 +221,41 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 .user-profile {
                     display: flex;
                     align-items: center;
-                    gap: 12px;
-                    padding: 6px 6px 6px 16px;
+                    gap: 16px;
+                    padding: 8px 8px 8px 20px;
                     background: white;
-                    border-radius: 14px;
+                    border-radius: 20px;
                     border: 1px solid #E2E8F0;
                     cursor: pointer;
+                    transition: all 0.2s;
+                    box-shadow: var(--shadow-sm);
+                }
+
+                .user-profile:hover {
+                    border-color: var(--primary);
+                    transform: translateY(-2px);
                 }
 
                 .user-name {
-                    font-size: 14px;
-                    font-weight: 800;
+                    font-size: 15px;
+                    font-weight: 950;
                     color: #0F172A;
                     font-family: var(--font-heading);
                     margin: 0;
+                    letter-spacing: -0.02em;
                 }
 
                 .user-role {
-                    font-size: 11px;
+                    font-size: 12px;
                     color: #64748B;
-                    font-weight: 600;
+                    font-weight: 700;
                     margin: 0;
                 }
 
                 .user-avatar-hex {
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 8px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 12px;
                     background: linear-gradient(135deg, #FF7D00 0%, #FFB444 100%);
                     display: flex;
                     align-items: center;
@@ -244,29 +264,32 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 }
 
                 .mobile-search-bar {
-                    padding: 0 20px 16px;
+                    padding: 12px 24px;
                     position: relative;
+                    background: white;
+                    border-bottom: 1px solid #E2E8F0;
                 }
 
                 .search-input-mobile {
                     width: 100%;
-                    padding: 12px 16px 12px 44px;
-                    border-radius: 12px;
+                    padding: 14px 16px 14px 48px;
+                    border-radius: 16px;
                     border: 1px solid #E2E8F0;
-                    background: white;
-                    font-size: 14px;
+                    background: #F8FAFC;
+                    font-size: 15px;
                     outline: none;
                 }
 
                 .search-icon-mobile {
                     position: absolute;
-                    left: 36px;
-                    top: 14px;
+                    left: 40px;
+                    top: 50%;
+                    transform: translateY(-50%);
                     color: #94A3B8;
                 }
 
                 .page-container {
-                    padding: 40px;
+                    padding: 60px;
                     flex: 1;
                     display: flex;
                     justify-content: center;
@@ -274,16 +297,17 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
                 .content-inner {
                     width: 100%;
-                    max-width: 1200px;
+                    max-width: 1440px;
                 }
 
                 .mobile-menu-btn {
                     display: none;
                     color: #0F172A;
-                    padding: 8px;
+                    padding: 10px;
                     background: white;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                    border-radius: 14px;
+                    box-shadow: var(--shadow-md);
+                    border: 1px solid #E2E8F0;
                 }
 
                 @media (max-width: 1024px) {
@@ -294,25 +318,21 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                         transform: translateX(0);
                     }
                     .main-content {
-                        margin-left: 0;
+                        margin-left: 0 !important;
                     }
                     .mobile-menu-btn {
                         display: block;
                     }
                     .fixed-header {
-                        padding: 16px 20px;
+                        padding: 16px 24px;
                     }
                     .page-container {
-                        padding: 24px 20px;
+                        padding: 32px 24px;
                     }
                 }
 
                 @media (max-width: 640px) {
                     .mobile-hide { display: none; }
-                    .desktop-hide { display: block; }
-                }
-                @media (min-width: 641px) {
-                    .desktop-hide { display: none; }
                 }
             `}</style>
         </div>
