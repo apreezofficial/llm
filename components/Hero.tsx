@@ -11,8 +11,16 @@ export default function Hero() {
             overflow: 'hidden',
             padding: '40px 0 0'
         }}>
+            <style jsx>{`
+                @media (max-width: 768px) {
+                    .hero-content { text-align: center; }
+                    .hero-btns { justify-content: center; }
+                    .hero-img-container { height: 300px !important; transform: none !important; border-width: 4px !important; margin-top: 40px; }
+                    .hero-title { font-size: 36px !important; line-height: 1.1 !important; }
+                }
+            `}</style>
             <div className="container section grid grid-2" style={{ alignItems: 'center', position: 'relative', zIndex: 1 }}>
-                <div className="animate-fade">
+                <div className="animate-fade hero-content">
                     <div className="badge-pill badge-blue" style={{ marginBottom: '24px' }}>
                         <span style={{ fontSize: '10px' }}>●</span> Trusted by 500+ Schools Worldwide
                     </div>
@@ -22,7 +30,7 @@ export default function Hero() {
                     <p className="section-subtitle" style={{ margin: '0 0 40px', fontSize: '18px' }}>
                         A unified platform for K-12 and Higher Ed virtual excellence. Real-time collaboration, grade-specific pathways, and AI-driven insights.
                     </p>
-                    <div className="flex" style={{ gap: '16px', flexWrap: 'wrap' }}>
+                    <div className="flex hero-btns" style={{ gap: '16px', flexWrap: 'wrap' }}>
                         <button className="btn btn-primary" style={{ padding: '16px 32px', borderRadius: '8px' }}>Start Learning Free</button>
                         <button className="btn btn-outline" style={{ padding: '16px 32px', borderRadius: '8px' }}>
                             Watch Demo <PlayCircle size={20} />
@@ -31,14 +39,15 @@ export default function Hero() {
                 </div>
 
                 <div className="animate-fade relative" style={{ perspective: '1000px' }}>
-                    <div style={{
+                    <div className="hero-img-container" style={{
                         borderRadius: '32px',
                         overflow: 'hidden',
                         boxShadow: 'var(--shadow-xl)',
                         position: 'relative',
                         height: '450px',
                         transform: 'rotateY(-5deg) rotateX(2deg)',
-                        border: '8px solid white'
+                        border: '8px solid white',
+                        transition: 'all 0.4s ease'
                     }}>
                         <Image
                             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
@@ -49,7 +58,7 @@ export default function Hero() {
                         />
                     </div>
 
-                    {/* Floating Card - Mobile Hide for cleaner mobile UI if needed, or just adjust */}
+                    {/* Floating Card */}
                     <div className="mobile-hide" style={{
                         position: 'absolute',
                         bottom: '40px',

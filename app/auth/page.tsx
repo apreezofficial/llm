@@ -115,9 +115,18 @@ export default function AuthPage() {
 
     return (
         <div className="auth-page">
+            <style jsx global>{`
+                @media (max-width: 768px) {
+                    .auth-card-padding { padding: 40px 20px !important; }
+                    .auth-header { margin-bottom: 40px !important; }
+                    .auth-title { font-size: 24px !important; }
+                    .user-type-group { flex-direction: column !important; }
+                    .social-btns { flex-direction: column !important; }
+                }
+            `}</style>
             <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
                 {/* Header */}
-                <div className="flex justify-between align-center" style={{ marginBottom: '60px' }}>
+                <div className="flex justify-between align-center auth-header" style={{ marginBottom: '60px' }}>
                     <Link href="/" className="flex align-center gap-8">
                         <div style={{ background: '#0066FF', width: '36px', height: '36px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <Layout size={20} color="white" />
@@ -151,9 +160,9 @@ export default function AuthPage() {
                         <div className={`auth-tab ${authType === 'login' ? 'active' : ''}`} onClick={() => { setAuthType('login'); setError(''); }}>Login</div>
                     </div>
 
-                    <div style={{ padding: '60px 50px' }}>
+                    <div className="auth-card-padding" style={{ padding: '60px 50px' }}>
                         <div className="text-center" style={{ marginBottom: '40px' }}>
-                            <h2 style={{ fontSize: '32px', color: '#1E293B', marginBottom: '12px', fontWeight: 800, letterSpacing: '-1px' }}>
+                            <h2 className="auth-title" style={{ fontSize: '32px', color: '#1E293B', marginBottom: '12px', fontWeight: 800, letterSpacing: '-1px' }}>
                                 {authType === 'signup' ? 'Create your account' : 'Welcome back'}
                             </h2>
                             <p style={{ color: '#64748B', fontSize: '15px' }}>Join thousands of students and educators worldwide.</p>
@@ -226,15 +235,15 @@ export default function AuthPage() {
 
                             {authType === 'signup' && (
                                 <div className="flex gap-12" style={{ marginBottom: '40px' }}>
-                                    <input type="checkbox" id="terms" style={{ width: '20px', height: '20px', accentColor: '#0066FF', cursor: 'pointer', marginTop: '2px' }} />
+                                    <input type="checkbox" id="terms" style={{ width: '20px', height: '20px', accentColor: '#0066FF', cursor: 'pointer', flexShrink: 0, marginTop: '2px' }} />
                                     <label htmlFor="terms" style={{ fontSize: '14px', color: '#64748B', lineHeight: 1.6 }}>
-                                        I agree to the <Link href="#" style={{ color: '#0066FF', fontWeight: 700 }}>Terms of Service</Link> and <Link href="#" style={{ color: '#0066FF', fontWeight: 700 }}>Privacy Policy</Link>, including the processing of my educational data.
+                                        I agree to the <Link href="#" style={{ color: '#0066FF', fontWeight: 700 }}>Terms of Service</Link> and <Link href="#" style={{ color: '#0066FF', fontWeight: 700 }}>Privacy Policy</Link>.
                                     </label>
                                 </div>
                             )}
 
                             <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '18px', borderRadius: '14px', fontSize: '16px', fontWeight: 700 }}>
-                                {authType === 'signup' ? `Create ${userType.charAt(0).toUpperCase() + userType.slice(1)} Account` : 'Sign In Now'}
+                                {authType === 'signup' ? `Create Account` : 'Sign In Now'}
                                 <ArrowRight size={18} style={{ marginLeft: '10px' }} />
                             </button>
 
@@ -245,13 +254,13 @@ export default function AuthPage() {
                                 </span>
                             </div>
 
-                            <div className="flex" style={{ gap: '20px' }}>
+                            <div className="flex social-btns" style={{ gap: '20px' }}>
                                 <button className="social-btn" type="button" style={{ flex: 1 }}>
                                     <img src="https://www.gstatic.com/classroom/logo_square_48.svg" alt="Google Classroom" style={{ width: '22px' }} />
                                     Classroom
                                 </button>
                                 <button className="social-btn" type="button" style={{ flex: 1 }}>
-                                    <img src="https://res.cloudinary.com/dt987/image/upload/v1/logos/ms-office-365.svg" alt="Office 365" style={{ width: '22px' }} onError={(e) => e.currentTarget.src = 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg'} />
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Office 365" style={{ width: '22px' }} />
                                     Office 365
                                 </button>
                             </div>
@@ -261,14 +270,14 @@ export default function AuthPage() {
 
                 {/* Footer Links */}
                 <div style={{ marginTop: '60px', textAlign: 'center' }}>
-                    <div className="flex justify-center" style={{ gap: '32px' }}>
+                    <div className="flex justify-center flex-wrap" style={{ gap: '32px' }}>
                         <Link href="/features" className="flex align-center gap-8" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>
-                            <Info size={16} /> Need help setting up?
+                            <Info size={16} /> Need help?
                         </Link>
-                        <Link href="/solutions" className="flex align-center gap-8" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>
+                        <Link href="/solutions" className="flex align-center gap-8 mobile-hide" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>
                             <ShieldCheck size={16} /> For Institutions
                         </Link>
-                        <Link href="#" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>Accessibility Statement</Link>
+                        <Link href="#" className="mobile-hide" style={{ fontSize: '14px', fontWeight: 600, color: '#64748B' }}>Accessibility Statement</Link>
                     </div>
                 </div>
             </div>
