@@ -16,6 +16,7 @@ import {
     Download,
     Calendar,
     Layout,
+    Sparkles,
     Video
 } from 'lucide-react';
 
