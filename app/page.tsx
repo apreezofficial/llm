@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import MentorsSection from "@/components/MentorsSection";
 import Features from "@/components/Features";
 import Roadmap from "@/components/Roadmap";
 import Testimonials from "@/components/Testimonials";
@@ -11,6 +12,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <MentorsSection />
       <Features />
       <Roadmap />
       <Testimonials />

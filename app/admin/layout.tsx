@@ -18,12 +18,14 @@ import {
     Menu,
     X,
     LogOut,
-    ChevronRight
+    ChevronRight,
+    ShieldCheck
 } from 'lucide-react';
 
 const menuItems = [
     { label: 'Overview', icon: LayoutDashboard, href: '/admin' },
     { label: 'Users', icon: Users, href: '/admin/users' },
+    { label: 'Verifications', icon: ShieldCheck, href: '/admin/verifications' },
     { label: 'Courses', icon: BookOpen, href: '/admin/courses' },
     { label: 'Analytics', icon: BarChart3, href: '/admin/analytics' },
     { label: 'Financials', icon: CreditCard, href: '/admin/financials' },

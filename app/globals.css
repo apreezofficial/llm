@@ -107,12 +107,29 @@ button {
   flex-wrap: wrap;
 }
 
-.gap-8 { gap: 8px; }
-.gap-12 { gap: 12px; }
-.gap-16 { gap: 16px; }
-.gap-24 { gap: 24px; }
-.gap-32 { gap: 32px; }
-.gap-40 { gap: 40px; }
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-12 {
+  gap: 12px;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+.gap-24 {
+  gap: 24px;
+}
+
+.gap-32 {
+  gap: 32px;
+}
+
+.gap-40 {
+  gap: 40px;
+}
 
 .grid {
   display: grid;
@@ -135,19 +152,21 @@ button {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+
   .grid-4,
   .grid-3,
   .grid-2 {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  
+
   .flex-mobile-column {
     flex-direction: column;
   }
@@ -279,28 +298,33 @@ button {
 }
 
 /* Mobile Visibility */
-.mobile-hide {
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .mobile-hide {
     display: none !important;
   }
 }
 
-.desktop-hide {
-  @media (min-width: 769px) {
+@media (min-width: 769px) {
+  .desktop-hide {
     display: none !important;
   }
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
 .w-full {
-    width: 100% !important;
+  width: 100% !important;
 }
 
-.m-0 { margin: 0 !important; }
-.p-0 { padding: 0 !important; }
+.m-0 {
+  margin: 0 !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
 
 /* Animations */
 @keyframes fadeIn {

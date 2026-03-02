@@ -12,12 +12,8 @@ export default function Footer() {
                 <Wave />
             </div>
             <div className="container" style={{ padding: '100px 24px 40px', position: 'relative', zIndex: 1 }}>
-                <div className="grid" style={{
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                    gap: '48px',
-                    marginBottom: '80px'
-                }}>
-                    <div style={{ gridColumn: 'span 2' }}>
+                <div className="grid grid-4" style={{ gap: '48px', marginBottom: '80px' }}>
+                    <div className="footer-brand" style={{ gridColumn: 'span 2' }}>
                         <Link href="/" className="flex align-center gap-8" style={{ marginBottom: '24px' }}>
                             <div style={{ background: '#0066FF', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <Layout size={18} color="white" />
@@ -28,10 +24,10 @@ export default function Footer() {
                             The world&apos;s leading LMS designed for student success and teacher efficiency in the digital age.
                         </p>
                         <div className="flex" style={{ gap: '16px' }}>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }}><Facebook size={20} /></Link>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }}><Twitter size={20} /></Link>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }}><Linkedin size={20} /></Link>
-                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }}><Instagram size={20} /></Link>
+                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="Facebook"><Facebook size={20} /></Link>
+                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="Twitter"><Twitter size={20} /></Link>
+                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="LinkedIn"><Linkedin size={20} /></Link>
+                            <Link href="#" className="btn-ghost" style={{ padding: '8px', borderRadius: '8px' }} aria-label="Instagram"><Instagram size={20} /></Link>
                         </div>
                     </div>
 
@@ -87,6 +83,9 @@ export default function Footer() {
                 }
                 .hover-link:hover {
                     color: var(--primary);
+                }
+                @media (max-width: 768px) {
+                    .footer-brand { grid-column: span 1 !important; }
                 }
             `}</style>
         </footer>
