@@ -24,7 +24,18 @@ export default function Footer() {
                             <div style={{ background: '#FF7D00', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <LayoutIcon size={18} color="white" />
                             </div>
-                            <span style={{ fontWeight: 800, fontSize: '20px', color: '#0F172A', fontFamily: 'var(--font-heading)' }}>LMS<span style={{ color: '#FF7D00' }}>ZONE</span>.</span>
+                            <span style={{
+                                fontWeight: 950,
+                                fontSize: '24px',
+                                letterSpacing: '-1px',
+                                fontFamily: 'var(--font-orbitron)',
+                                display: 'flex',
+                                alignItems: 'baseline'
+                            }}>
+                                <span style={{ color: '#0F172A', opacity: 0.9 }}>LMS</span>
+                                <span style={{ color: '#FF7D00' }}>ZONE</span>
+                                <span style={{ color: '#FF7D00', marginLeft: '2px' }}>.</span>
+                            </span>
                         </Link>
                         <p style={{ color: 'var(--text-muted)', fontSize: '15px', marginBottom: '24px', maxWidth: '300px', lineHeight: '1.6' }}>
                             The world&apos;s leading LMS designed for student success and teacher efficiency in the digital age.
@@ -73,7 +84,13 @@ export default function Footer() {
                     <div>© {currentYear} LMSZONE. All rights reserved.</div>
                     <div className="flex" style={{ gap: '24px' }}>
                         <Link href="/privacy" className="hover-link">Privacy Policy</Link>
-                        <Link href="#" className="hover-link">Cookie Settings</Link>
+                        <button
+                            onClick={() => window.dispatchEvent(new Event('lmszone-open-cookie-settings'))}
+                            className="hover-link"
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 'inherit', color: 'inherit', padding: 0, fontFamily: 'inherit' }}
+                        >
+                            Cookie Settings
+                        </button>
                     </div>
                 </div>
             </div>

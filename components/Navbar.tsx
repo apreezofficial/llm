@@ -36,17 +36,34 @@ export default function Navbar() {
             top: 0,
             left: 0,
             right: 0,
-            background: scrolled || isOpen ? '#005B52' : 'transparent',
-            zIndex: 1000,
-            transition: 'all 0.3s ease',
-            borderBottom: scrolled ? '1px solid rgba(255,255,255,0.1)' : 'none'
+            background: scrolled || isOpen ? 'rgba(0, 91, 82, 0.98)' : 'transparent',
+            backdropFilter: scrolled || isOpen ? 'blur(20px)' : 'none',
+            zIndex: 10000,
+            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            borderBottom: scrolled ? '1px solid rgba(255,255,255,0.15)' : 'none',
+            boxShadow: scrolled ? '0 15px 40px rgba(0, 0, 0, 0.15)' : 'none'
         }}>
-            <nav className="container flex align-center justify-between" style={{ height: '90px' }}>
+            <nav className="container flex align-center justify-between" style={{ height: scrolled ? '80px' : '100px', transition: 'height 0.4s ease' }}>
                 <Link href="/" className="flex align-center gap-8">
-                    <div style={{ background: '#FF7D00', width: '36px', height: '36px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <LayoutIcon size={20} color="white" />
+                    <div style={{ background: '#FF7D00', width: '38px', height: '38px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(255,125,0,0.3)' }}>
+                        <LayoutIcon size={22} color="white" />
                     </div>
-                    <span style={{ fontWeight: 800, fontSize: '24px', color: 'white', letterSpacing: '-1px', fontFamily: 'var(--font-heading)' }}>LMS<span style={{ color: '#FF7D00' }}>ZONE</span>.</span>
+                    <span style={{
+                        fontWeight: 950,
+                        fontSize: '28px',
+                        letterSpacing: '-1px',
+                        fontFamily: 'var(--font-orbitron)',
+                        display: 'flex',
+                        alignItems: 'baseline'
+                    }}>
+                        <span style={{
+                            color: '#FFFDD0', // Cream color
+                            textShadow: scrolled || isOpen ? '0 2px 10px rgba(0,0,0,0.3)' : '0 2px 15px rgba(0,0,0,0.5)',
+                            WebkitTextStroke: scrolled ? '0.5px rgba(0,0,0,0.1)' : 'none'
+                        }}>LMS</span>
+                        <span style={{ color: '#FF7D00' }}>ZONE</span>
+                        <span style={{ color: '#FF7D00', marginLeft: '2px' }}>.</span>
+                    </span>
                 </Link>
 
                 {/* Desktop Nav */}
