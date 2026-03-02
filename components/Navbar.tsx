@@ -47,11 +47,12 @@ export default function Navbar() {
                     <Link href="/solutions" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 500 }}>Solutions</Link>
                     <Link href="/pricing" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 500 }}>Pricing</Link>
                     <Link href="/resources" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 500 }}>Resources</Link>
+                    <Link href="/dashboard" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 600, color: 'var(--primary)' }}>Dashboard</Link>
                 </div>
 
                 <div className="flex align-center mobile-hide" style={{ gap: '12px' }}>
-                    <Link href="/auth" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 600 }}>Login</Link>
-                    <Link href="/auth" className="btn btn-primary" style={{ padding: '8px 20px', borderRadius: '6px' }}>Sign Up</Link>
+                    <Link href="/dashboard" className="btn-ghost" style={{ fontSize: '14px', fontWeight: 600 }}>Login</Link>
+                    <Link href="/dashboard" className="btn btn-primary" style={{ padding: '8px 20px', borderRadius: '6px' }}>Get Started</Link>
                 </div>
 
                 {/* Mobile Toggle */}
