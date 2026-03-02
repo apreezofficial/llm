@@ -44,18 +44,15 @@ export default function Sidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="mobile-hide" style={{
+        <aside style={{
             width: '280px',
-            height: '100vh',
-            position: 'fixed',
-            left: 0,
-            top: 0,
+            height: '100%',
+            position: 'relative',
             background: 'white',
             borderRight: '1px solid #E2E8F0',
             padding: '40px 24px',
             display: 'flex',
             flexDirection: 'column',
-            zIndex: 100,
             boxShadow: '10px 0 50px rgba(0,0,0,0.02)'
         }}>
             {/* Brand Logo */}
@@ -163,4 +160,3 @@ export default function Sidebar() {
         </aside>
     );
 }
-

@@ -1,18 +1,11 @@
 "use client";
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-
-const LayoutIcon = ({ size = 18, color = "currentColor" }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><line x1="3" x2="21" y1="9" y2="9" /><line x1="9" x2="9" y1="21" y2="9" />
-    </svg>
-);
+import { Menu, X, ChevronDown, Rocket } from 'lucide-react';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [langOpen, setLangOpen] = useState(false);
     const [currentLang, setCurrentLang] = useState('Eng');
 
     useEffect(() => {
@@ -23,114 +16,70 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const languages = [
-        { code: 'Eng', name: 'English' },
-        { code: 'Yor', name: 'Yoruba' },
-        { code: 'Igb', name: 'Igbo' },
-        { code: 'Hau', name: 'Hausa' }
-    ];
-
     return (
         <header style={{
             position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
-            background: scrolled || isOpen ? 'rgba(0, 91, 82, 0.98)' : 'transparent',
+            background: scrolled || isOpen ? 'rgba(15, 23, 42, 0.9)' : 'transparent',
             backdropFilter: scrolled || isOpen ? 'blur(20px)' : 'none',
             zIndex: 10000,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-            borderBottom: scrolled ? '1px solid rgba(255,255,255,0.15)' : 'none',
-            boxShadow: scrolled ? '0 15px 40px rgba(0, 0, 0, 0.15)' : 'none'
+            borderBottom: scrolled ? '1px solid rgba(255,255,255,0.1)' : 'none',
         }}>
             <nav className="container flex align-center justify-between" style={{ height: scrolled ? '80px' : '100px', transition: 'height 0.4s ease' }}>
-                <Link href="/" className="flex align-center gap-8">
-                    <div style={{ background: '#FF7D00', width: '38px', height: '38px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(255,125,0,0.3)' }}>
-                        <LayoutIcon size={22} color="white" />
+                <Link href="/" className="flex align-center gap-12">
+                    <div style={{ background: 'linear-gradient(135deg, #FF7D00 0%, #FFB444 100%)', width: '36px', height: '36px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 16px rgba(255,125,0,0.3)' }}>
+                        <Rocket size={18} color="white" />
                     </div>
                     <span style={{
                         fontWeight: 950,
-                        fontSize: '28px',
-                        letterSpacing: '-1px',
-                        fontFamily: 'var(--font-orbitron)',
-                        display: 'flex',
-                        alignItems: 'baseline'
+                        fontSize: '24px',
+                        letterSpacing: '-1.5px',
+                        fontFamily: 'var(--font-heading)',
+                        color: 'white'
                     }}>
-                        <span style={{
-                            color: '#FFFDD0', // Cream color
-                            textShadow: scrolled || isOpen ? '0 2px 10px rgba(0,0,0,0.3)' : '0 2px 15px rgba(0,0,0,0.5)',
-                            WebkitTextStroke: scrolled ? '0.5px rgba(0,0,0,0.1)' : 'none'
-                        }}>LMS</span>
-                        <span style={{ color: '#FF7D00' }}>ZONE</span>
-                        <span style={{ color: '#FF7D00', marginLeft: '2px' }}>.</span>
+                        LMS<span style={{ color: '#FF7D00' }}>ZONE</span>
                     </span>
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="flex align-center mobile-hide" style={{ gap: '24px' }}>
-                    <nav className="flex align-center gap-24">
-                        <Link href="/features" className="nav-link animate-slide-up delay-1">Features</Link>
-                        <Link href="/pricing" className="nav-link animate-slide-up delay-2">Pricing</Link>
-                        <Link href="/mobile-app" className="nav-link animate-slide-up delay-3">Mobile App</Link>
-                        <Link href="/blog" className="nav-link animate-slide-up delay-4">Blog</Link>
-                        <Link href="/about" className="nav-link animate-slide-up delay-5">About Us</Link>
-                    </nav>
+                <div className="flex align-center mobile-hide" style={{ gap: '32px' }}>
+                    <div className="flex align-center gap-24">
+                        {['Features', 'Pricing', 'Community', 'About'].map((item) => (
+                            <Link
+                                key={item}
+                                href={`/${item.toLowerCase()}`}
+                                className="nav-link"
+                                style={{
+                                    color: 'rgba(255,255,255,0.8)',
+                                    fontSize: '14px',
+                                    fontWeight: 700,
+                                    fontFamily: 'var(--font-heading)',
+                                    transition: 'color 0.2s ease'
+                                }}
+                            >
+                                {item}
+                            </Link>
+                        ))}
+                    </div>
 
-                    <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.2)', margin: '0 10px' }}></div>
+                    <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.15)', margin: '0 8px' }}></div>
 
                     <div className="flex align-center gap-20">
-                        {/* Language Dropdown */}
-                        <div style={{ position: 'relative' }}>
-                            <div
-                                onClick={() => setLangOpen(!langOpen)}
-                                className="flex align-center gap-4"
-                                style={{ color: 'white', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}
-                            >
-                                {currentLang} <ChevronDown size={14} />
-                            </div>
-
-                            {langOpen && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '40px',
-                                    right: 0,
-                                    background: 'white',
-                                    borderRadius: '12px',
-                                    padding: '8px',
-                                    width: '120px',
-                                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '2px',
-                                    zIndex: 100
-                                }}>
-                                    {languages.map((l) => (
-                                        <div
-                                            key={l.code}
-                                            onClick={() => {
-                                                setCurrentLang(l.code);
-                                                setLangOpen(false);
-                                            }}
-                                            style={{
-                                                padding: '10px 12px',
-                                                fontSize: '13px',
-                                                fontWeight: 600,
-                                                color: currentLang === l.code ? '#FF7D00' : '#005B52',
-                                                cursor: 'pointer',
-                                                borderRadius: '8px',
-                                                background: currentLang === l.code ? '#FFF7ED' : 'transparent',
-                                                transition: 'all 0.2s'
-                                            }}
-                                            className="lang-option"
-                                        >
-                                            {l.name}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-
-                        <Link href="/auth" className="btn" style={{ background: 'white', color: '#005B52', padding: '10px 24px', borderRadius: '30px', fontWeight: 700 }}>Join for Free</Link>
+                        <Link href="/auth" style={{
+                            background: '#FF7D00',
+                            color: 'white',
+                            padding: '12px 28px',
+                            borderRadius: '16px',
+                            fontWeight: 900,
+                            fontSize: '14px',
+                            fontFamily: 'var(--font-heading)',
+                            boxShadow: '0 10px 20px rgba(255,125,0,0.2)'
+                        }} className="hover-scale">
+                            Join Portal
+                        </Link>
                     </div>
                 </div>
 
@@ -138,43 +87,60 @@ export default function Navbar() {
                 <button
                     className="desktop-hide"
                     onClick={() => setIsOpen(!isOpen)}
-                    style={{ color: 'white' }}
+                    style={{ color: 'white', padding: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '12px' }}
                 >
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </nav>
 
-            <style jsx>{`
-                .lang-option:hover { background: #F1F5F9 !important; }
-                .nav-link { color: white; }
-            `}</style>
-
             {/* Mobile Menu Overlay */}
             {isOpen && (
-                <div className="desktop-hide animate-fade" style={{
+                <div className="desktop-hide animate-slide-up" style={{
                     position: 'absolute',
-                    top: '90px',
+                    top: '100%',
                     left: 0,
                     right: 0,
-                    background: '#005B52',
+                    background: 'rgba(15, 23, 42, 0.95)',
+                    backdropFilter: 'blur(30px)',
                     padding: '32px 24px',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                    borderBottom: '1px solid rgba(255,255,255,0.1)',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '20px'
+                    gap: '24px'
                 }}>
-                    <Link href="/features" className="nav-link" onClick={() => setIsOpen(false)}>Features</Link>
-                    <Link href="/solutions" className="nav-link" onClick={() => setIsOpen(false)}>Solutions</Link>
-                    <Link href="/pricing" className="nav-link" onClick={() => setIsOpen(false)}>Pricing</Link>
-                    <Link href="/resources" className="nav-link" onClick={() => setIsOpen(false)}>Resources</Link>
-                    <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.1)' }} />
-                    <button className="btn btn-primary" style={{ background: '#FF7D00', width: '100%', borderRadius: '30px' }}>Join for Free</button>
+                    {['Features', 'Pricing', 'Community', 'About'].map((item) => (
+                        <Link
+                            key={item}
+                            href={`/${item.toLowerCase()}`}
+                            style={{
+                                color: 'white',
+                                fontSize: '18px',
+                                fontWeight: 800,
+                                fontFamily: 'var(--font-heading)'
+                            }}
+                            onClick={() => setIsOpen(false)}
+                        >
+                            {item}
+                        </Link>
+                    ))}
+                    <Link href="/auth" style={{
+                        background: '#FF7D00',
+                        color: 'white',
+                        padding: '16px',
+                        borderRadius: '18px',
+                        textAlign: 'center',
+                        fontWeight: 950,
+                        fontSize: '16px',
+                        fontFamily: 'var(--font-heading)'
+                    }}>
+                        Get Started
+                    </Link>
                 </div>
             )}
+
+            <style jsx>{`
+                .nav-link:hover { color: #FF7D00 !important; }
+            `}</style>
         </header>
     );
 }
-
-const ChevronDown = ({ size = 16 }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
-);

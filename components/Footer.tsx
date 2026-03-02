@@ -1,13 +1,7 @@
 "use client";
 import Link from 'next/link';
-import { Layout, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Rocket, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import Wave from './Wave';
-
-const LayoutIcon = ({ size = 18, color = "currentColor" }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><line x1="3" x2="21" y1="9" y2="9" /><line x1="9" x2="9" y1="21" y2="9" />
-    </svg>
-);
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -20,24 +14,23 @@ export default function Footer() {
             <div className="container" style={{ padding: '100px 24px 40px', position: 'relative', zIndex: 1 }}>
                 <div className="grid grid-4" style={{ gap: '48px', marginBottom: '80px' }}>
                     <div className="footer-brand" style={{ gridColumn: 'span 2' }}>
-                        <Link href="/" className="flex align-center gap-8" style={{ marginBottom: '24px' }}>
-                            <div style={{ background: '#FF7D00', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <LayoutIcon size={18} color="white" />
+                        <Link href="/" className="flex align-center gap-12" style={{ marginBottom: '24px' }}>
+                            <div style={{ background: 'linear-gradient(135deg, #FF7D00 0%, #FFB444 100%)', width: '32px', height: '32px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <Rocket size={18} color="white" />
                             </div>
                             <span style={{
                                 fontWeight: 950,
                                 fontSize: '24px',
-                                letterSpacing: '-1px',
-                                fontFamily: 'var(--font-orbitron)',
+                                letterSpacing: '-1.5px',
+                                fontFamily: 'var(--font-heading)',
                                 display: 'flex',
                                 alignItems: 'baseline'
                             }}>
-                                <span style={{ color: '#0F172A', opacity: 0.9 }}>LMS</span>
+                                <span style={{ color: '#0F172A' }}>LMS</span>
                                 <span style={{ color: '#FF7D00' }}>ZONE</span>
-                                <span style={{ color: '#FF7D00', marginLeft: '2px' }}>.</span>
                             </span>
                         </Link>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '15px', marginBottom: '24px', maxWidth: '300px', lineHeight: '1.6' }}>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '15px', marginBottom: '24px', maxWidth: '300px', lineHeight: '1.6', fontWeight: 500 }}>
                             The world&apos;s leading LMS designed for student success and teacher efficiency in the digital age.
                         </p>
                     </div>
