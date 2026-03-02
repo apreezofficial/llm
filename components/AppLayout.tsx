@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Link from "next/link";
 import { Bell, Search, User, Menu, X, Rocket } from "lucide-react";
@@ -13,6 +13,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     // Config for pages that should NOT have a sidebar
     const noSidebarPaths = ['/help', '/terms', '/privacy', '/auth'];
     const showSidebar = !noSidebarPaths.some(p => pathname.startsWith(p));
+
+    // Prevent scrolling when mobile sidebar is open
+    useEffect(() => {
+        if (isSidebarOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => { document.body.style.overflow = 'unset'; };
+    }, [isSidebarOpen]);
 
     return (
         <div style={{ display: 'flex', minHeight: '100vh', background: '#F8FAFC', position: 'relative' }}>
@@ -34,6 +44,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             {/* Sidebar with dynamic mobile class */}
             {showSidebar && (
                 <div className={`sidebar-container ${isSidebarOpen ? 'open' : ''}`}>
+                    {/* Mobile Close Button */}
+                    <button
+                        onClick={() => setSidebarOpen(false)}
+                        className="close-sidebar-btn desktop-hide"
+                    >
+                        <X size={24} />
+                    </button>
                     <Sidebar />
                 </div>
             )}
@@ -106,7 +123,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     position: fixed;
                     left: 0;
                     top: 0;
-                    height: 100vh;
+                    bottom: 0;
+                    height: 100dvh;
                     z-index: 1000;
                     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
                     width: 300px;
@@ -279,6 +297,28 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     border: 1px solid #E2E8F0;
                 }
 
+                .close-sidebar-btn {
+                    position: absolute;
+                    top: 24px;
+                    right: -60px;
+                    width: 48px;
+                    height: 48px;
+                    background: white;
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0F172A;
+                    box-shadow: var(--shadow-xl);
+                    border: none;
+                    z-index: 1001;
+                    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .close-sidebar-btn:active {
+                    transform: scale(0.9);
+                }
+
                 @media (max-width: 1024px) {
                     .sidebar-container {
                         transform: translateX(-100%);
@@ -302,6 +342,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
                 @media (max-width: 640px) {
                     .mobile-hide { display: none; }
+                    .desktop-hide { display: flex !important; }
+                    .close-sidebar-btn {
+                        right: 20px;
+                        top: 20px;
+                        background: #F1F5F9;
+                    }
                 }
             `}</style>
         </div>

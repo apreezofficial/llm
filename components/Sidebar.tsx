@@ -53,8 +53,8 @@ export default function Sidebar() {
 
     return (
         <aside style={{
-            width: '280px',
-            height: '100%',
+            width: '100%',
+            height: '100dvh',
             position: 'relative',
             background: 'white',
             borderRight: '1px solid #E2E8F0',
