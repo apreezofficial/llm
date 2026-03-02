@@ -17,12 +17,12 @@ export default function CareersPage() {
             <Navbar />
 
             <section style={{ padding: '160px 0 100px', background: '#F8FAFC', textAlign: 'center' }}>
-                <div className="container" style={{ maxWidth: '800px' }}>
-                    <span style={{ color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', marginBottom: '24px', display: 'block' }}>Join Our Team</span>
-                    <h1 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, fontFamily: 'var(--font-heading)', color: 'var(--secondary)', marginBottom: '24px' }}>
+                <div className="container animate-slide-up" style={{ maxWidth: '800px' }}>
+                    <span style={{ color: 'var(--primary)', fontWeight: 900, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '3px', marginBottom: '24px', display: 'block', fontFamily: 'var(--font-orbitron)' }}>Join Our Team</span>
+                    <h1 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, fontFamily: 'var(--font-orbitron)', color: 'var(--secondary)', marginBottom: '24px', lineHeight: 1.1 }}>
                         Build the Future of <span style={{ color: '#FF7D00' }}>Education</span>.
                     </h1>
-                    <p style={{ fontSize: '20px', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                    <p className="animate-fade delay-2" style={{ fontSize: '20px', color: 'var(--text-muted)', lineHeight: 1.7 }}>
                         We&apos;re looking for passionate individuals who believe that technology can transform how the world learns.
                     </p>
                 </div>
@@ -30,22 +30,22 @@ export default function CareersPage() {
 
             <section className="section">
                 <div className="container">
-                    <div style={{ marginBottom: '48px' }}>
-                        <h2 style={{ fontSize: '32px', fontFamily: 'var(--font-heading)' }}>Open Positions</h2>
+                    <div className="animate-slide-up" style={{ marginBottom: '48px' }}>
+                        <h2 style={{ fontSize: '36px', fontFamily: 'var(--font-orbitron)', fontWeight: 800 }}>Open Positions</h2>
                     </div>
                     <div className="flex column gap-16">
                         {jobs.map((job, i) => (
-                            <div key={i} className="card flex align-center justify-between" style={{ padding: '32px', border: '1px solid var(--border)', transition: 'all 0.3s' }}>
+                            <div key={i} className={`card flex align-center justify-between animate-slide-up delay-${(i % 4) + 1}`} style={{ padding: '32px 40px', border: '1px solid var(--border)', borderRadius: '24px', transition: 'all 0.3s ease', boxShadow: '0 10px 30px rgba(0,0,0,0.02)' }}>
                                 <div>
-                                    <div style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: 700, marginBottom: '8px' }}>{job.dept}</div>
-                                    <h3 style={{ fontSize: '22px', marginBottom: '16px' }}>{job.title}</h3>
-                                    <div className="flex gap-24" style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
-                                        <span className="flex align-center gap-8"><MapPin size={16} /> {job.loc}</span>
-                                        <span className="flex align-center gap-8"><Clock size={16} /> {job.type}</span>
+                                    <div style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px', fontFamily: 'var(--font-orbitron)' }}>{job.dept}</div>
+                                    <h3 style={{ fontSize: '24px', marginBottom: '16px', fontWeight: 800 }}>{job.title}</h3>
+                                    <div className="flex gap-24" style={{ color: 'var(--text-muted)', fontSize: '15px', fontWeight: 500 }}>
+                                        <span className="flex align-center gap-8"><MapPin size={18} color="var(--primary)" /> {job.loc}</span>
+                                        <span className="flex align-center gap-8"><Clock size={18} color="var(--primary)" /> {job.type}</span>
                                     </div>
                                 </div>
-                                <button className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    Apply Now <ArrowRight size={16} />
+                                <button className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '14px 28px', borderRadius: '30px', fontWeight: 800, fontSize: '14px' }}>
+                                    Apply Now <ArrowRight size={18} />
                                 </button>
                             </div>
                         ))}
@@ -56,8 +56,8 @@ export default function CareersPage() {
             <section style={{ padding: '100px 0', background: 'var(--secondary)', color: 'white' }}>
                 <div className="container">
                     <div className="grid grid-2" style={{ alignItems: 'center', gap: '80px' }}>
-                        <div>
-                            <h2 style={{ color: 'white', fontSize: '36px', marginBottom: '24px', fontFamily: 'var(--font-heading)' }}>Perks & Benefits</h2>
+                        <div className="animate-slide-left">
+                            <h2 style={{ color: 'white', fontSize: '42px', marginBottom: '32px', fontFamily: 'var(--font-orbitron)', fontWeight: 800 }}>Perks & Benefits</h2>
                             <div className="grid grid-2" style={{ gap: '32px' }}>
                                 {[
                                     { t: "Fully Remote", d: "Work from anywhere in the world." },
@@ -72,11 +72,13 @@ export default function CareersPage() {
                                 ))}
                             </div>
                         </div>
-                        <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '32px', padding: '60px', textAlign: 'center' }}>
-                            <Briefcase size={64} color="#FF7D00" style={{ marginBottom: '24px' }} />
-                            <h3 style={{ color: 'white', fontSize: '24px', marginBottom: '16px' }}>Don&apos;t see a fit?</h3>
-                            <p style={{ opacity: 0.7, marginBottom: '32px' }}>We&apos;re always looking for talented people. Send us your resume anyway!</p>
-                            <button className="btn btn-primary">General Application</button>
+                        <div className="animate-rotate-in delay-3" style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '40px', padding: '60px', textAlign: 'center', border: '1px solid rgba(255,125,0,0.2)', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
+                            <div style={{ background: 'rgba(255,125,0,0.1)', width: '96px', height: '96px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 32px' }}>
+                                <Briefcase size={40} color="#FF7D00" />
+                            </div>
+                            <h3 style={{ color: 'white', fontSize: '28px', marginBottom: '16px', fontFamily: 'var(--font-orbitron)', fontWeight: 800 }}>Don&apos;t see a fit?</h3>
+                            <p style={{ opacity: 0.7, marginBottom: '40px', fontSize: '16px', lineHeight: 1.6 }}>We&apos;re always looking for talented people. Send us your resume anyway!</p>
+                            <button className="btn btn-primary" style={{ padding: '16px 40px', borderRadius: '30px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1px' }}>General Application</button>
                         </div>
                     </div>
                 </div>

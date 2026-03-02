@@ -38,37 +38,37 @@ export default function BlogPage() {
 
             <section style={{ padding: '160px 0 60px' }}>
                 <div className="container">
-                    <div className="text-center" style={{ maxWidth: '700px', margin: '0 auto 80px' }}>
-                        <h1 style={{ fontSize: '56px', fontWeight: 900, fontFamily: 'var(--font-heading)', marginBottom: '24px' }}>Insights & <span style={{ color: '#FF7D00' }}>Edu-Tech</span></h1>
-                        <p style={{ fontSize: '18px', color: 'var(--text-muted)' }}>The latest trends in virtual learning, institutional management, and academic innovation.</p>
+                    <div className="text-center animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto 80px' }}>
+                        <h1 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 900, fontFamily: 'var(--font-orbitron)', marginBottom: '24px', lineHeight: 1.1 }}>Insights & <span style={{ color: '#FF7D00' }}>Edu-Tech</span></h1>
+                        <p className="animate-fade delay-2" style={{ fontSize: '18px', color: 'var(--text-muted)', lineHeight: 1.6 }}>The latest trends in virtual learning, institutional management, and academic innovation.</p>
                     </div>
 
                     {/* Featured Post */}
-                    <div className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border)', display: 'grid', gridTemplateColumns: '1.2fr 1fr', marginBottom: '80px' }}>
+                    <div className="card animate-slide-left" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border)', borderRadius: '32px', display: 'grid', gridTemplateColumns: '1.2fr 1fr', marginBottom: '80px', boxShadow: '0 20px 40px rgba(0,0,0,0.03)' }}>
                         <img src={posts[0].img} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Featured" />
-                        <div style={{ padding: '60px' }}>
-                            <span style={{ color: 'var(--primary)', fontWeight: 800, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', marginBottom: '16px', display: 'block' }}>{posts[0].cat}</span>
-                            <h2 style={{ fontSize: '32px', marginBottom: '24px', fontFamily: 'var(--font-heading)' }}>{posts[0].title}</h2>
-                            <p style={{ color: 'var(--text-muted)', marginBottom: '32px', lineHeight: 1.7 }}>{posts[0].excerpt}</p>
-                            <div className="flex align-center gap-16" style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
-                                <span className="flex align-center gap-8"><User size={16} /> {posts[0].author}</span>
-                                <span className="flex align-center gap-8"><Calendar size={16} /> {posts[0].date}</span>
+                        <div style={{ padding: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <span style={{ color: 'var(--primary)', fontWeight: 900, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '2px', marginBottom: '20px', display: 'block', fontFamily: 'var(--font-orbitron)' }}>Featured — {posts[0].cat}</span>
+                            <h2 style={{ fontSize: '36px', marginBottom: '24px', fontFamily: 'var(--font-orbitron)', fontWeight: 800, lineHeight: 1.2 }}>{posts[0].title}</h2>
+                            <p style={{ color: 'var(--text-muted)', marginBottom: '32px', lineHeight: 1.7, fontSize: '16px' }}>{posts[0].excerpt}</p>
+                            <div className="flex align-center gap-24" style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: 600 }}>
+                                <span className="flex align-center gap-8"><User size={18} color="var(--primary)" /> {posts[0].author}</span>
+                                <span className="flex align-center gap-8"><Calendar size={18} color="var(--primary)" /> {posts[0].date}</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Grid */}
                     <div className="grid grid-3" style={{ gap: '32px' }}>
-                        {posts.slice(1).concat(posts).map((post, i) => (
-                            <div key={i} className="card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
-                                <img src={post.img} style={{ width: '100%', height: '200px', objectFit: 'cover' }} alt="Post" />
-                                <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                    <span style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase', marginBottom: '12px', display: 'block' }}>{post.cat}</span>
-                                    <h3 style={{ fontSize: '20px', marginBottom: '16px' }}>{post.title}</h3>
+                        {posts.map((post, i) => (
+                            <div key={i} className={`card animate-scale-in delay-${(i % 3) + 1}`} style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border)', borderRadius: '24px', display: 'flex', flexDirection: 'column', transition: 'all 0.3s ease', cursor: 'pointer', boxShadow: '0 10px 30px rgba(0,0,0,0.02)' }}>
+                                <img src={post.img} style={{ width: '100%', height: '220px', objectFit: 'cover' }} alt="Post" />
+                                <div style={{ padding: '32px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                    <span style={{ color: 'var(--primary)', fontWeight: 900, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px', display: 'block', fontFamily: 'var(--font-orbitron)' }}>{post.cat}</span>
+                                    <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: 'var(--font-orbitron)', fontWeight: 700, lineHeight: 1.4 }}>{post.title}</h3>
                                     <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: 1.6, marginBottom: '24px', flex: 1 }}>{post.excerpt}</p>
-                                    <div className="flex align-center justify-between" style={{ fontSize: '12px', color: 'var(--text-muted)', paddingTop: '16px', borderTop: '1px solid #F1F5F9' }}>
+                                    <div className="flex align-center justify-between" style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600, paddingTop: '16px', borderTop: '1px solid #F1F5F9' }}>
                                         <span>{post.date}</span>
-                                        <button style={{ color: 'var(--primary)', fontWeight: 700 }}>Read More</button>
+                                        <button className="flex align-center gap-4" style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '12px', textTransform: 'uppercase' }}>Read Article <Bookmark size={14} /></button>
                                     </div>
                                 </div>
                             </div>

@@ -74,24 +74,26 @@ export default function PricingPage() {
                     <span style={{
                         color: 'var(--primary)',
                         textTransform: 'uppercase',
-                        fontSize: '13px',
-                        fontWeight: 800,
-                        letterSpacing: '1.5px',
+                        fontSize: '12px',
+                        fontWeight: 900,
+                        letterSpacing: '2px',
                         display: 'block',
-                        marginBottom: '16px'
+                        marginBottom: '16px',
+                        fontFamily: 'var(--font-orbitron)'
                     }}>
                         Pricing Plans
                     </span>
                     <h1 style={{
                         fontSize: 'clamp(36px, 5vw, 56px)',
                         fontWeight: 900,
-                        fontFamily: 'var(--font-heading)',
+                        fontFamily: 'var(--font-orbitron)',
                         color: 'var(--secondary)',
-                        marginBottom: '24px'
+                        marginBottom: '24px',
+                        lineHeight: 1.1
                     }}>
                         Simple, Transparent <span style={{ color: '#FF7D00' }}>Pricing</span>.
                     </h1>
-                    <p style={{ fontSize: '18px', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 40px' }}>
+                    <p className="animate-fade delay-2" style={{ fontSize: '18px', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 40px', lineHeight: 1.6 }}>
                         Choose the plan that fits your institutional goals. No hidden fees, no complicated contracts.
                     </p>
 
@@ -135,15 +137,18 @@ export default function PricingPage() {
                 <div className="container">
                     <div className="grid grid-3" style={{ gap: '32px' }}>
                         {plans.map((p, i) => (
-                            <div key={i} className={`card animate-slide-up delay-${i + 1}`} style={{
+                            <div key={i} className={`card animate-zoom-slide delay-${(i % 3) + 1}`} style={{
                                 padding: '48px',
                                 background: 'white',
                                 border: p.featured ? '2px solid var(--primary)' : '1px solid var(--border)',
-                                transform: p.featured ? 'scale(1.05)' : 'none',
+                                transform: p.featured ? 'translateY(-10px)' : 'none',
                                 zIndex: p.featured ? 2 : 1,
                                 position: 'relative',
                                 display: 'flex',
-                                flexDirection: 'column'
+                                flexDirection: 'column',
+                                borderRadius: '32px',
+                                boxShadow: p.featured ? '0 25px 50px -12px rgba(255,125,0,0.15)' : '0 10px 30px rgba(0,0,0,0.03)',
+                                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                             }}>
                                 {p.featured && (
                                     <div style={{
@@ -163,15 +168,15 @@ export default function PricingPage() {
                                     </div>
                                 )}
                                 <div style={{ marginBottom: '32px' }}>
-                                    <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>{p.name}</h3>
-                                    <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{p.tagline}</p>
+                                    <h3 style={{ fontSize: '24px', marginBottom: '8px', fontFamily: 'var(--font-orbitron)', fontWeight: 800 }}>{p.name}</h3>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '14px', fontWeight: 500 }}>{p.tagline}</p>
                                 </div>
                                 <div style={{ marginBottom: '40px' }}>
                                     <div className="flex align-end gap-4">
-                                        <span style={{ fontSize: '48px', fontWeight: 900, lineHeight: 1, color: 'var(--secondary)', fontFamily: 'var(--font-heading)' }}>
+                                        <span style={{ fontSize: '52px', fontWeight: 900, lineHeight: 1, color: 'var(--secondary)', fontFamily: 'var(--font-orbitron)' }}>
                                             {p.price !== "Custom" ? `$${p.price}` : p.price}
                                         </span>
-                                        {p.price !== "Custom" && <span style={{ fontSize: '16px', color: 'var(--text-muted)', marginBottom: '8px' }}>{p.freq}</span>}
+                                        {p.price !== "Custom" && <span style={{ fontSize: '16px', color: 'var(--text-muted)', marginBottom: '8px', fontWeight: 700 }}>{p.freq}</span>}
                                     </div>
                                 </div>
 
@@ -201,19 +206,21 @@ export default function PricingPage() {
             {/* FAQ */}
             <section style={{ padding: '100px 0', background: '#F8FAFC' }}>
                 <div className="container" style={{ maxWidth: '800px' }}>
-                    <h2 className="text-center" style={{ fontSize: '32px', marginBottom: '60px', fontFamily: 'var(--font-heading)' }}>Frequently Asked Questions</h2>
+                    <h2 className="text-center animate-slide-up" style={{ fontSize: '36px', marginBottom: '60px', fontFamily: 'var(--font-orbitron)', fontWeight: 800 }}>Frequently Asked Questions</h2>
                     <div className="flex column gap-16">
                         {[
                             { q: "Can I upgrade my plan later?", a: "Yes, you can upgrade or downgrade your plan at any time through your dashboard. Changes will be reflected in your next billing cycle." },
                             { q: "Is there a discount for non-profits?", a: "Absolutely. We offer a 30% discount for registered non-profit educational institutions. Contact our sales team to verify your status." },
                             { q: "How long is the free trial?", a: "The Professional plan comes with a 14-day free trial. No credit card is required to get started." }
                         ].map((faq, i) => (
-                            <div key={i} className="card" style={{ padding: '24px', background: 'white', border: '1px solid var(--border)' }}>
+                            <div key={i} className={`card animate-slide-up delay-${i + 1}`} style={{ padding: '24px', background: 'white', border: '1px solid var(--border)', borderRadius: '16px', transition: 'all 0.3s ease' }}>
                                 <div className="flex justify-between align-center" style={{ cursor: 'pointer' }}>
-                                    <h4 style={{ fontSize: '16px', fontWeight: 700 }}>{faq.q}</h4>
-                                    <HelpCircle size={18} color="var(--text-muted)" />
+                                    <h4 style={{ fontSize: '17px', fontWeight: 700, color: 'var(--secondary)' }}>{faq.q}</h4>
+                                    <div style={{ color: 'var(--primary)', background: '#FFF7ED', borderRadius: '50%', padding: '4px' }}>
+                                        <HelpCircle size={18} />
+                                    </div>
                                 </div>
-                                <p style={{ marginTop: '12px', color: 'var(--text-muted)', fontSize: '14px', lineHeight: 1.6 }}>{faq.a}</p>
+                                <p style={{ marginTop: '16px', color: 'var(--text-muted)', fontSize: '15px', lineHeight: 1.6 }}>{faq.a}</p>
                             </div>
                         ))}
                     </div>

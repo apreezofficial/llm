@@ -18,6 +18,15 @@ export default function CookieConsent() {
             const timer = setTimeout(() => setIsVisible(true), 1500);
             return () => clearTimeout(timer);
         }
+
+        // Add listener for manual opening
+        const handleManualOpen = () => {
+            setIsVisible(true);
+            setShowSettings(true);
+        };
+
+        window.addEventListener('lmszone-open-cookie-settings', handleManualOpen);
+        return () => window.removeEventListener('lmszone-open-cookie-settings', handleManualOpen);
     }, []);
 
     const save = (value: string) => {
