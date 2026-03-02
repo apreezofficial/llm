@@ -5,67 +5,95 @@ import { TrendingUp, Clock, Target, Zap, BarChart3, PieChart } from "lucide-reac
 export default function Analytics() {
     return (
         <AppLayout>
-            <div style={{ marginBottom: '40px' }}>
-                <h1 style={{ fontSize: '32px', marginBottom: '8px' }}>Learning Analytics</h1>
-                <p style={{ color: 'var(--text-muted)' }}>Detailed insights into your academic performance and habits.</p>
+            {/* Header Area */}
+            <div className="animate-slide-up" style={{ marginBottom: '48px' }}>
+                <h1 style={{
+                    fontSize: 'clamp(28px, 4vw, 36px)',
+                    fontWeight: 950,
+                    fontFamily: 'var(--font-heading)',
+                    color: '#0F172A',
+                    letterSpacing: '-1.5px',
+                    marginBottom: '8px'
+                }}>
+                    Learning <span style={{ color: '#FF7D00' }}>Analytics</span>
+                </h1>
+                <p style={{ color: '#64748B', fontSize: '16px', fontWeight: 500 }}>
+                    Detailed insights into your intellectual progression and habit metrics.
+                </p>
             </div>
 
-            <div className="grid-3" style={{ marginBottom: '32px' }}>
-                <div className="card" style={{ padding: '32px' }}>
-                    <div className="flex align-center justify-between" style={{ marginBottom: '24px' }}>
-                        <h3 style={{ fontSize: '18px' }}>Study Consistency</h3>
-                        <span style={{ color: '#10B981', fontWeight: 700, fontSize: '14px', background: '#DCFCE7', padding: '4px 12px', borderRadius: '20px' }}>+12%</span>
+            <div className="grid-3" style={{ marginBottom: '40px' }}>
+                {/* Study Consistency Chart */}
+                <div className="glass-card animate-scale-in delay-1" style={{ padding: '32px', borderRadius: '28px' }}>
+                    <div className="flex align-center justify-between" style={{ marginBottom: '32px' }}>
+                        <h3 style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>Study Flux</h3>
+                        <span style={{ color: '#005B52', fontWeight: 900, fontSize: '12px', background: '#E6F0EF', padding: '6px 14px', borderRadius: '30px' }}>+12.4%</span>
                     </div>
-                    {/* Mock Chart Visualization */}
-                    <div className="flex align-end gap-12" style={{ height: '150px', marginBottom: '20px' }}>
-                        {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
-                            <div key={i} style={{ flex: 1, background: i === 3 ? 'var(--primary)' : 'var(--accent-blue)', height: `${h}%`, borderRadius: '6px' }}></div>
+
+                    <div className="flex align-end gap-12" style={{ height: '180px', marginBottom: '24px' }}>
+                        {[40, 70, 45, 95, 65, 85, 55].map((h, i) => (
+                            <div key={i} className="hover-scale" style={{
+                                flex: 1,
+                                background: i === 3 ? 'linear-gradient(180deg, #FF7D00 0%, #FFB444 100%)' : '#F1F5F9',
+                                height: `${h}%`,
+                                borderRadius: '8px',
+                                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                                boxShadow: i === 3 ? '0 10px 20px rgba(255,125,0,0.2)' : 'none'
+                            }}></div>
                         ))}
                     </div>
-                    <div className="flex justify-between" style={{ color: 'var(--text-muted)', fontSize: '12px' }}>
-                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                    <div className="flex justify-between" style={{ color: '#94A3B8', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
                     </div>
                 </div>
 
-                <div className="card" style={{ padding: '32px' }}>
-                    <h3 style={{ fontSize: '18px', marginBottom: '24px' }}>Skill Distribution</h3>
-                    <div style={{ position: 'relative', width: '160px', height: '160px', margin: '0 auto 24px' }}>
-                        <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%' }}>
-                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#E0F2FE" strokeWidth="3" />
-                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--primary)" strokeWidth="3" strokeDasharray="75, 100" />
+                {/* Skill Mastery (Circle) */}
+                <div className="glass-card animate-scale-in delay-2" style={{ padding: '32px', borderRadius: '28px' }}>
+                    <h3 style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'var(--font-heading)', marginBottom: '32px' }}>Skill Domain</h3>
+                    <div style={{ position: 'relative', width: '180px', height: '180px', margin: '0 auto 32px' }}>
+                        <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg)' }}>
+                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#F1F5F9" strokeWidth="3" />
+                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#0F172A" strokeWidth="3.5" strokeDasharray="78, 100" strokeLinecap="round" />
                         </svg>
                         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
-                            <p style={{ fontSize: '24px', fontWeight: 800 }}>75%</p>
-                            <p style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>Mastered</p>
+                            <p style={{ fontSize: '32px', fontWeight: 950, color: '#0F172A', fontFamily: 'var(--font-heading)' }}>78%</p>
+                            <p style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1px' }}>Mastery</p>
                         </div>
                     </div>
-                    <div className="flex column gap-10">
-                        <div className="flex align-center justify-between" style={{ fontSize: '13px' }}>
-                            <span className="flex align-center gap-8"><div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--primary)' }}></div> Frontend</span>
-                            <span style={{ fontWeight: 600 }}>45%</span>
+                    <div className="flex column gap-12">
+                        <div className="flex align-center justify-between" style={{ fontSize: '14px', fontWeight: 600 }}>
+                            <span className="flex align-center gap-12"><div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#0F172A' }}></div> Architect</span>
+                            <span style={{ fontWeight: 800 }}>45.2%</span>
                         </div>
-                        <div className="flex align-center justify-between" style={{ fontSize: '13px' }}>
-                            <span className="flex align-center gap-8"><div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#8B5CF6' }}></div> Backend</span>
-                            <span style={{ fontWeight: 600 }}>30%</span>
+                        <div className="flex align-center justify-between" style={{ fontSize: '14px', fontWeight: 600 }}>
+                            <span className="flex align-center gap-12"><div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF7D00' }}></div> Logic</span>
+                            <span style={{ fontWeight: 800 }}>30.8%</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="card" style={{ padding: '32px' }}>
-                    <h3 style={{ fontSize: '18px', marginBottom: '24px' }}>Study Targets</h3>
-                    <div className="flex column gap-24">
+                {/* Performance Goals */}
+                <div className="glass-card animate-scale-in delay-3" style={{ padding: '32px', borderRadius: '28px' }}>
+                    <h3 style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'var(--font-heading)', marginBottom: '32px' }}>Milestone Progress</h3>
+                    <div className="flex column gap-32">
                         {[
-                            { label: 'Courses Completed', current: 12, target: 15, color: 'var(--primary)' },
-                            { label: 'Quizzes Passed', current: 42, target: 50, color: '#10B981' },
-                            { label: 'Weekly Hours', current: 18, target: 20, color: '#F59E0B' },
+                            { label: 'Courses Validated', current: 12, target: 15, color: '#005B52', bg: '#E6F0EF' },
+                            { label: 'Quizzes Cleared', current: 38, target: 50, color: '#FF7D00', bg: '#FFF7ED' },
+                            { label: 'Learning Velocity', current: 18, target: 20, color: '#0F172A', bg: '#F1F5F9' },
                         ].map((target, i) => (
                             <div key={i}>
-                                <div className="flex align-center justify-between" style={{ marginBottom: '8px', fontSize: '13px', fontWeight: 600 }}>
-                                    <span>{target.label}</span>
-                                    <span>{target.current}/{target.target}</span>
+                                <div className="flex align-center justify-between" style={{ marginBottom: '12px', fontSize: '13px', fontWeight: 800, color: '#0F172A' }}>
+                                    <span style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>{target.label}</span>
+                                    <span>{target.current} / {target.target}</span>
                                 </div>
-                                <div style={{ width: '100%', height: '8px', background: 'var(--bg-soft)', borderRadius: '4px', overflow: 'hidden' }}>
-                                    <div style={{ width: `${(target.current / target.target) * 100}%`, height: '100%', background: target.color }}></div>
+                                <div style={{ width: '100%', height: '10px', background: target.bg, borderRadius: '6px', overflow: 'hidden' }}>
+                                    <div style={{
+                                        width: `${(target.current / target.target) * 100}%`,
+                                        height: '100%',
+                                        background: target.color,
+                                        borderRadius: '6px',
+                                        transition: 'width 1s cubic-bezier(0.16, 1, 0.3, 1)'
+                                    }}></div>
                                 </div>
                             </div>
                         ))}
@@ -73,27 +101,59 @@ export default function Analytics() {
                 </div>
             </div>
 
-            <div className="card" style={{ padding: '32px' }}>
-                <div className="flex align-center justify-between" style={{ marginBottom: '32px' }}>
-                    <h3 style={{ fontSize: '20px' }}>Engagement History</h3>
-                    <button className="btn btn-outline">Download Report</button>
+            {/* Engagement Heatmap / Bar Chart */}
+            <div className="glass-card animate-slide-up delay-4" style={{ padding: '40px', borderRadius: '32px' }}>
+                <div className="flex align-center justify-between" style={{ marginBottom: '40px' }}>
+                    <div>
+                        <h3 style={{ fontSize: '22px', fontWeight: 900, fontFamily: 'var(--font-heading)', color: '#0F172A', marginBottom: '6px' }}>Engagement Dynamics</h3>
+                        <p style={{ fontSize: '14px', color: '#64748B', fontWeight: 500 }}>Global interaction frequency over the last 12 months.</p>
+                    </div>
+                    <button className="hover-scale" style={{
+                        padding: '12px 24px',
+                        borderRadius: '16px',
+                        background: '#0F172A',
+                        color: 'white',
+                        fontWeight: 800,
+                        fontSize: '13px',
+                        border: 'none',
+                        boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
+                    }}>Download Full Report</button>
                 </div>
-                <div style={{ height: '300px', display: 'flex', alignItems: 'flex-end', gap: '32px', paddingBottom: '20px', borderBottom: '1px solid var(--border)' }}>
-                    {[30, 45, 25, 60, 85, 40, 55, 70, 95, 50, 65, 80].map((h, i) => (
-                        <div key={i} style={{ flex: 1, position: 'relative' }}>
-                            <div style={{
-                                height: `${h}%`,
-                                background: 'linear-gradient(to top, var(--accent-blue), var(--primary))',
-                                borderRadius: '8px 8px 0 0',
-                                opacity: 0.8
-                            }}></div>
+
+                <div style={{ height: '320px', display: 'flex', alignItems: 'flex-end', gap: '16px', paddingBottom: '24px', position: 'relative' }}>
+                    {/* Horizontal grid lines */}
+                    {[0, 25, 50, 75, 100].map(val => (
+                        <div key={val} style={{
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            bottom: `${val + 7}%`,
+                            height: '1px',
+                            background: '#F1F5F9',
+                            zIndex: 0
+                        }}></div>
+                    ))}
+
+                    {[30, 45, 25, 70, 95, 50, 45, 80, 100, 60, 75, 90].map((h, i) => (
+                        <div key={i} className="hover-scale" style={{
+                            flex: 1,
+                            position: 'relative',
+                            zIndex: 1,
+                            height: `${h}%`,
+                            background: i === 8 ? '#FF7D00' : 'rgba(15, 23, 42, 0.05)',
+                            borderRadius: '10px 10px 4px 4px',
+                            transition: 'all 0.5s ease',
+                            cursor: 'pointer'
+                        }}>
+                            {i === 8 && <div style={{ position: 'absolute', top: '-40px', left: '50%', transform: 'translateX(-50%)', background: '#0F172A', color: 'white', padding: '4px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: 800 }}>PEAK</div>}
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-between" style={{ color: 'var(--text-muted)', fontSize: '12px', marginTop: '16px' }}>
-                    {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map(m => <span key={m}>{m}</span>)}
+                <div className="flex justify-between" style={{ color: '#94A3B8', fontSize: '11px', fontWeight: 900, marginTop: '20px', padding: '0 8px' }}>
+                    {['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'].map(m => <span key={m}>{m}</span>)}
                 </div>
             </div>
         </AppLayout>
     );
 }
+
